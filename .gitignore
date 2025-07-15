@@ -1,0 +1,14 @@
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Oo]bj/
+[Mm]emoryCaptures/
+*.csproj
+*.sln
+*.user
+*.pidb
+.idea/
+*.unityproj
+*.svd
+.DS_Store
