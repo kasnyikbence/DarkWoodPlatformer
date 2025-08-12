@@ -15,5 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/QuitScene.unity
     guid: facc49f993c23ed4caf2349ce2a50d6c
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.input.settings: {fileID: 11400000, guid: a0bd8820583d34c46bdbb5851eab51f2, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 6f9064c7fbafdd047b4fd98d8facce8b, type: 3}
   m_UseUCBPForAssetBundles: 0

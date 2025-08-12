@@ -47,12 +47,4 @@ public class UIManager : MonoBehaviour
 
         tmpText.text = healthRestored.ToString();
     }
-
-    public void OnExitGame(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
-    }
 }

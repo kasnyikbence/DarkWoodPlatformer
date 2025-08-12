@@ -21,17 +21,17 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
-public float CurrentMoveSpeed
-{
-    get
+    public float CurrentMoveSpeed
     {
-        if (CanMove && IsMoving && !touchingDirections.IsOnWall)
+        get
         {
-            return touchingDirections.IsGrounded ? runSpeed : airWalkSpeed;
+            if (CanMove && IsMoving && !touchingDirections.IsOnWall)
+            {
+                return touchingDirections.IsGrounded ? runSpeed : airWalkSpeed;
+            }
+            return 0;
         }
-        return 0;
     }
-}
 
 
     [SerializeField]
@@ -95,14 +95,23 @@ public float CurrentMoveSpeed
 
     private void FixedUpdate()
     {
-        if (!damageable.LockVelocity)
-            rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
 
+        if (damageable.LockVelocity || PauseMenuManager.isPaused)
+        {
+            return;
+        }
+
+        rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
         animator.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (PauseMenuManager.isPaused)
+        {
+            return;
+        }
+
         moveInput = context.ReadValue<Vector2>();
 
         if (IsAlive)
@@ -118,6 +127,11 @@ public float CurrentMoveSpeed
 
     private void SetFacingDirection(Vector2 moveInput)
     {
+        if (PauseMenuManager.isPaused)
+        {
+            return;
+        }
+
         if (moveInput.x > 0 && !IsFacingRight)
         {
             // Face the right
@@ -128,48 +142,67 @@ public float CurrentMoveSpeed
             // Face the left
             IsFacingRight = false;
         }
+
     }
 
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        //TODO Check if alive as well
+        if (PauseMenuManager.isPaused)
+        {
+            return;
+        }
         if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             animator.SetTrigger(AnimationStrings.jumpTrigger);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
         }
+
     }
 
 
     public void OnRoll(InputAction.CallbackContext context)
     {
+        if (PauseMenuManager.isPaused)
+        {
+            return;
+        }
         if (context.started && touchingDirections.IsGrounded && CanMove)
         {
             animator.SetTrigger(AnimationStrings.slideTrigger);
-            rb.linearVelocity = new Vector2(slideImpulse, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(slideImpulse * (IsFacingRight ? 1 : -1), rb.linearVelocity.y);
             damageable.IsInvincible = true;
 
         }
-    }
 
+    }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (PauseMenuManager.isPaused)
+        {
+            return;
+        }
         if (context.started)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
+
     }
 
-        public void OnRangedAttack(InputAction.CallbackContext context)
+    public void OnRangedAttack(InputAction.CallbackContext context)
     {
+        if (PauseMenuManager.isPaused)
+        {
+            return;
+        }
         if (context.started)
         {
             animator.SetTrigger(AnimationStrings.rangedAttackTrigger);
         }
+
     }
-    
+
     public void OnHit(int damage, Vector2 knockBack)
     {
         rb.linearVelocity = new Vector2(knockBack.x, rb.linearVelocity.y + knockBack.y);
