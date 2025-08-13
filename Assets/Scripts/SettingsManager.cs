@@ -3,17 +3,18 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Audio;
 
 public class SettingsManager : MonoBehaviour
 {
     // Audió
     public Slider masterVolumeSlider;
-    
-
+    public Slider musicVolumeSlider;
+    public Slider sfxVolumeSlider;
+    public AudioMixer mainMixer;
     // Kijelző
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
-
     private Resolution[] resolutions;
 
     void Start()
@@ -43,19 +44,50 @@ public class SettingsManager : MonoBehaviour
 
     public void LoadSettings()
     {
-        // Betölti a mentett hangerő értékeket
         masterVolumeSlider.value = PlayerPrefs.GetFloat("masterVolume", 1f);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1f);
+        sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1f);
 
-        // Betölti a felbontást és a teljes képernyős módot
         fullscreenToggle.isOn = PlayerPrefs.GetInt("fullscreen", 1) == 1;
-        // ... (kiegészíthető a felbontás betöltésével)
     }
 
     public void SetMasterVolume(float volume)
     {
-        AudioListener.volume = volume;
+        if (volume == 0)
+        {
+            mainMixer.SetFloat("MasterVolume", -80f);
+        }
+        else
+        {
+            mainMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 12);
+        }
         PlayerPrefs.SetFloat("masterVolume", volume);
+    }
 
+    public void SetMusicVolume(float volume)
+    {
+        if (volume == 0)
+        {
+            mainMixer.SetFloat("MusicVolume", -80f);
+        }
+        else
+        {
+            mainMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 12);
+        }
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        if (volume == 0)
+        {
+            mainMixer.SetFloat("SfxVolume", -80f);
+        }
+        else
+        {
+            mainMixer.SetFloat("SfxVolume", Mathf.Log10(volume) * 12);
+        }
+        PlayerPrefs.SetFloat("sfxVolume", volume);
     }
 
     public void SetResolution(int resolutionIndex)

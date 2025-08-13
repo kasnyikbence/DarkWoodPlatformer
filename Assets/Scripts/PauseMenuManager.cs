@@ -16,7 +16,6 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void OnPause(InputAction.CallbackContext context)
     {
-        Debug.Log("OnPause metódus lefutott.");
         if (context.started)
         {
             if (isPaused)

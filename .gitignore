@@ -1,14 +1,18 @@
-[Ll]ibrary/
-[Tt]emp/
-[Bb]uild/
-[Bb]uilds/
-[Oo]bj/
-[Mm]emoryCaptures/
+# Unity log fájlok
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+
+# Meta fájlok az ideiglenes fájlokhoz
 *.csproj
-*.sln
-*.user
-*.pidb
-.idea/
 *.unityproj
-*.svd
-.DS_Store
+*.sln
+*.suo
+
+# Fájlok, amiket nem szeretnél a Git-ben
+# Azok a fájlok, amelyek a meta fájlokhoz tartoznak
+# de a verziókövetés szempontjából nem fontosak
+*.meta

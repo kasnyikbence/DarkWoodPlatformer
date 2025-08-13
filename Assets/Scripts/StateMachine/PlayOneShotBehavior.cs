@@ -10,12 +10,21 @@ public class PlayOneShotBehavior : StateMachineBehaviour
     public float timeSinceEntered = 0;
     public bool hasDelayedSoundPlayed = false;
 
+    private AudioSource audioSource;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // Lekéri az AudioSource komponenst, vagy hozzáadja, ha még nincs
+        audioSource = animator.gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = animator.gameObject.AddComponent<AudioSource>();
+        }
+
         if (playOnEnter)
         {
-            AudioSource.PlayClipAtPoint(soundToPlay, animator.gameObject.transform.position, volume);
+            audioSource.PlayOneShot(soundToPlay, volume);
         }
 
         timeSinceEntered = 0f;
@@ -31,7 +40,7 @@ public class PlayOneShotBehavior : StateMachineBehaviour
 
             if (timeSinceEntered > playDelay)
             {
-                AudioSource.PlayClipAtPoint(soundToPlay, animator.gameObject.transform.position, volume);
+                audioSource.PlayOneShot(soundToPlay, volume);
                 hasDelayedSoundPlayed = true;
             }
         }
@@ -42,7 +51,7 @@ public class PlayOneShotBehavior : StateMachineBehaviour
     {
         if (playOnExit)
         {
-            AudioSource.PlayClipAtPoint(soundToPlay, animator.gameObject.transform.position, volume);
+            audioSource.PlayOneShot(soundToPlay, volume);
         }
     }
 }
