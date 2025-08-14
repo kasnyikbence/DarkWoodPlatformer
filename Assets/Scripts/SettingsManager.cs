@@ -48,6 +48,10 @@ public class SettingsManager : MonoBehaviour
         musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolume", 1f);
         sfxVolumeSlider.value = PlayerPrefs.GetFloat("sfxVolume", 1f);
 
+        SetMasterVolume(masterVolumeSlider.value);
+        SetMusicVolume(musicVolumeSlider.value);
+        SetSfxVolume(sfxVolumeSlider.value);
+
         fullscreenToggle.isOn = PlayerPrefs.GetInt("fullscreen", 1) == 1;
     }
 
