@@ -2,16 +2,18 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PauseMenuManager : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject settingsMenu;
     public static bool isPaused = false;
-
+    public GameObject resumeButton;
+    public GameObject respawnPanel;
 
     void Start()
     {
-        // A menü minden esetben inaktív legyen a játék kezdetén
         pauseMenuUI.SetActive(false);
     }
     public void OnPause(InputAction.CallbackContext context)
@@ -34,6 +36,8 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     public void Resume()
@@ -48,5 +52,6 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         SceneManager.LoadScene("MainMenu");
+        respawnPanel.SetActive(false);
     }
 }

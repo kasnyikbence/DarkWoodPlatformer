@@ -5,18 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
+    public static UIManager Instance;
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public Canvas gameCanves;
 
-    [System.Obsolete]
-    /*    void Awake()
+    [Header("Interact UI")]
+    [SerializeField] private GameObject interactHintImage;
+
+    void Awake()
     {
-        gameCanves = FindObjectOfType<Canvas>();
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
     }
-    */
 
     void OnEnable()
     {
@@ -46,5 +48,15 @@ public class UIManager : MonoBehaviour
         TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanves.transform).GetComponent<TMP_Text>();
 
         tmpText.text = healthRestored.ToString();
+    }
+
+    public void ShowInteractHint()
+    {
+        interactHintImage.SetActive(true);
+    }
+
+    public void HideInteractHint()
+    {
+        interactHintImage.SetActive(false);
     }
 }

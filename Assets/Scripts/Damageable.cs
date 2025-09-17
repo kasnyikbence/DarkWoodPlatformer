@@ -12,6 +12,7 @@ public class Damageable : MonoBehaviour
     Animator animator;
     public float timeSinceHit = 0;
     public float invincibilityTimer = 0.25f;
+    public event Action OnPlayerDied;
 
     [SerializeField]
     private bool _isAlive = true;
@@ -57,12 +58,12 @@ public class Damageable : MonoBehaviour
         set
         {
             _health = value;
-
             healthChanged?.Invoke(_health, MaxHealth);
-            
+
             if (_health <= 0)
             {
                 IsAlive = false;
+                OnPlayerDied?.Invoke();
             }
         }
     }

@@ -16,6 +16,19 @@ public class SettingsManager : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
     private Resolution[] resolutions;
+    public GameObject settingsMenu;
+    public GameObject closeThing;
+
+    public void OpenSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+        closeThing.SetActive(false);
+    }
+    public void CloseSettingsMenu()
+    {
+        settingsMenu.SetActive(false);
+        closeThing.SetActive(true);
+    }
 
     void Start()
     {
@@ -106,5 +119,5 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("fullscreen", isFullscreen ? 1 : 0);
     }
 
-
+    
 }
