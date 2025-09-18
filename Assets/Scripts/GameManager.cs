@@ -1,5 +1,8 @@
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -7,34 +10,56 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject player;
     public GameObject respawnMenu;
-
+    public int gameStartScene;
+    public string saveName = "savedGame";
+    public string directoryName = "Saves";
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
     void Start()
     {
-        Damageable playerDamageable = player.GetComponent<Damageable>();
-
-        if (playerDamageable != null)
+        //ResetSaveData();
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            playerDamageable.OnPlayerDied += HandleDeath;
+            Damageable playerDamageable = player.GetComponent<Damageable>();
+
+            if (playerDamageable != null)
+            {
+                playerDamageable.OnPlayerDied += HandleDeath;
+            }
         }
+        LoadGame();
 
         if (respawnMenu != null)
         {
             respawnMenu.SetActive(false);
         }
     }
+
+    public void ResetSaveData()
+{
+    string savePath = Application.persistentDataPath + "/" + directoryName;
+    string filePath = savePath + "/" + saveName + ".bin";
+
+    if (File.Exists(filePath))
+    {
+        File.Delete(filePath);
+        Debug.Log("Mentési fájl törölve a teszteléshez.");
+    }
+    else
+    {
+        Debug.Log("Nincs mentési fájl a törléshez.");
+    }
+}
 
     private void HandleDeath()
     {
@@ -55,30 +80,94 @@ public class GameManager : MonoBehaviour
         if (respawnMenu != null)
         {
             respawnMenu.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
         }
 
-        // Ellenőrizzük, van-e mentett checkpoint
-        if (PlayerPrefs.HasKey("CheckpointX"))
-        {
-            float x = PlayerPrefs.GetFloat("CheckpointX");
-            float y = PlayerPrefs.GetFloat("CheckpointY");
-            float z = PlayerPrefs.GetFloat("CheckpointZ");
+        string savePath = Application.persistentDataPath + "/" + directoryName;
+        string filePath = savePath + "/" + saveName + ".bin";
 
-            Vector3 savedPosition = new Vector3(x, y, z);
+        if (File.Exists(filePath))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream saveFile = File.Open(filePath, FileMode.Open);
+
+            SaveGameData loadData = (SaveGameData)formatter.Deserialize(saveFile);
+
+            print("----LOADED GAME DATA----");
+            print("Játék betöltve innen: " + savePath + "/" + saveName + ".bin");
+            print("Player position: " + loadData.playerPositionX + " " + loadData.playerPositionY + " " + loadData.playerPositionZ);
+            print("Player health: " + loadData.health);
+
+            saveFile.Close();
+
+            Vector3 savedPosition = new Vector3(loadData.playerPositionX, loadData.playerPositionY, loadData.playerPositionZ);
 
             player.transform.position = savedPosition;
 
             Damageable playerDamageable = player.GetComponent<Damageable>();
             if (playerDamageable != null)
             {
-                playerDamageable.Health = playerDamageable.MaxHealth;
+                playerDamageable.Health = loadData.health;
                 playerDamageable.IsAlive = true;
                 playerDamageable.LockVelocity = false;
             }
         }
+
+
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1f;
+        if (PauseMenuManager.isPaused)
+        {
+            PauseMenuManager.isPaused = false;
+        }
+        SceneManager.LoadScene(gameStartScene);
+    }
+
+    private void LoadGame()
+    {
+        string savePath = Application.persistentDataPath + "/" + directoryName;
+        string filePath = savePath + "/" + saveName + ".bin";
+
+        if (File.Exists(filePath))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream saveFile = File.Open(filePath, FileMode.Open);
+            SaveGameData loadData = (SaveGameData)formatter.Deserialize(saveFile);
+            saveFile.Close();
+
+            Debug.Log("Játék betöltve a legutolsó mentésből.");
+
+            Vector3 savedPosition = new Vector3(loadData.playerPositionX, loadData.playerPositionY, loadData.playerPositionZ);
+
+            if (player != null)
+            {
+                player.transform.position = savedPosition;
+                Damageable playerDamageable = player.GetComponent<Damageable>();
+                if (playerDamageable != null)
+                {
+                    playerDamageable.Health = loadData.health;
+                }
+            }
+        }
         else
         {
-            Debug.Log("Nincs mentett checkpoint, nem tudunk újjáéledni.");
+            Debug.Log("Nincs mentési fájl, a játékos az alapértelmezett pozíción indul.");
         }
+    }
+
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+
+        if (PauseMenuManager.isPaused)
+        {
+            PauseMenuManager.isPaused = false;
+        }
+        PauseMenuManager.isPaused = false;
+        SceneManager.LoadScene("MainMenu");
     }
 }

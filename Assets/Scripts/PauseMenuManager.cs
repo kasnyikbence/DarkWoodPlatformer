@@ -9,12 +9,12 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject settingsMenu;
     public static bool isPaused = false;
-    public GameObject resumeButton;
     public GameObject respawnPanel;
 
     void Start()
     {
         pauseMenuUI.SetActive(false);
+        isPaused = false;
     }
     public void OnPause(InputAction.CallbackContext context)
     {
@@ -37,7 +37,7 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
 
-        EventSystem.current.SetSelectedGameObject(resumeButton);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Resume()
@@ -45,6 +45,7 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void LoadMainMenu()
@@ -53,5 +54,6 @@ public class PauseMenuManager : MonoBehaviour
         isPaused = false;
         SceneManager.LoadScene("MainMenu");
         respawnPanel.SetActive(false);
+        pauseMenuUI.SetActive(false);
     }
 }

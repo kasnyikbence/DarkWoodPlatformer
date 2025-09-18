@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
+    public GameObject gameSavedTextPrefab;
     public Canvas gameCanves;
 
     [Header("Interact UI")]
@@ -16,8 +17,6 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
     }
 
     void OnEnable()
@@ -50,6 +49,12 @@ public class UIManager : MonoBehaviour
         tmpText.text = healthRestored.ToString();
     }
 
+    public void ShowGameSavedText(Vector3 position)
+    {
+        Vector3 spawnPosition = Camera.main.WorldToScreenPoint(position);
+
+        Instantiate(gameSavedTextPrefab, spawnPosition, Quaternion.identity, gameCanves.transform);
+    }
     public void ShowInteractHint()
     {
         interactHintImage.SetActive(true);

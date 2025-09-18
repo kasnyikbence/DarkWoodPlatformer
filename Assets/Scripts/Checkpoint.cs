@@ -1,15 +1,35 @@
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Checkpoint : MonoBehaviour
 {
     private bool playerInRange = false;
+    private GameObject player;
+    public string saveName = "savedGame";
+    public string directoryName = "Saves";
+    public SaveGameData saveGameData;
+    private PlayerInput playerInput;
 
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerInput = player.GetComponent<PlayerInput>();
+        }
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
             playerInRange = true;
+            if (playerInput != null)
+            {
+                playerInput.actions["CheckpointSave"].performed += OnInteract;
+            }
             UIManager.Instance.ShowInteractHint();
         }
     }
@@ -18,25 +38,46 @@ public class Checkpoint : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             playerInRange = false;
+            if (playerInput != null)
+            {
+                playerInput.actions["CheckpointSave"].performed -= OnInteract;
+            }
             UIManager.Instance.HideInteractHint();
         }
     }
-     public void OnInteract(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started && playerInRange)
+        if (playerInRange)
         {
             SaveCheckpoint();
         }
     }
     private void SaveCheckpoint()
     {
-        // ideiglenes
-        PlayerPrefs.SetFloat("CheckpointX", transform.position.x);
-        PlayerPrefs.SetFloat("CheckpointY", transform.position.y);
-        PlayerPrefs.SetFloat("CheckpointZ", transform.position.z);
+        saveGameData.health = player.GetComponent<Damageable>().Health;
 
-        PlayerPrefs.Save();
+        Vector3 playerPos = player.transform.position;
+        saveGameData.playerPositionX = playerPos.x;
+        saveGameData.playerPositionY = playerPos.y;
+        saveGameData.playerPositionZ = playerPos.z;
 
-        Debug.Log("Checkpoint elmentve: " + transform.position);
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowGameSavedText(transform.position);
+        }
+        string savePath = Application.persistentDataPath + "/" + directoryName;
+        if (!Directory.Exists(savePath))
+        {
+            Directory.CreateDirectory(savePath);
+        }
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream saveFile = File.Create(savePath + "/" + saveName + ".bin");
+
+        formatter.Serialize(saveFile, saveGameData);
+
+        saveFile.Close();
+
+        print("Játék mentve: " + savePath + "/" + saveName + ".bin");
     }
 }
