@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject healthTextPrefab;
     public GameObject gameSavedTextPrefab;
     public Canvas gameCanves;
+    [SerializeField] private TMP_Text potionCounterText;
 
     [Header("Interact UI")]
     [SerializeField] private GameObject interactHintImage;
@@ -63,5 +65,10 @@ public class UIManager : MonoBehaviour
     public void HideInteractHint()
     {
         interactHintImage.SetActive(false);
+    }
+
+    public void UpdatePotionUI(int currentPotions)
+    {
+        potionCounterText.text = currentPotions.ToString();
     }
 }

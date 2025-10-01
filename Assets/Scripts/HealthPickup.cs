@@ -8,15 +8,11 @@ public class HealthPickup : MonoBehaviour
     public float amplitude = 0.25f;
     public float speed = 1.5f;  
     public Vector3 startPos;
+    public int amount = 1;
 
-    AudioSource pickupSource;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    void Awake()
-    {
-        pickupSource = GetComponent<AudioSource>();
-    }
     void Start()
     {
         startPos = transform.position;
@@ -24,18 +20,13 @@ public class HealthPickup : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Damageable damageable = collision.GetComponent<Damageable>();
+        PotionSystem potionSystem = collision.GetComponent<PotionSystem>();
 
-        if (damageable)
+        if (potionSystem)
         {
-            bool wasHealed = damageable.Heal(healthRestore);
-
-            if (wasHealed)
+            if (potionSystem.currentPotions != potionSystem.maxPotions)
             {
-                if (pickupSource)
-                {
-                    AudioSource.PlayClipAtPoint(pickupSource.clip, gameObject.transform.position, pickupSource.volume);
-                }            
+                potionSystem.AddPotion(amount);
                 Destroy(gameObject);
             }
         }

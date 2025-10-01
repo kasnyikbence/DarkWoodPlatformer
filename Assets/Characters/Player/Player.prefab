@@ -400,10 +400,6 @@ MonoBehaviour:
     m_ActionId: 790f48fa-0c6c-48dd-887f-13c6a97cff4d
     m_ActionName: 'Player/RangedAttack[/Keyboard/f]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e7c1f306-47aa-4635-806a-84518cc43823
-    m_ActionName: 'UI/Escape[/Keyboard/escape]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8793739805844401235}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -419,6 +415,34 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: dc33edfc-eff1-4185-b4bf-f61619e58568
     m_ActionName: 'Player/Roll[/Keyboard/leftCtrl]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a61a3b0-d6e6-4713-8fb0-9de5df41eda2
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d1ea948-4354-4c3f-8cbd-6a690e9023e2
+    m_ActionName: 'Player/CheckpointSave[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8608fd06-9fc4-44b3-bcbe-aa6ed38df919
+    m_ActionName: 'UI/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 53a707e3-9e36-4600-8134-f605820e88ac
+    m_ActionName: 'Player/UsePotion[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

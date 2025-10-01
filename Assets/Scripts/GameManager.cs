@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject player;
+    private GameObject player;
     public GameObject respawnMenu;
     public int gameStartScene;
     public string saveName = "savedGame";
