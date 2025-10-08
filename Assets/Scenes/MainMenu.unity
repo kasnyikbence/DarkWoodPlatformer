@@ -1500,7 +1500,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -1508,6 +1507,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!81 &393739200
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5964,7 +5964,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2416282957477439105, guid: 9c7dc46a646d470438b8f81254d317d5, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 15e643e03ddf6f243984be17e0e0821e, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 15e643e03ddf6f243984be17e0e0821e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.005

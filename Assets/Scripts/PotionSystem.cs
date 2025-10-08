@@ -13,12 +13,14 @@ public class PotionSystem : MonoBehaviour
     [Header("Audio")]
     public AudioClip pickupClip;
     private AudioSource audioSource;
+    Animator animator;
 
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         playerDamageable = GetComponent<Damageable>();
+        animator = GetComponent<Animator>();
         currentPotions = maxPotions;
     }
 
@@ -38,6 +40,13 @@ public class PotionSystem : MonoBehaviour
             {
                 currentPotions--;
                 UIManager.Instance.UpdatePotionUI(currentPotions);
+
+                if (animator != null)
+                {
+                    animator.SetTrigger(AnimationStrings.potionTrigger);
+
+                }
+
 
                 if (pickupClip != null && audioSource != null)
                 {

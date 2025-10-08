@@ -14,11 +14,10 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         rb.linearVelocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
-
         Destroy(gameObject, 5f);
     }
 

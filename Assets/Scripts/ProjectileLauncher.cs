@@ -6,8 +6,24 @@ public class ProjectileLauncher : MonoBehaviour
     public Transform launchPoint;
     public GameObject projectilePrefab;
 
+    [Header("Arrow Count")]
+    public int maxArrows = 10;
+    private int currentArrows;
+
+    void Start()
+    {
+        currentArrows = maxArrows;
+        UIManager.Instance.UpdateArrowUI(currentArrows);
+    }
     public void FireProjectile()
     {
+
+        if (currentArrows <= 0)
+        {
+            Debug.Log("Nincs több nyíl!");
+            return;
+        }
+
         GameObject projectile = Instantiate(projectilePrefab, launchPoint.position, projectilePrefab.transform.rotation);
         Vector3 origScale = projectile.transform.localScale;
         projectile.transform.localScale = new Vector3(
@@ -16,6 +32,14 @@ public class ProjectileLauncher : MonoBehaviour
             origScale.z
             );
 
+        currentArrows--;
+        UIManager.Instance.UpdateArrowUI(currentArrows);
+
+    }
+    public void AddArrows(int amount)
+    {
+        currentArrows = Mathf.Clamp(currentArrows + amount, 0, maxArrows);
+        UIManager.Instance.UpdateArrowUI(currentArrows);
     }
 
 }

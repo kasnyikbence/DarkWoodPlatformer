@@ -207,4 +207,13 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(knockBack.x, rb.linearVelocity.y + knockBack.y);
     }
+    public void LockMovement()
+    {
+        animator.SetBool(AnimationStrings.canMove, false);
+    }
+
+    public void UnlockMovement()
+    {
+        animator.SetBool(AnimationStrings.canMove, true);
+    }
 }
