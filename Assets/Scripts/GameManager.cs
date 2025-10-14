@@ -105,11 +105,24 @@ public class GameManager : MonoBehaviour
             player.transform.position = savedPosition;
 
             Damageable playerDamageable = player.GetComponent<Damageable>();
+            PotionSystem potionSystem = player.GetComponent<PotionSystem>();
+            ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
             if (playerDamageable != null)
             {
                 playerDamageable.Health = loadData.health;
                 playerDamageable.IsAlive = true;
                 playerDamageable.LockVelocity = false;
+            }
+
+            if (potionSystem != null)
+            {
+                potionSystem.currentPotions = loadData.potionAmount;
+                UIManager.Instance.UpdatePotionUI(loadData.potionAmount);
+            }
+            if (projectileLauncher != null)
+            {
+                projectileLauncher.AddArrows(loadData.arrowAmount - projectileLauncher.maxArrows); 
+                UIManager.Instance.UpdateArrowUI(loadData.arrowAmount);
             }
         }
 
@@ -146,9 +159,24 @@ public class GameManager : MonoBehaviour
             {
                 player.transform.position = savedPosition;
                 Damageable playerDamageable = player.GetComponent<Damageable>();
+                PotionSystem potionSystem = player.GetComponent<PotionSystem>();
+                ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
+
                 if (playerDamageable != null)
                 {
                     playerDamageable.Health = loadData.health;
+                }
+
+                if (potionSystem != null)
+                {
+                    potionSystem.currentPotions = loadData.potionAmount;
+                    UIManager.Instance.UpdatePotionUI(loadData.potionAmount);
+                }
+
+                if (projectileLauncher != null)
+                {
+                    projectileLauncher.currentArrows = loadData.arrowAmount;
+                    UIManager.Instance.UpdateArrowUI(loadData.arrowAmount);
                 }
             }
         }

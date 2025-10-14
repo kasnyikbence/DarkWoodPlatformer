@@ -8,13 +8,27 @@ public class ProjectileLauncher : MonoBehaviour
 
     [Header("Arrow Count")]
     public int maxArrows = 10;
-    private int currentArrows;
+    public int currentArrows;
+
+    void Awake()
+    {
+        currentArrows = 0;
+    }
 
     void Start()
     {
-        currentArrows = maxArrows;
-        UIManager.Instance.UpdateArrowUI(currentArrows);
+        if (currentArrows == 0)
+        {
+            currentArrows = maxArrows;
+        }
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateArrowUI(currentArrows);
+        }
     }
+
+
     public void FireProjectile()
     {
 

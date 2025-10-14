@@ -9,4 +9,8 @@ public struct SaveGameData
     public float playerPositionX;
     public float playerPositionY;
     public float playerPositionZ;
+
+    public int potionAmount;
+    public int arrowAmount;
+
 }

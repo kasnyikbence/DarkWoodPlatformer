@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 7f;
     public float jumpImpulse = 7f;
     public float slideImpulse = 5f;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool _isFacingRight = true;
+
 
     public bool IsFacingRight
     {
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+
     }
 
     private void FixedUpdate()
@@ -103,6 +107,11 @@ public class PlayerController : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.linearVelocity.y);
         animator.SetFloat(AnimationStrings.yVelocity, rb.linearVelocity.y);
+
+        if (rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)

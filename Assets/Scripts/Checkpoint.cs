@@ -56,6 +56,18 @@ public class Checkpoint : MonoBehaviour
     {
         saveGameData.health = player.GetComponent<Damageable>().Health;
 
+        PotionSystem potionSystem = player.GetComponent<PotionSystem>();
+        ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
+
+        if (potionSystem != null)
+        {
+            saveGameData.potionAmount = potionSystem.currentPotions;
+        }
+        if (projectileLauncher != null)
+        {
+            saveGameData.arrowAmount = projectileLauncher.currentArrows; 
+        }
+
         Vector3 playerPos = player.transform.position;
         saveGameData.playerPositionX = playerPos.x;
         saveGameData.playerPositionY = playerPos.y;
