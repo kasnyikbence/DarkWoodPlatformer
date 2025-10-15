@@ -78,7 +78,8 @@ public class Damageable : MonoBehaviour
         {
             _isAlive = value;
             animator.SetBool(AnimationStrings.isAlive, value);
-            Debug.Log("IsAlive set " + value);
+            Debug.Log(gameObject.name + " IsAlive set to " + value);
+
         }
     }
     public bool LockVelocity

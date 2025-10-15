@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
-public class Knight : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
 
     public float walkAcceleration = 3f;

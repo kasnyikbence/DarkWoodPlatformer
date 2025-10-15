@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int gameStartScene;
     public string saveName = "savedGame";
     public string directoryName = "Saves";
+    [SerializeField] private Transform initialSpawnPoint;
+
     void Awake()
     {
         if (Instance == null)
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        ResetSaveData();
+        //ResetSaveData();
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -86,27 +88,37 @@ public class GameManager : MonoBehaviour
         string savePath = Application.persistentDataPath + "/" + directoryName;
         string filePath = savePath + "/" + saveName + ".bin";
 
+        Vector3 respawnPosition = Vector3.zero;
+        bool loadedFromFile = false;
+
+        // Alapértelmezett pozíció beállítása: a megadott SpawnPoint
+        if (initialSpawnPoint != null)
+        {
+            respawnPosition = initialSpawnPoint.position;
+        }
+        else
+        {
+            Debug.LogError("Az Initial Spawn Point nincs beállítva a GameManager-ben! Visszaesés a (0,0,0) pozícióra.");
+        }
+
+        // A. Megpróbáljuk betölteni a mentett Checkpointot
         if (File.Exists(filePath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream saveFile = File.Open(filePath, FileMode.Open);
 
             SaveGameData loadData = (SaveGameData)formatter.Deserialize(saveFile);
-
-            print("----LOADED GAME DATA----");
-            print("Játék betöltve innen: " + savePath + "/" + saveName + ".bin");
-            print("Player position: " + loadData.playerPositionX + " " + loadData.playerPositionY + " " + loadData.playerPositionZ);
-            print("Player health: " + loadData.health);
-
             saveFile.Close();
 
-            Vector3 savedPosition = new Vector3(loadData.playerPositionX, loadData.playerPositionY, loadData.playerPositionZ);
+            // Mentett pozíció felülírja az alapértelmezett pozíciót
+            respawnPosition = new Vector3(loadData.playerPositionX, loadData.playerPositionY, loadData.playerPositionZ);
+            loadedFromFile = true;
 
-            player.transform.position = savedPosition;
-
+            // B. Mentett adatok betöltése
             Damageable playerDamageable = player.GetComponent<Damageable>();
             PotionSystem potionSystem = player.GetComponent<PotionSystem>();
             ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
+
             if (playerDamageable != null)
             {
                 playerDamageable.Health = loadData.health;
@@ -121,12 +133,35 @@ public class GameManager : MonoBehaviour
             }
             if (projectileLauncher != null)
             {
-                projectileLauncher.AddArrows(loadData.arrowAmount - projectileLauncher.maxArrows); 
+                projectileLauncher.AddArrows(loadData.arrowAmount - projectileLauncher.maxArrows);
                 UIManager.Instance.UpdateArrowUI(loadData.arrowAmount);
             }
+
+            Debug.Log("Újraéledés mentett Checkpointról.");
+        }
+        else
+        {
+            Debug.Log("Nincs mentési fájl. Újraéledés az alapértelmezett kezdőponton.");
         }
 
+        // C. Pozíció és Életerő Visszaállítása
+        if (player != null)
+        {
+            player.transform.position = respawnPosition;
 
+            // Ha NEM fájlból töltöttünk, visszaállítjuk az életet maxra (mivel halott volt)
+            if (loadedFromFile == false)
+            {
+                Damageable playerDamageable = player.GetComponent<Damageable>();
+                if (playerDamageable != null)
+                {
+                    playerDamageable.Health = playerDamageable.MaxHealth;
+                    playerDamageable.IsAlive = true;
+                    playerDamageable.LockVelocity = false;
+                }
+                // Itt kellene nullázni a Potion és Arrow mennyiséget is, ha a játék így kívánja.
+            }
+        }
     }
 
     public void StartGame()
