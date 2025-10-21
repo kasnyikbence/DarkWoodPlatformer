@@ -127,10 +127,10 @@ GameObject:
   - component: {fileID: 5256887693320103713}
   - component: {fileID: 6978651043143860420}
   - component: {fileID: 6691981558694108112}
+  - component: {fileID: 1464353228136440117}
   - component: {fileID: 8793739805844401235}
   - component: {fileID: 979346349297113364}
   - component: {fileID: 6071536128224393517}
-  - component: {fileID: 1464353228136440117}
   - component: {fileID: 9123684339516107991}
   - component: {fileID: 5408497558462856281}
   - component: {fileID: 5624947387513185228}
@@ -249,6 +249,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &1464353228136440117
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384424839921047904}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1c0f16755a0268b43aaa744c5896eb88, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.000000059604645, y: -0.21379268}
+  m_Size: {x: 0.6836387, y: 1.7208703}
+  m_Direction: 0
 --- !u!114 &8793739805844401235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,43 +526,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &1464353228136440117
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384424839921047904}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.000000059604645, y: -0.21379268}
-  m_Size: {x: 0.6836387, y: 1.7208703}
-  m_Direction: 0
 --- !u!114 &9123684339516107991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,8 +553,8 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   groundDistance: 0.5
-  wallDistance: 0.2
-  ceilingDistance: 0.05
+  wallDistance: 0.5
+  ceilingDistance: 0.5
   _isGrounded: 1
   _isOnWall: 0
   _isOnCeiling: 0

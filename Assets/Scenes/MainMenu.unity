@@ -4313,12 +4313,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654122368157968797, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
       propertyPath: hotSpot.y
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4654122368157968797, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
       propertyPath: cursorTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 3638be225600fa34cadc93d125145be7, type: 3}
+      objectReference: {fileID: 2800000, guid: c0fea3d10c78a8842ab870d3d9535149, type: 3}
     - target: {fileID: 5533493228111220422, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000038146973

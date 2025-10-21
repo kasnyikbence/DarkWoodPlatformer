@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
         Vector3 respawnPosition = Vector3.zero;
         bool loadedFromFile = false;
 
-        // Alapértelmezett pozíció beállítása: a megadott SpawnPoint
         if (initialSpawnPoint != null)
         {
             respawnPosition = initialSpawnPoint.position;
@@ -101,7 +100,6 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Az Initial Spawn Point nincs beállítva a GameManager-ben! Visszaesés a (0,0,0) pozícióra.");
         }
 
-        // A. Megpróbáljuk betölteni a mentett Checkpointot
         if (File.Exists(filePath))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -110,11 +108,9 @@ public class GameManager : MonoBehaviour
             SaveGameData loadData = (SaveGameData)formatter.Deserialize(saveFile);
             saveFile.Close();
 
-            // Mentett pozíció felülírja az alapértelmezett pozíciót
             respawnPosition = new Vector3(loadData.playerPositionX, loadData.playerPositionY, loadData.playerPositionZ);
             loadedFromFile = true;
 
-            // B. Mentett adatok betöltése
             Damageable playerDamageable = player.GetComponent<Damageable>();
             PotionSystem potionSystem = player.GetComponent<PotionSystem>();
             ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
@@ -144,12 +140,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("Nincs mentési fájl. Újraéledés az alapértelmezett kezdőponton.");
         }
 
-        // C. Pozíció és Életerő Visszaállítása
         if (player != null)
         {
             player.transform.position = respawnPosition;
 
-            // Ha NEM fájlból töltöttünk, visszaállítjuk az életet maxra (mivel halott volt)
             if (loadedFromFile == false)
             {
                 Damageable playerDamageable = player.GetComponent<Damageable>();
@@ -159,7 +153,6 @@ public class GameManager : MonoBehaviour
                     playerDamageable.IsAlive = true;
                     playerDamageable.LockVelocity = false;
                 }
-                // Itt kellene nullázni a Potion és Arrow mennyiséget is, ha a játék így kívánja.
             }
         }
     }
