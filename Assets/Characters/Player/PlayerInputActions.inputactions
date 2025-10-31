@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "PlayerInputActions",
     "maps": [
         {
@@ -90,6 +91,15 @@
                     "name": "UsePotion",
                     "type": "Button",
                     "id": "53a707e3-9e36-4600-8134-f605820e88ac",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChestOpen",
+                    "type": "Button",
+                    "id": "73505f54-3b09-4e7d-9e51-ff4248d16b49",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -347,6 +357,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "UsePotion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e2bd46b-83d5-48d5-b340-6a8c3d2d4766",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChestOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

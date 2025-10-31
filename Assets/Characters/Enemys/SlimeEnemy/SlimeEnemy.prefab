@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de29536b620c8994b900d99f206aed9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 5
+  attackDamage: 10
   knockBack: {x: 3, y: 1}
 --- !u!1 &9113506989406184124
 GameObject:
@@ -558,8 +558,8 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _maxHealth: 50
-  _health: 50
+  _maxHealth: 75
+  _health: 75
 --- !u!114 &3451989451759594025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   walkAcceleration: 50
-  maxSpeed: 2
+  maxSpeed: 3
   walkStopRate: 0.05
   attackZone: {fileID: 8751362821940494805}
   cliffDetectionZone: {fileID: 530688244792726332}

@@ -247,7 +247,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1464353228136440117
 CapsuleCollider2D:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c0381f68fb3a649a83959a8dc0f0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 7
+  runSpeed: 8
   airWalkSpeed: 7
   jumpImpulse: 8
   slideImpulse: 5
@@ -499,6 +499,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 53a707e3-9e36-4600-8134-f605820e88ac
     m_ActionName: 'Player/UsePotion[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 73505f54-3b09-4e7d-9e51-ff4248d16b49
+    m_ActionName: 'Player/ChestOpen[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -552,9 +556,9 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  groundDistance: 0.5
-  wallDistance: 0.5
-  ceilingDistance: 0.5
+  groundDistance: 0.1
+  wallDistance: 0.1
+  ceilingDistance: 0.1
   _isGrounded: 1
   _isOnWall: 0
   _isOnCeiling: 0
