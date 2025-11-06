@@ -298,11 +298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c0381f68fb3a649a83959a8dc0f0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 8
+  runSpeed: 9
   airWalkSpeed: 7
-  jumpImpulse: 8
+  jumpImpulse: 9
   slideImpulse: 5
-  fallMultiplier: 2.2
+  fallMultiplier: 2.5
   lowJumpMultiplier: 2
   _isMoving: 0
   _isFacingRight: 1
@@ -556,7 +556,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  groundDistance: 0.1
+  groundDistance: 0.3
   wallDistance: 0.1
   ceilingDistance: 0.1
   _isGrounded: 1
@@ -636,7 +636,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 44.082436
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
