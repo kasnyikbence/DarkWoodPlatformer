@@ -298,7 +298,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 8256
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de29536b620c8994b900d99f206aed9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
+  attackDamage: 13
   knockBack: {x: 5, y: 2}
 --- !u!1 &7190775183387087384
 GameObject:

@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public Canvas gameCanves;
     [SerializeField] private TMP_Text potionCounterText;
     [SerializeField] private TMP_Text arrowCounterText;
+    [SerializeField] private TMP_Text keyCounterText;
+
 
     [Header("Interact UI")]
     [SerializeField] private GameObject interactHintImage;
@@ -76,5 +78,10 @@ public class UIManager : MonoBehaviour
     public void UpdateArrowUI(int currentAmount)
     {
         arrowCounterText.text = currentAmount.ToString();
+    }
+
+    public void UpdateKeyUI(int keyAmount)
+    {
+        keyCounterText.text = keyAmount.ToString();
     }
 }

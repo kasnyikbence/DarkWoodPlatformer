@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        //ResetSaveData();
+        ResetSaveData();
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
