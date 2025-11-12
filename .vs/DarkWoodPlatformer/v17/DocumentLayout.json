@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\healthpickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\healthpickup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\keysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\keysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\key.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\potionsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\potionsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\door.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\chest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,37 +38,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HealthPickup.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\HealthPickup.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\HealthPickup.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\HealthPickup.cs",
-              "RelativeToolTip": "Assets\\Scripts\\HealthPickup.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBkAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "UIManager.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\UI\\UIManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UIManager.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\UI\\UIManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\UIManager.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAA8wFIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:40:54.529Z",
+              "WhenOpened": "2025-11-10T11:02:57.437Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "KeySystem.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\KeySystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\KeySystem.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\KeySystem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\KeySystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T11:00:04.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Key.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Key.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Key.cs",
               "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Key.cs",
               "RelativeToolTip": "Assets\\Scripts\\Key.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-10T10:41:18.126Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Door.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Door.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Door.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Door.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Door.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwFMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T10:03:36.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "PotionSystem.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\PotionSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PotionSystem.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\PotionSystem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PotionSystem.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T11:00:08.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "GameManager.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GameManager.cs",
@@ -68,24 +115,12 @@
               "RelativeToolTip": "Assets\\Scripts\\Core\\GameManager.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAQwB4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:06:18.882Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Door.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Door.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Door.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Door.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Door.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowBkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T10:03:36.863Z",
+              "WhenOpened": "2025-11-10T10:06:18.882Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Chest.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Chest.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Chest.cs",

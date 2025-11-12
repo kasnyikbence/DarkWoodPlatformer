@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 133
+  controlID: 108
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -69,15 +69,15 @@ MonoBehaviour:
     y: 0
     width: 637
     height: 981
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
   - {fileID: 15}
   - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 1
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -123,8 +123,8 @@ MonoBehaviour:
     y: 538
     width: 1283
     height: 443
-  m_MinSize: {x: 101, y: 126}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 16}
@@ -398,6 +398,7 @@ MonoBehaviour:
     - {fileID: -9095264343886788490, guid: 50f9d1ddd7d2b8b4bafb6e1e2ebe0f8e, type: 2}
     - {fileID: -309770882218780721, guid: 41015f68d79fd1842b1a206c66b5337b, type: 2}
     - {fileID: 470898146198290421, guid: 1729ec66cb8942441ba532021a552e8c, type: 2}
+    - {fileID: -5412750467448326299, guid: 777913c2f3f057d42a93583419d36f3d, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.9313725
       e01: 0
@@ -599,6 +600,22 @@ MonoBehaviour:
       e11: 1
       e12: 0
       e13: 104
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -846,7 +863,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1348
+  m_LastSelectedObjectID: 50476
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -894,7 +911,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art
+    - Assets/Art/NPCs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -904,30 +921,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 76
   m_LastFolders:
-  - Assets/Art
+  - Assets/Art/NPCs
   m_LastFoldersGridSize: 76
   m_LastProjectPath: F:\Projektek\UnityGame\DarkWoodPlatformer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 56d60000
-    m_LastClickedID: 54870
-    m_ExpandedIDs: 000000003ed6000040d6000042d6000044d6000046d6000048d600004ad600004cd600004ed6000050d6000052d6000054d6000056d6000058d600005ad600005cd600005ed6000060d60000ecd60000
+    scrollPos: {x: 0, y: 47}
+    m_SelectedIDs: c4d80000
+    m_LastClickedID: 55492
+    m_ExpandedIDs: 00000000aed60000b0d60000b2d60000b4d60000b6d60000b8d60000bad60000bcd60000bed60000c0d60000c2d60000c4d60000c6d60000c8d60000cad60000ccd60000ced60000d0d60000c6d80000ced80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: NPCs
+      m_OriginalName: NPCs
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 55492
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 5}
@@ -942,7 +959,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003ed6000040d6000042d6000044d6000046d6000048d600004ad600004cd600004ed6000050d6000052d6000054d6000056d6000058d600005ad600005cd600005ed6000060d60000
+    m_ExpandedIDs: 00000000aed60000b0d60000b2d60000b4d60000b6d60000b8d60000bad60000bcd60000bed60000c0d60000c2d60000c4d60000c6d60000c8d60000cad60000ccd60000ced60000d0d60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -968,9 +985,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 34f7ffff
-    m_LastClickedInstanceID: -2252
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: f2c40000
+    m_LastClickedInstanceID: 50418
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000098fa0000f6d30000dcc60000c8120100b4010100583c0100603c0100c63d01000e52010090cf000002d7000006d70000accf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1087,10 +1104,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: bcfaffff
-      m_LastClickedID: -1348
-      m_ExpandedIDs: b207feff58f8ffffbcfaffff06fbfffffac4000080c5000084c50000c6c50000
+      scrollPos: {x: 0, y: 29}
+      m_SelectedIDs: 3c5bffff
+      m_LastClickedID: -42180
+      m_ExpandedIDs: 06fbffffa4c40000aac40000b2c40000c6c40000d6c4000096c50000c2c50000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1610,9 +1627,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 198.11421, y: 30.857395, z: -1.194611}
+    m_Target: {x: 567.31744, y: 19.916391, z: -0.37907034}
     speed: 2
-    m_Value: {x: 194.87279, y: 27.808392, z: -1.1226782}
+    m_Value: {x: 566.98895, y: 19.188797, z: -0.36190504}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1648,7 +1665,7 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -1662,9 +1679,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 167.04408
+    m_Target: 39.86229
     speed: 2
-    m_Value: 159.8508
+    m_Value: 38.145733
   m_Ortho:
     m_Target: 1
     speed: 2
