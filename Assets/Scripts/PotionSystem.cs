@@ -3,9 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PotionSystem : MonoBehaviour
 {
-    public int maxPotions = 3;
-    public int currentPotions;
-
+    public int maxPotions = 2;
+    public int currentPotions = 0;
     public int healAmount = 20;
 
     private Damageable playerDamageable;
@@ -21,7 +20,6 @@ public class PotionSystem : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         playerDamageable = GetComponent<Damageable>();
         animator = GetComponent<Animator>();
-        currentPotions = maxPotions;
     }
 
     public void AddPotion(int amount)

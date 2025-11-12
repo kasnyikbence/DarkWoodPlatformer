@@ -1,8 +1,7 @@
-using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,20 +9,30 @@ public class UIManager : MonoBehaviour
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject gameSavedTextPrefab;
+    public GameObject potionUI;
+    public GameObject arrowUI;
+    public GameObject keyUI;
     public Canvas gameCanves;
     [SerializeField] private TMP_Text potionCounterText;
     [SerializeField] private TMP_Text arrowCounterText;
     [SerializeField] private TMP_Text keyCounterText;
-
-
-    [Header("Interact UI")]
+    [SerializeField] private TMP_Text pickupMessageText;
     [SerializeField] private GameObject interactHintImage;
 
     void Awake()
     {
-        Instance = this;
-    }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
+        Instance = this;
+
+        potionUI.SetActive(false);
+        arrowUI.SetActive(false);
+        keyUI.SetActive(false);
+    }
     void OnEnable()
     {
         CharacterEvents.characterDamaged += CharacterTookDamage;
@@ -60,6 +69,7 @@ public class UIManager : MonoBehaviour
 
         Instantiate(gameSavedTextPrefab, spawnPosition, Quaternion.identity, gameCanves.transform);
     }
+
     public void ShowInteractHint()
     {
         interactHintImage.SetActive(true);
@@ -83,5 +93,42 @@ public class UIManager : MonoBehaviour
     public void UpdateKeyUI(int keyAmount)
     {
         keyCounterText.text = keyAmount.ToString();
+    }
+
+    public IEnumerator ShowPickupMessage(string message)
+    {
+        pickupMessageText.text = message;
+
+        Color color = pickupMessageText.color;
+        color.a = 1f;
+        pickupMessageText.color = color;
+
+        yield return new WaitForSeconds(1.5f);
+
+        float fadeDuration = 1f;
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            pickupMessageText.color = color;
+            yield return null;
+        }
+
+        pickupMessageText.text = "";
+    }
+
+    public void ShowPotionUI(bool show)
+    {
+        potionUI.gameObject.SetActive(show);
+    }
+    public void ShowArrowUI(bool show)
+    {
+        arrowUI.gameObject.SetActive(show);
+    }
+    public void ShowKeyUI(bool show)
+    {
+        keyUI.gameObject.SetActive(show);
     }
 }

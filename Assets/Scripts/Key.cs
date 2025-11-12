@@ -22,6 +22,7 @@ public class Key : MonoBehaviour
         if (inv != null)
         {
             inv.AddKey(keyAmount);
+            UIManager.Instance.keyUI.SetActive(true);
 
 
             Destroy(gameObject);

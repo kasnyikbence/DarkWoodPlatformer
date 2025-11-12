@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 5624947387513185228}
   - component: {fileID: 5508347318902748416}
   - component: {fileID: 5759880525942260180}
+  - component: {fileID: 5582686207166011741}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -503,6 +504,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 73505f54-3b09-4e7d-9e51-ff4248d16b49
     m_ActionName: 'Player/ChestOpen[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65e9b312-77fb-4cd6-b6dc-269aedf6aa95
+    m_ActionName: 'Player/DoorOpen[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -612,7 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 2356950527912801033}
   projectilePrefab: {fileID: 326156474830715294, guid: a385c68b4ffaf24419cb326889f24881, type: 3}
-  maxArrows: 10
+  maxArrows: 5
   currentArrows: 0
 --- !u!82 &5508347318902748416
 AudioSource:
@@ -723,10 +728,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0c80742070628488dae288412bf478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPotions: 3
+  maxPotions: 2
   currentPotions: 0
   healAmount: 20
   pickupClip: {fileID: 8300000, guid: dd035eb23b7f64d4ca6845040ca18d05, type: 3}
+--- !u!114 &5582686207166011741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384424839921047904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0ed86a263132f4580ac71c403e59f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeySystem
+  keyCount: 0
 --- !u!1 &1779173700223183661
 GameObject:
   m_ObjectHideFlags: 0
