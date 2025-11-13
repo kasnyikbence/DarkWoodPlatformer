@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (damageable.LockVelocity || PauseMenuManager.isPaused)
+        if (damageable.LockVelocity || PauseMenuManager.isPaused || DialogueController.isPaused)
         {
             return;
         }
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused)
         {
             return;
         }
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (PauseMenuManager.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused)
         {
             return;
         }
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused)
         {
             return;
         }
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRoll(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused)
         {
             return;
         }
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused) 
         {
             return;
         }
@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangedAttack(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused)
         {
             return;
         }

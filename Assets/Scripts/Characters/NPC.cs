@@ -1,0 +1,73 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public abstract class NPC : MonoBehaviour, IInteractable
+{
+
+    private Transform _playerTransform;
+    private const float INTERACT_DISTANCE = 2f;
+    protected bool isTalking = false;
+    private bool wasWithinInteractDistance = false;
+
+
+    private void Start()
+    {
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    
+    private void Update()
+    {
+        bool currentlyWithinDistance = IsWithinInteractDistance();
+
+        if (Keyboard.current.eKey.wasPressedThisFrame && currentlyWithinDistance)
+        {
+            Interact();
+        }
+
+        if (!isTalking)
+        {
+            if (currentlyWithinDistance && !wasWithinInteractDistance)
+            {
+                UIManager.Instance.ShowInteractHint();
+            }
+            else if (!currentlyWithinDistance && wasWithinInteractDistance)
+            {
+                UIManager.Instance.HideInteractHint();
+            }
+        }
+
+        wasWithinInteractDistance = currentlyWithinDistance;
+    }
+
+    public abstract void Interact();
+
+    protected void StartDialogue()
+    {
+        isTalking = true;
+        UIManager.Instance.HideInteractHint(); 
+    }
+
+    public void EndDialogue()
+    {
+        isTalking = false;
+
+        if (IsWithinInteractDistance())
+        {
+            UIManager.Instance.ShowInteractHint();
+        }
+    }
+
+
+    private bool IsWithinInteractDistance()
+    {
+        if (Vector2.Distance(_playerTransform.position, transform.position) < INTERACT_DISTANCE)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}

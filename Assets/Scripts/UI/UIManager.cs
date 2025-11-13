@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text keyCounterText;
     [SerializeField] private TMP_Text pickupMessageText;
     [SerializeField] private GameObject interactHintImage;
+    private int interactHintCount = 0;
 
     void Awake()
     {
@@ -72,12 +73,21 @@ public class UIManager : MonoBehaviour
 
     public void ShowInteractHint()
     {
-        interactHintImage.SetActive(true);
+        interactHintCount++;
+        if (interactHintCount > 0)
+        {
+            interactHintImage.SetActive(true);
+        }
     }
 
     public void HideInteractHint()
     {
-        interactHintImage.SetActive(false);
+        interactHintCount--;
+        if (interactHintCount <= 0)
+        {
+            interactHintCount = 0;
+            interactHintImage.SetActive(false);
+        }
     }
 
     public void UpdatePotionUI(int currentPotions)

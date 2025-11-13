@@ -46,3 +46,6 @@ Thumbs.db
 .vs/
 *.vsidx
 *.suo
+
+NPC nevek.txt
+NPC Dialogues.txt
