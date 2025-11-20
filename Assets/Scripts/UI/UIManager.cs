@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
         potionUI.SetActive(false);
         arrowUI.SetActive(false);
         keyUI.SetActive(false);
+
+        DontDestroyOnLoad(gameObject);
     }
     void OnEnable()
     {

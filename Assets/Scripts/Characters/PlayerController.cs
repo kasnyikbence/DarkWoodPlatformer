@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using System.Security.Cryptography.X509Certificates;
+
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
@@ -96,7 +93,10 @@ public class PlayerController : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
 
+       // DontDestroyOnLoad(gameObject);
+
     }
+
 
     private void FixedUpdate()
     {
