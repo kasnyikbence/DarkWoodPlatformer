@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
         arrowUI.SetActive(false);
         keyUI.SetActive(false);
 
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
     void OnEnable()
     {
