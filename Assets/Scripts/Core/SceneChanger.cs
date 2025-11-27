@@ -4,30 +4,36 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public GameObject fadeImage;
     public string sceneToLoad;
-    public Animator fadeAnim;
-    public float fadeTime = 0.5f;
     public Vector2 newPlayerPosition;
     private Transform player;
-
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             player = collision.transform;
-            fadeAnim.Play("FadeToBlack");
-            StartCoroutine(DelayFade());
+
+            if (fadeImage != null)
+            {
+                fadeImage.SetActive(true);
+                Animator fadeAnim = fadeImage.GetComponent<Animator>();
+                if (fadeAnim != null)
+                {
+                    fadeAnim.Play("FadeToBlack");
+                }
+            }
         }
     }
 
-    IEnumerator DelayFade()
+    public void OnFadeComplete()
     {
-        yield return new WaitForSeconds(fadeTime);
-        player.position = newPlayerPosition;
+        if (player != null)
+        {
+            player.position = newPlayerPosition;
+        }
+
         SceneManager.LoadScene(sceneToLoad);
     }
-
 }
