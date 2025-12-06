@@ -93,8 +93,6 @@ public class PlayerController : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
 
-       // DontDestroyOnLoad(gameObject);
-
     }
 
 

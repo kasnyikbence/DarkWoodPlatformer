@@ -15,9 +15,22 @@ public abstract class NPC : MonoBehaviour, IInteractable
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    
+
     private void Update()
     {
+        if (_playerTransform == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                _playerTransform = playerObj.transform;
+            }
+            else
+            {
+                return;
+            }
+        }
+
         bool currentlyWithinDistance = IsWithinInteractDistance();
 
         if (Keyboard.current.eKey.wasPressedThisFrame && currentlyWithinDistance)
@@ -39,7 +52,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
         wasWithinInteractDistance = currentlyWithinDistance;
     }
-
+    
     public abstract void Interact();
 
     protected void StartDialogue()
@@ -61,6 +74,8 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
     private bool IsWithinInteractDistance()
     {
+        if (_playerTransform == null) return false;
+
         if (Vector2.Distance(_playerTransform.position, transform.position) < INTERACT_DISTANCE)
         {
             return true;

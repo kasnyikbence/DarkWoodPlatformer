@@ -2,6 +2,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -72,6 +73,8 @@ public class Checkpoint : MonoBehaviour
         saveGameData.playerPositionX = playerPos.x;
         saveGameData.playerPositionY = playerPos.y;
         saveGameData.playerPositionZ = playerPos.z;
+
+        saveGameData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         if (UIManager.Instance != null)
         {

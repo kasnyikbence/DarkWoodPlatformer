@@ -1,59 +1,101 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
-    public GameObject settingsMenu;
-    public static bool isPaused = false;
-    public GameObject respawnPanel;
+    public static PauseMenuManager Instance;
 
-    void Start()
+    public GameObject pauseMenuUI;
+
+    private InputAction pauseAction;
+    public static bool isPaused = false;
+
+    void Awake()
     {
         pauseMenuUI.SetActive(false);
-        isPaused = false;
-    }
-    public void OnPause(InputAction.CallbackContext context)
-    {
-        if (context.started)
+        if (Instance == null)
         {
-            if (isPaused)
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
+            isPaused = false;
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            FindAndSubscribeToInput();
+        }
+    }
+
+    void FindAndSubscribeToInput()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            PlayerInput input = player.GetComponent<PlayerInput>();
+            if (input != null)
             {
-                Resume();
-            }
-            else
-            {
-                Pause();
+                pauseAction = input.actions.FindAction("Pause");
+                if (pauseAction != null)
+                {
+                    pauseAction.performed -= TogglePause;
+                    pauseAction.performed += TogglePause;
+                    pauseAction.Enable();
+                }
             }
         }
+    }
+    private void TogglePause(InputAction.CallbackContext context)
+    {
+        if (isPaused) Resume();
+        else Pause();
     }
 
     public void Pause()
     {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
-
-        EventSystem.current.SetSelectedGameObject(null);
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+        }
     }
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-        EventSystem.current.SetSelectedGameObject(null);
+        if (pauseMenuUI != null)
+        {
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            isPaused = false;
+        }
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1f;
-        isPaused = false;
+        Resume();
         SceneManager.LoadScene("MainMenu");
-        respawnPanel.SetActive(false);
-        pauseMenuUI.SetActive(false);
     }
 }

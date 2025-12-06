@@ -46,4 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageTextPrefab: {fileID: 1522872470667943516, guid: d55cafbc162962a43be496de92796ef1, type: 3}
   healthTextPrefab: {fileID: 1522872470667943516, guid: bd1057578f0686c47ba2ea1fa7f58585, type: 3}
+  gameSavedTextPrefab: {fileID: 1968114412163589557, guid: b999d60af9f6e444ea8bfe5a8497bd47, type: 3}
+  potionUI: {fileID: 0}
+  arrowUI: {fileID: 0}
+  keyUI: {fileID: 0}
   gameCanves: {fileID: 0}
+  potionCounterText: {fileID: 0}
+  arrowCounterText: {fileID: 0}
+  keyCounterText: {fileID: 0}
+  pickupMessageText: {fileID: 0}
+  interactHintImage: {fileID: 0}

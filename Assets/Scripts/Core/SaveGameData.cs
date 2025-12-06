@@ -13,4 +13,5 @@ public struct SaveGameData
     public int potionAmount;
     public int arrowAmount;
 
+    public int sceneIndex;
 }

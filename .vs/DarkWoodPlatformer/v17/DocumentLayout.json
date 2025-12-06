@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\core\\sceneentryfader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\ui\\pausemenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\pausemenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\persistentdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\persistentdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\sceneentryfader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\sceneentryfader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\core\\scenechanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\scenechanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\scenechanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\animationeventhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\animationeventhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\persistentdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\persistentdatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,6 +35,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PauseMenuManager.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\UI\\PauseMenuManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\PauseMenuManager.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\UI\\PauseMenuManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\PauseMenuManager.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwCoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T15:22:08.423Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "SceneEntryFader.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\SceneEntryFader.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\SceneEntryFader.cs",
@@ -38,12 +55,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Core\\SceneEntryFader.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAowBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-27T13:39:13.986Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-27T13:39:13.986Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "AnimationEventHelper.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\AnimationEventHelper.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\AnimationEventHelper.cs",
@@ -55,19 +71,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "PersistentDataManager.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\PersistentDataManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\PersistentDataManager.cs",
               "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\PersistentDataManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Core\\PersistentDataManager.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAcwCMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-21T11:28:18.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "SceneChanger.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\SceneChanger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\SceneChanger.cs",
@@ -75,8 +91,7 @@
               "RelativeToolTip": "Assets\\Scripts\\Core\\SceneChanger.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAA6wCYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T10:56:26.135Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T10:56:26.135Z"
             }
           ]
         }

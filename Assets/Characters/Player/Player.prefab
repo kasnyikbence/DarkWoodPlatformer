@@ -465,19 +465,7 @@ MonoBehaviour:
     m_ActionId: 8608fd06-9fc4-44b3-bcbe-aa6ed38df919
     m_ActionName: 'UI/Pause[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
-        m_MethodName: OnPause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 2a61a3b0-d6e6-4713-8fb0-9de5df41eda2
     m_ActionName: 'Player/Pause[/Keyboard/escape]'
   - m_PersistentCalls:
@@ -509,7 +497,7 @@ MonoBehaviour:
     m_ActionId: 65e9b312-77fb-4cd6-b6dc-269aedf6aa95
     m_ActionName: 'Player/DoorOpen[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -640,7 +628,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.4037285
   MaxDistance: 44.082436
   Pan2D: 0
   rolloffMode: 0
