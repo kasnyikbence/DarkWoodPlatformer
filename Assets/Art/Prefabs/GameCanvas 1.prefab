@@ -375,20 +375,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534679122257062105}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8219221609202105365}
   - {fileID: 6997954785361434667}
   - {fileID: 1716419251412494801}
   - {fileID: 1486481054617542557}
-  m_Father: {fileID: 5263624851798682275}
+  m_Father: {fileID: 5839588960864999381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -200}
+  m_AnchoredPosition: {x: 0, y: -300.0005}
   m_SizeDelta: {x: 450, y: 250}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4126182303493879520
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 0
@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: CloseSettingsMenu
         m_Mode: 1
@@ -2612,6 +2612,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1890021554417532881}
+  - {fileID: 3568692635393401019}
+  - {fileID: 5263624851798682275}
+  - {fileID: 625311592537044185}
+  - {fileID: 1590478010426655323}
   - {fileID: 3937971328891892205}
   - {fileID: 1123929881121856834}
   - {fileID: 5799309855367457747}
@@ -2945,7 +2949,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4671010261675931294}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -3263,7 +3267,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
@@ -3393,7 +3397,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 0
@@ -3837,7 +3841,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4700975384817429500}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RespawnConfirmed
         m_Mode: 1
@@ -4680,9 +4684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1890021554417532881}
-  - component: {fileID: 4671010261675931294}
-  - component: {fileID: 4689138433451807996}
-  - component: {fileID: 4700975384817429500}
+  - component: {fileID: 1523561040342264914}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -4701,10 +4703,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3568692635393401019}
-  - {fileID: 625311592537044185}
-  - {fileID: 5263624851798682275}
+  m_Children: []
   m_Father: {fileID: 5839588960864999381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4712,42 +4711,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.00046349}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4671010261675931294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5397055592954070752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d1442a7c9ab62644927a10370b9e818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 5682895923419915231}
-  settingsMenu: {fileID: 9073787647774988505}
-  respawnPanel: {fileID: 5213343020186330306}
---- !u!114 &4689138433451807996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5397055592954070752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4708917d560cb74b9288257b3dd4871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterVolumeSlider: {fileID: 8624861109582287409}
-  musicVolumeSlider: {fileID: 43024003703727243}
-  sfxVolumeSlider: {fileID: 5105438208788434561}
-  mainMixer: {fileID: 24100000, guid: 9c7dc46a646d470438b8f81254d317d5, type: 2}
-  resolutionDropdown: {fileID: 1866048106096998046}
-  fullscreenToggle: {fileID: 1060869965483652240}
-  settingsMenu: {fileID: 9073787647774988505}
-  closeThing: {fileID: 549174030622249927}
---- !u!114 &4700975384817429500
+--- !u!114 &1523561040342264914
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4758,12 +4722,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 546bcf4e66e55fc439a22732ef1e8789, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  respawnMenu: {fileID: 5213343020186330306}
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameStartScene: 1
   saveName: savedGame
   directoryName: Saves
-  initialSpawnPoint: {fileID: 0}
 --- !u!1 &5517148902309738965
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,16 +5026,16 @@ RectTransform:
   m_GameObject: {fileID: 5682895923419915231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3400106972282090718}
   - {fileID: 5288875978336782355}
-  m_Father: {fileID: 1890021554417532881}
+  m_Father: {fileID: 5839588960864999381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.000033379}
+  m_AnchoredPosition: {x: 0, y: -0.00045490224}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6767040967840033958
@@ -6516,7 +6478,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4671010261675931294}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: LoadMainMenu
         m_Mode: 1
@@ -6690,11 +6652,11 @@ Transform:
   m_GameObject: {fileID: 6440094732251998262}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1074.5441, y: -445.1842, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1611.8163, y: -667.7768, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1890021554417532881}
+  m_Father: {fileID: 5839588960864999381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &524027300709614524
 MonoBehaviour:
@@ -6967,7 +6929,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4671010261675931294}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: LoadMainMenu
         m_Mode: 1
@@ -7270,16 +7232,15 @@ RectTransform:
   m_GameObject: {fileID: 6946205183441645585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5322216406832055879}
-  - {fileID: 1590478010426655323}
-  m_Father: {fileID: 1890021554417532881}
+  m_Father: {fileID: 5839588960864999381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 640, y: 359.99997}
+  m_AnchoredPosition: {x: 960, y: 539.9995}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5686725398369761181
@@ -7466,7 +7427,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: OpenSettingsMenu
         m_Mode: 1
@@ -8084,7 +8045,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4689138433451807996}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: SetSfxVolume
         m_Mode: 0

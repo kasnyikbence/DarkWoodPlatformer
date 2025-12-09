@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 837981099915767593}
   - component: {fileID: 8975078348906500535}
+  - component: {fileID: 4374354067651530061}
+  - component: {fileID: 7614285524124022808}
+  - component: {fileID: 2112737924195316056}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -56,3 +59,49 @@ MonoBehaviour:
   keyCounterText: {fileID: 0}
   pickupMessageText: {fileID: 0}
   interactHintImage: {fileID: 0}
+--- !u!114 &4374354067651530061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067154154438805994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d1442a7c9ab62644927a10370b9e818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
+  pauseMenuUI: {fileID: 0}
+--- !u!114 &7614285524124022808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067154154438805994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4708917d560cb74b9288257b3dd4871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsManager
+  masterVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
+  mainMixer: {fileID: 24100000, guid: 9c7dc46a646d470438b8f81254d317d5, type: 2}
+  resolutionDropdown: {fileID: 0}
+  fullscreenToggle: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  closeThing: {fileID: 0}
+--- !u!114 &2112737924195316056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067154154438805994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea6d1564e8102b46b95e1a35b6c03df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RespawnMenuManager
+  respawnMenu: {fileID: 0}

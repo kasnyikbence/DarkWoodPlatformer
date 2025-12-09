@@ -29,12 +29,8 @@ public class UIManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        potionUI.SetActive(false);
-        arrowUI.SetActive(false);
-        keyUI.SetActive(false);
-
-       // DontDestroyOnLoad(gameObject);
     }
     void OnEnable()
     {
