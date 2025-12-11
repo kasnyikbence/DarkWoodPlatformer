@@ -53,7 +53,7 @@ MonoBehaviour:
   potionUI: {fileID: 0}
   arrowUI: {fileID: 0}
   keyUI: {fileID: 0}
-  gameCanves: {fileID: 0}
+  gameCanvas: {fileID: 0}
   potionCounterText: {fileID: 0}
   arrowCounterText: {fileID: 0}
   keyCounterText: {fileID: 0}

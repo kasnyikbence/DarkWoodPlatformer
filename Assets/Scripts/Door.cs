@@ -15,10 +15,6 @@ public class Door : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-            playerInput = player.GetComponent<PlayerInput>();
-
         animator = GetComponent<Animator>();
         var colliders = GetComponents<BoxCollider2D>();
         triggerZone = colliders[0];
@@ -29,8 +25,12 @@ public class Door : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            player = col.gameObject;
+            playerInput = player.GetComponent<PlayerInput>();
+
             if (playerInput != null)
             {
+                playerInput.actions["DoorOpen"].performed -= OnInteract;
                 playerInput.actions["DoorOpen"].performed += OnInteract;
             }
 
@@ -63,18 +63,15 @@ public class Door : MonoBehaviour
 
         if (player == null)
         {
-            Debug.LogWarning("Door: player nincs beállítva.");
             return;
         }
 
         KeySystem inv = player.GetComponent<KeySystem>();
         if (inv == null)
         {
-            Debug.LogWarning("Door: playernek nincs KeyInventory komponense.");
             return;
         }
 
-        // Próbálunk kulcsot használni. Ha van, UseKey() true-t ad vissza.
         if (inv.UseKey())
         {
             OpenDoor();
@@ -90,7 +87,6 @@ public class Door : MonoBehaviour
         isOpen = true;
         animator?.SetBool("isOpen", true);
 
-        // Fizikai blokk kikapcsolása — így át tudsz menni rajta
         if (doorCollider != null)
             doorCollider.enabled = false;
 

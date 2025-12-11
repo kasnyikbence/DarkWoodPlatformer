@@ -360,7 +360,6 @@ GameObject:
   - component: {fileID: 1590478010426655323}
   - component: {fileID: 4126182303493879520}
   - component: {fileID: 885938542228678753}
-  - component: {fileID: 2745754277038875810}
   m_Layer: 5
   m_Name: DialogueBoxImage
   m_TagString: Untagged
@@ -429,21 +428,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2745754277038875810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534679122257062105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66726897e05171479a87effe4f7e5e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueController
-  NPCNameText: {fileID: 5391998446846567263}
-  NPCDialogueText: {fileID: 6920879970707790912}
-  typeSpeed: 10
 --- !u!1 &549174030622249927
 GameObject:
   m_ObjectHideFlags: 0

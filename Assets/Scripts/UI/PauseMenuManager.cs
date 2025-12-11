@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -13,10 +14,14 @@ public class PauseMenuManager : MonoBehaviour
 
     void Awake()
     {
-        pauseMenuUI.SetActive(false);
+        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
+
         if (Instance == null)
         {
             Instance = this;
+            // Ha ez egy UI objektumon van, ami nem DDOL, akkor ez a sor nem kell.
+            // De ha DDOL-ban van, akkor maradjon.
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -44,29 +49,45 @@ public class PauseMenuManager : MonoBehaviour
         }
         else
         {
-            FindAndSubscribeToInput();
+            StopAllCoroutines();
+            StartCoroutine(SubscribeToInputRoutine());
         }
     }
 
-    void FindAndSubscribeToInput()
+    IEnumerator SubscribeToInputRoutine()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = null;
 
-        if (player != null)
+        while (player == null)
         {
-            PlayerInput input = player.GetComponent<PlayerInput>();
-            if (input != null)
+            player = GameObject.FindGameObjectWithTag("Player");
+            yield return null;
+        }
+
+        yield return null;
+
+        PlayerInput input = player.GetComponent<PlayerInput>();
+        if (input != null)
+        {
+            if (pauseAction != null)
             {
-                pauseAction = input.actions.FindAction("Pause");
-                if (pauseAction != null)
-                {
-                    pauseAction.performed -= TogglePause;
-                    pauseAction.performed += TogglePause;
-                    pauseAction.Enable();
-                }
+                pauseAction.performed -= TogglePause;
+                pauseAction.Disable();
+            }
+
+            pauseAction = input.actions.FindAction("Pause");
+            if (pauseAction != null)
+            {
+                pauseAction.performed += TogglePause;
+                pauseAction.Enable();
+            }
+            else
+            {
+                Debug.LogError("[PauseMenuManager] Nem található a 'Pause' action a PlayerInput-ban!");
             }
         }
     }
+
     private void TogglePause(InputAction.CallbackContext context)
     {
         if (isPaused) Resume();
@@ -78,6 +99,7 @@ public class PauseMenuManager : MonoBehaviour
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(true);
+            UIManager.Instance.HideInteractHint();
             Time.timeScale = 0f;
             isPaused = true;
         }
@@ -96,6 +118,13 @@ public class PauseMenuManager : MonoBehaviour
     public void LoadMainMenu()
     {
         Resume();
-        SceneManager.LoadScene("MainMenu");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadMainMenu();
+        }
+        else
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

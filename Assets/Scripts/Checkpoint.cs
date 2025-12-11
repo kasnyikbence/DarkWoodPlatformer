@@ -14,21 +14,17 @@ public class Checkpoint : MonoBehaviour
     private PlayerInput playerInput;
 
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerInput = player.GetComponent<PlayerInput>();
-        }
-    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
+            player = col.gameObject;
+            playerInput = player.GetComponent<PlayerInput>();
+
             playerInRange = true;
             if (playerInput != null)
             {
+                playerInput.actions["CheckpointSave"].performed -= OnInteract;
                 playerInput.actions["CheckpointSave"].performed += OnInteract;
             }
             UIManager.Instance.ShowInteractHint();

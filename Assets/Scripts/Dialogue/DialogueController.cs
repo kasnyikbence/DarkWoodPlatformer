@@ -5,6 +5,19 @@ using System.Collections;
 
 public class DialogueController : MonoBehaviour
 {
+    public static DialogueController Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
     [SerializeField] private TextMeshProUGUI NPCNameText;
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
     [SerializeField] private float typeSpeed = 10f;
@@ -17,6 +30,7 @@ public class DialogueController : MonoBehaviour
     private Coroutine typeDialogueCoroutine;
     private const string HTML_ALPHA = "<color=#00000000>";
     private const float MAX_TYPE_TIME = 0.1f;
+    public GameObject dialoguePanel;
 
     public void DisplayNextParagraphs(DialogueText dialogueText)
     {
@@ -30,43 +44,53 @@ public class DialogueController : MonoBehaviour
             {
                 EndConversation();
                 return;
-
             }
         }
 
-            if (!isTyping)
+        // Ha épp nem gépelünk, indítjuk a következõt
+        if (!isTyping)
+        {
+            // Ellenõrzés, hogy van-e még a sorban (biztonsági okból)
+            if (paragraphs.Count > 0)
             {
                 p = paragraphs.Dequeue();
-
                 typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
             }
-            else
-            {
-                FinishParagraphEarly();
-            }
-
-            if (paragraphs.Count == 0)
-            {
-                conversationEnded = true;
-            }
         }
+        else
+        {
+            // Ha gépelünk, befejezzük azonnal
+            FinishParagraphEarly();
+        }
+
+        if (paragraphs.Count == 0)
+        {
+            conversationEnded = true;
+        }
+    }
 
     private void StartConversation(DialogueText dialogueText)
     {
-        if (!gameObject.activeSelf)
+        if (dialoguePanel != null)
         {
-            gameObject.SetActive(true);
-            UIManager.Instance.HideInteractHint();
+            dialoguePanel.SetActive(true);
+
+            // Singleton hívás a UIManager felé
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.HideInteractHint();
+            }
+
             isPaused = true;
         }
 
         NPCNameText.text = dialogueText.speakerName;
 
+        // Queue feltöltése
         for (int i = 0; i < dialogueText.paragraphs.Length; i++)
         {
             paragraphs.Enqueue(dialogueText.paragraphs[i]);
         }
-
     }
 
     private void EndConversation()
@@ -77,35 +101,12 @@ public class DialogueController : MonoBehaviour
         if (npc != null)
             npc.EndDialogue();
 
-        if (gameObject.activeSelf)
-            gameObject.SetActive(false);
-        isPaused = false;
+        if (dialoguePanel != null)
+            dialoguePanel.SetActive(false);
+
+            isPaused = false;
     }
-    //Régi kiíratás
-    
-    /*
-    private IEnumerator TypeDialogueText(string p)
-    {
-        float elapsedTime = 0f;
 
-        int charIndex = 0;
-        charIndex = Mathf.Clamp(charIndex, 0, p.Length);
-
-        while (charIndex < p.Length)
-        {
-            elapsedTime += Time.deltaTime * typeSpeed;
-            charIndex = Mathf.FloorToInt(elapsedTime);
-
-            NPCDialogueText.text = p.Substring(0, charIndex);
-
-            yield return null;
-        }
-
-        NPCDialogueText.text = p;
-    }
-    */
-    
-    
     private IEnumerator TypeDialogueText(string p)
     {
         isTyping = true;
@@ -125,7 +126,6 @@ public class DialogueController : MonoBehaviour
             NPCDialogueText.text = displayedText;
 
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
-
         }
 
         isTyping = false;
@@ -133,13 +133,13 @@ public class DialogueController : MonoBehaviour
 
     private void FinishParagraphEarly()
     {
-        StopCoroutine(typeDialogueCoroutine);
+        if (typeDialogueCoroutine != null)
+        {
+            StopCoroutine(typeDialogueCoroutine);
+        }
 
         NPCDialogueText.text = p;
 
         isTyping = false;
     }
-
-    
-
 }

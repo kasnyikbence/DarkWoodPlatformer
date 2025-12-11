@@ -4,10 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
-// NOTE: BinaryFormatter is obsolete/unsafe for production; OK for prototípus.
-// Replace with a safer serializer later (JSON, protobuf, etc.).
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -18,13 +15,11 @@ public class GameManager : MonoBehaviour
     public string directoryName = "Saves";
 
     private SaveGameData? pendingLoadData = null;
-
     private GameObject player;
 
 
     private void Awake()
     {
-
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -33,10 +28,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        Debug.Log("[GameManager] Awake - singleton ready");
     }
 
     private void OnDestroy()
@@ -44,7 +36,82 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    // ---------------- public helpers ----------------
+    // ---------------- scene load handling ----------------
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"[GameManager] Scene loaded: {scene.name} (buildIndex {scene.buildIndex}).");
+
+        // FŐMENÜ KEZELÉS
+        if (scene.buildIndex == 0)
+        {
+            // Megpróbáljuk megtalálni a játékost, ha nincs meg
+            if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+
+            // Ha megvan, elrejtjük
+            if (player != null)
+            {
+                player.SetActive(false);
+            }
+            return;
+        }
+
+        // JÁTÉKMENET PÁLYA BETÖLTÉSE
+        StartCoroutine(HandleSceneLoadedCoroutine());
+    }
+
+    private IEnumerator HandleSceneLoadedCoroutine()
+    {
+        yield return null;
+
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player == null)
+            {
+                var allDamageables = Resources.FindObjectsOfTypeAll<Damageable>();
+                foreach (var d in allDamageables)
+                {
+                    if (d.gameObject.scene.IsValid() && d.gameObject.CompareTag("Player"))
+                    {
+                        player = d.gameObject;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (player != null)
+        {
+            if (!player.activeInHierarchy)
+            {
+                player.SetActive(true);
+            }
+
+            var dmg = player.GetComponent<Damageable>();
+            if (dmg != null)
+            {
+                dmg.OnPlayerDied -= HandleDeath;
+                dmg.OnPlayerDied += HandleDeath;
+            }
+        }
+        else
+        {
+            Debug.LogError("[GameManager] CRITICAL: Player not found anywhere!");
+        }
+
+        if (pendingLoadData.HasValue)
+        {
+            SaveGameData data = pendingLoadData.Value;
+            pendingLoadData = null;
+
+            yield return null;
+
+            ApplyLoadData(data);
+        }
+    }
+
+    // ---------------- delete save ----------------
     public void DeleteSaveData()
     {
         string savePath = Application.persistentDataPath + "/" + directoryName;
@@ -60,102 +127,39 @@ public class GameManager : MonoBehaviour
             Debug.Log("[GameManager] No save file to delete at: " + filePath);
         }
     }
-    private void Start()
-    {
-        //DeleteSaveData();
-    }
-
-    // ---------------- scene load handling ----------------
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log($"[GameManager] Scene loaded: {scene.name} (buildIndex {scene.buildIndex}).");
-
-        // If main menu (assume buildIndex 0 = MainMenu), deactivate player so it won't fall
-        if (scene.buildIndex == 0)
-        {
-            // try to find an existing persistent player and hide it in menu
-            player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                player.SetActive(false);
-                Debug.Log("[GameManager] Player deactivated for MainMenu.");
-            }
-            // nothing more to do on main menu
-            return;
-        }
-
-        // For gameplay scenes, we need to ensure player exists before applying pending save data.
-        // Use coroutine to wait for the Player object to appear (it might be created by persistent root or instantiated).
-        StartCoroutine(HandleSceneLoadedCoroutine());
-    }
-
-    private IEnumerator HandleSceneLoadedCoroutine()
-    {
-        yield return null;
-
-        // Wait until Player exists, no timeout
-        while (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-            yield return null;
-        }
-
-        // Activate if disabled
-        if (!player.activeInHierarchy)
-            player.SetActive(true);
-
-        // Hook death logic
-        var dmg = player.GetComponent<Damageable>();
-        if (dmg != null)
-        {
-            dmg.OnPlayerDied -= HandleDeath;
-            dmg.OnPlayerDied += HandleDeath;
-        }
-
-        if (pendingLoadData.HasValue)
-        {
-            SaveGameData data = pendingLoadData.Value;
-            pendingLoadData = null;
-
-            // ensure full initialization before applying save data
-            yield return null;
-
-            ApplyLoadData(data);
-        }
-    }
 
     // ---------------- start / load game ----------------
     public void StartGame()
     {
         Time.timeScale = 1f;
-
         string path = Application.persistentDataPath + "/" + directoryName + "/" + saveName + ".bin";
 
         if (File.Exists(path))
         {
-            // load file
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream file = File.Open(path, FileMode.Open))
             {
-                SaveGameData data = (SaveGameData)formatter.Deserialize(file);
-                Debug.Log("[GameManager] Save found. Loading scene index: " + data.sceneIndex);
+                try
+                {
+                    SaveGameData data = (SaveGameData)formatter.Deserialize(file);
+                    Debug.Log("[GameManager] Save found. Loading scene index: " + data.sceneIndex);
 
-                // if different scene, set pending and load that scene (ApplyLoadData will run when player is available)
-                if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
-                {
-                    pendingLoadData = data;
-                    SceneManager.LoadScene(data.sceneIndex);
-                }
-                else
-                {
-                    // same scene - apply immediately (but player must exist; coroutine will ensure it later)
-                    pendingLoadData = data;
-                    // try apply if player already present (safe-guard)
-                    if (player != null)
+                    if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
                     {
-                        ApplyLoadData(data);
-                        pendingLoadData = null;
+                        pendingLoadData = data;
+                        SceneManager.LoadScene(data.sceneIndex);
                     }
+                    else
+                    {
+                        pendingLoadData = data;
+                        StartCoroutine(HandleSceneLoadedCoroutine());
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError("Hiba a mentés betöltésekor: " + e.Message);
+                    pendingLoadData = null;
+                    SceneManager.LoadScene(gameStartScene);
                 }
             }
         }
@@ -167,7 +171,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ---------------- respawn flow ----------------
     public void RespawnConfirmed()
     {
         Time.timeScale = 1f;
@@ -185,14 +188,12 @@ public class GameManager : MonoBehaviour
 
                 if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
                 {
-                    // load the saved scene first, then apply data
                     pendingLoadData = data;
                     SceneManager.LoadScene(data.sceneIndex);
                 }
                 else
                 {
-                    // same scene -> apply directly
-                    ApplyLoadData(data);
+                    StartCoroutine(ApplyLoadDataCoroutine(data));
                 }
             }
         }
@@ -200,6 +201,12 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(gameStartScene);
         }
+    }
+
+    private IEnumerator ApplyLoadDataCoroutine(SaveGameData data)
+    {
+        yield return null;
+        ApplyLoadData(data);
     }
 
     // ---------------- apply loaded data ----------------
@@ -211,13 +218,24 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"[GameManager] Applying save: pos=({data.playerPositionX},{data.playerPositionY},{data.playerPositionZ}) HP={data.health} pot={data.potionAmount} arrows={data.arrowAmount}");
+        Debug.Log($"[GameManager] Applying save: pos = ({data.playerPositionX}, {data.playerPositionY})");
 
-
-        // set position
         player.transform.position = new Vector3(data.playerPositionX, data.playerPositionY, data.playerPositionZ);
 
-        // restore stats
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+        Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
+        if (rb2d != null)
+        {
+            rb2d.linearVelocity = Vector2.zero;
+            rb2d.angularVelocity = 0f;
+        }
+
+        // --- STATISZTIKÁK VISSZAÁLLÍTÁSA ---
         var dmg = player.GetComponent<Damageable>();
         if (dmg != null)
         {
@@ -256,11 +274,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.SetActive(false);
-        }
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
 
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");

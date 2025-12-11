@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public GameObject potionUI;
     public GameObject arrowUI;
     public GameObject keyUI;
-    public Canvas gameCanves;
+    public Canvas gameCanvas;
     [SerializeField] private TMP_Text potionCounterText;
     [SerializeField] private TMP_Text arrowCounterText;
     [SerializeField] private TMP_Text keyCounterText;
@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
     {
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
 
-        TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, gameCanves.transform).GetComponent<TMP_Text>();
+        TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
 
         tmpText.text = damageReceived.ToString();
     }
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
     {
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
 
-        TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanves.transform).GetComponent<TMP_Text>();
+        TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
 
         tmpText.text = healthRestored.ToString();
     }
@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
     {
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(position);
 
-        Instantiate(gameSavedTextPrefab, spawnPosition, Quaternion.identity, gameCanves.transform);
+        Instantiate(gameSavedTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform);
     }
 
     public void ShowInteractHint()

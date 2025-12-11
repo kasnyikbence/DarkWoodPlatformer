@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -16,13 +14,7 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            playerInput = player.GetComponent<PlayerInput>();
-        }
         animator = GetComponent<Animator>();
-
         amount = Random.Range(1, 3);
     }
 
@@ -30,20 +22,23 @@ public class Chest : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            player = col.gameObject;
+            playerInput = player.GetComponent<PlayerInput>();
+
             if (playerInput != null)
             {
+                playerInput.actions["ChestOpen"].performed -= OnInteract;
                 playerInput.actions["ChestOpen"].performed += OnInteract;
             }
 
             if (!isOpen)
             {
-                UIManager.Instance.ShowInteractHint();
+                if (UIManager.Instance != null) UIManager.Instance.ShowInteractHint();
             }
             else
             {
-                UIManager.Instance.HideInteractHint();
+                if (UIManager.Instance != null) UIManager.Instance.HideInteractHint();
             }
-
         }
     }
     void OnTriggerExit2D(Collider2D col)
@@ -53,8 +48,13 @@ public class Chest : MonoBehaviour
             if (playerInput != null)
             {
                 playerInput.actions["ChestOpen"].performed -= OnInteract;
+                playerInput = null;
+                player = null;
             }
-            UIManager.Instance.HideInteractHint();
+            if (UIManager.Instance != null)
+            {
+                UIManager.Instance.HideInteractHint();
+            }
         }
     }
 
@@ -68,7 +68,6 @@ public class Chest : MonoBehaviour
             {
                 potionSystem.AddPotion(amount);
                 UIManager.Instance.StartCoroutine(UIManager.Instance.ShowPickupMessage("+" + amount + " Potion"));
-                UIManager.Instance.potionUI.SetActive(true);
             }
             else
             {
@@ -79,8 +78,10 @@ public class Chest : MonoBehaviour
             animator.SetBool("isOpen", true);
             UIManager.Instance.HideInteractHint();
 
-            playerInput.actions["ChestOpen"].performed -= OnInteract;
-
+            if (playerInput != null)
+            {
+                playerInput.actions["ChestOpen"].performed -= OnInteract;
+            }
         }
     }
 }
