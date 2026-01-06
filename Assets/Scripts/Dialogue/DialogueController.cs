@@ -7,17 +7,6 @@ public class DialogueController : MonoBehaviour
 {
     public static DialogueController Instance;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
-
     [SerializeField] private TextMeshProUGUI NPCNameText;
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
     [SerializeField] private float typeSpeed = 10f;
@@ -31,6 +20,19 @@ public class DialogueController : MonoBehaviour
     private const string HTML_ALPHA = "<color=#00000000>";
     private const float MAX_TYPE_TIME = 0.1f;
     public GameObject dialoguePanel;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        isPaused = false;
+    }
 
     public void DisplayNextParagraphs(DialogueText dialogueText)
     {

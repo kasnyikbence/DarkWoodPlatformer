@@ -88,15 +88,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UsePotion",
-                    "type": "Button",
-                    "id": "53a707e3-9e36-4600-8134-f605820e88ac",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ChestOpen",
                     "type": "Button",
                     "id": "73505f54-3b09-4e7d-9e51-ff4248d16b49",
@@ -109,6 +100,15 @@
                     "name": "DoorOpen",
                     "type": "Button",
                     "id": "65e9b312-77fb-4cd6-b6dc-269aedf6aa95",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UsePotion",
+                    "type": "Button",
+                    "id": "53a707e3-9e36-4600-8134-f605820e88ac",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",

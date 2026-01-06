@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
+    ProjectileLauncher projectileLauncher;
 
     Rigidbody2D rb;
     Animator animator;
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        projectileLauncher = GetComponent<ProjectileLauncher>();
 
     }
 
@@ -135,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused)
+        if (PauseMenuManager.isPaused)
         {
             return;
         }
@@ -200,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangedAttack(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || projectileLauncher.currentArrows == 0)
         {
             return;
         }

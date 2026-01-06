@@ -48,13 +48,11 @@ public class FlyingEye : MonoBehaviour
     }
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         nextWaypoint = waypoints[waypointNum];
     }
 
-    // Update is called once per frame
     void Update()
     {
         HasTarget = biteDetectionZone.detectedColliders.Count > 0;

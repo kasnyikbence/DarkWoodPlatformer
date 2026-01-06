@@ -8,14 +8,16 @@ public class Chest : MonoBehaviour
     private PlayerInput playerInput;
     private bool isOpen = false;
     Animator animator;
-    private int amount;
-    //private GameObject reward;
+
+    private int potionAmount;
+    private int arrowAmount;
 
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        amount = Random.Range(1, 3);
+        potionAmount = Random.Range(1, 3);
+        arrowAmount = Random.Range(1, 3);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -64,14 +66,52 @@ public class Chest : MonoBehaviour
         {
             PotionSystem potionSystem = player.GetComponent<PotionSystem>();
 
-            if (potionSystem && potionSystem.currentPotions < potionSystem.maxPotions)
+            if (potionSystem != null)
             {
-                potionSystem.AddPotion(amount);
-                UIManager.Instance.StartCoroutine(UIManager.Instance.ShowPickupMessage("+" + amount + " Potion"));
+                string potionWord = "Potion";
+                int spaceForPotions = potionSystem.maxPotions - potionSystem.currentPotions;
+
+                if (spaceForPotions > 0)
+                {
+                    int amountToAdd = Mathf.Min(potionAmount, spaceForPotions);
+
+                    potionSystem.AddPotion(amountToAdd);
+
+                    if (amountToAdd > 1)
+                    {
+                        potionWord = "Potions";
+                    }
+
+                    UIManager.Instance.ShowPickupMessage("+" + amountToAdd + " " + potionWord);
+                }
+                else
+                {
+                    UIManager.Instance.ShowPickupMessage("Potions are full!");
+                }
             }
-            else
+
+            ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
+            if (projectileLauncher != null)
             {
-                UIManager.Instance.StartCoroutine(UIManager.Instance.ShowPickupMessage("Potions are full!"));
+                string arrowWord = "Arrow";
+                int spaceForarrows = projectileLauncher.maxArrows - projectileLauncher.currentArrows;
+
+                if (spaceForarrows > 0)
+                {
+                    int amountToAdd = Mathf.Min(arrowAmount, spaceForarrows);
+
+                    projectileLauncher.AddArrows(amountToAdd);
+
+                    if (amountToAdd > 1)
+                    {
+                        arrowWord = "Arrows";
+                    }
+                    UIManager.Instance.ShowPickupMessage("+" + amountToAdd + " " + arrowWord);
+                }
+                else
+                {
+                    UIManager.Instance.ShowPickupMessage("Arrows are full!");
+                }
             }
 
             isOpen = true;
