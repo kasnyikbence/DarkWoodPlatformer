@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 7f;
     public float airWalkSpeed = 7f;
     public float jumpImpulse = 7f;
+    public float douleJumpImpulse = 7f;
     public float slideImpulse = 5f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rb;
     Animator animator;
+
+    private bool canDoubleJump = false;
+    private bool hasDoubleJumped = false;
 
     public float CurrentMoveSpeed
     {
@@ -97,11 +101,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (touchingDirections.IsGrounded)
+        {
+            hasDoubleJumped = false;
+            canDoubleJump = true;
+        }
+    }
+
 
     private void FixedUpdate()
     {
 
-        if (damageable.LockVelocity || PauseMenuManager.isPaused || DialogueController.isPaused)
+        if (damageable.LockVelocity || PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
             return;
         }
@@ -117,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
             return;
         }
@@ -158,14 +171,36 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
             return;
         }
-        if (context.started && touchingDirections.IsGrounded && CanMove)
+        if (context.started && CanMove)
         {
-            animator.SetTrigger(AnimationStrings.jumpTrigger);
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
+            if (touchingDirections.IsGrounded)
+            {
+                animator.SetTrigger(AnimationStrings.jumpTrigger);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpImpulse);
+
+                canDoubleJump = true;
+                hasDoubleJumped = false;
+            }
+            else
+            {
+                bool skillUnlocked = PlayerStats.Instance != null && PlayerStats.Instance.doubleJumpUnlocked;
+
+                if (skillUnlocked && canDoubleJump && !hasDoubleJumped)
+                {
+                    animator.ResetTrigger(AnimationStrings.jumpTrigger);
+
+                    animator.Play("player_jump", -1, 0f);
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, douleJumpImpulse);
+                    animator.SetFloat(AnimationStrings.yVelocity, jumpImpulse);
+
+
+                    hasDoubleJumped = true;
+                }
+            }
         }
 
     }
@@ -173,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRoll(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
             return;
         }
@@ -189,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused) 
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen) 
         {
             return;
         }
@@ -202,7 +237,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangedAttack(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused || projectileLauncher.currentArrows == 0)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen || projectileLauncher.currentArrows == 0)
         {
             return;
         }

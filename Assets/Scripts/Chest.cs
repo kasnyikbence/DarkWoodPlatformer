@@ -69,7 +69,7 @@ public class Chest : MonoBehaviour
             if (potionSystem != null)
             {
                 string potionWord = "Potion";
-                int spaceForPotions = potionSystem.maxPotions - potionSystem.currentPotions;
+                int spaceForPotions = potionSystem.MaxPotions - potionSystem.currentPotions;
 
                 if (spaceForPotions > 0)
                 {
@@ -94,7 +94,7 @@ public class Chest : MonoBehaviour
             if (projectileLauncher != null)
             {
                 string arrowWord = "Arrow";
-                int spaceForarrows = projectileLauncher.maxArrows - projectileLauncher.currentArrows;
+                int spaceForarrows = projectileLauncher.MaxArrows - projectileLauncher.currentArrows;
 
                 if (spaceForarrows > 0)
                 {

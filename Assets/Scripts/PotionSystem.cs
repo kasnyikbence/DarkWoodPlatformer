@@ -3,7 +3,20 @@ using UnityEngine.InputSystem;
 
 public class PotionSystem : MonoBehaviour
 {
-    public int maxPotions = 2;
+    [SerializeField] private int baseMaxPotions = 2;
+    public int MaxPotions
+    {
+        get
+        {
+            int bonus = 0;
+            if (PlayerStats.Instance != null)
+            {
+                bonus = PlayerStats.Instance.bonusMaxPotions;
+            }
+            return baseMaxPotions + bonus;
+        }
+    }
+
     public int currentPotions = 0;
     public int healAmount = 20;
 
@@ -24,8 +37,10 @@ public class PotionSystem : MonoBehaviour
 
     public void AddPotion(int amount)
     {
-        currentPotions = Mathf.Clamp(currentPotions + amount, 0, maxPotions);
-        UIManager.Instance.UpdatePotionUI(currentPotions);
+        currentPotions = Mathf.Clamp(currentPotions + amount, 0, MaxPotions);
+
+        if (UIManager.Instance != null)
+            UIManager.Instance.UpdatePotionUI(currentPotions);
     }
 
     public void UsePotion()

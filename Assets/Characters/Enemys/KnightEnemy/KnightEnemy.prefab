@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 2969874512524052206}
   - component: {fileID: 8620024835300204047}
   - component: {fileID: 8923610804931861680}
+  - component: {fileID: 2153000130043979230}
   m_Layer: 8
   m_Name: KnightEnemy
   m_TagString: Untagged
@@ -365,7 +366,7 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _maxHealth: 100
+  _baseMaxHealth: 100
   _health: 100
 --- !u!82 &8923610804931861680
 AudioSource:
@@ -464,6 +465,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2153000130043979230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952324301547606914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd1973cd80529b40a570b5a38d064d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyXP
+  xpAmount: 15
 --- !u!1 &2531879665172111609
 GameObject:
   m_ObjectHideFlags: 0

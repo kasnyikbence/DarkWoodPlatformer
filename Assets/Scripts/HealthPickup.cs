@@ -24,7 +24,7 @@ public class HealthPickup : MonoBehaviour
 
         if (potionSystem)
         {
-            if (potionSystem.currentPotions != potionSystem.maxPotions)
+            if (potionSystem.currentPotions != potionSystem.MaxPotions)
             {
                 potionSystem.AddPotion(amount);
                 Destroy(gameObject);

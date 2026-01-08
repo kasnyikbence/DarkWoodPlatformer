@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 5508347318902748416}
   - component: {fileID: 5759880525942260180}
   - component: {fileID: 5582686207166011741}
+  - component: {fileID: 5044972556797584399}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -302,6 +303,7 @@ MonoBehaviour:
   runSpeed: 9
   airWalkSpeed: 7
   jumpImpulse: 9
+  douleJumpImpulse: 8
   slideImpulse: 5
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
@@ -496,6 +498,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 65e9b312-77fb-4cd6-b6dc-269aedf6aa95
     m_ActionName: 'Player/DoorOpen[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SkillTreeUI, Assembly-CSharp
+        m_MethodName: ToggleSkillTree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 95843a96-33be-4490-baac-2194c7c41409
+    m_ActionName: Player/OpenSkillTree
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -589,7 +607,7 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _maxHealth: 100
+  _baseMaxHealth: 100
   _health: 100
 --- !u!114 &5624947387513185228
 MonoBehaviour:
@@ -605,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 2356950527912801033}
   projectilePrefab: {fileID: 326156474830715294, guid: a385c68b4ffaf24419cb326889f24881, type: 3}
-  maxArrows: 5
+  baseMaxArrows: 5
   currentArrows: 0
 --- !u!82 &5508347318902748416
 AudioSource:
@@ -628,8 +646,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.4037285
-  MaxDistance: 44.082436
+  MinDistance: 1.2226298
+  MaxDistance: 1.2226307
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -716,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0c80742070628488dae288412bf478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPotions: 2
+  baseMaxPotions: 2
   currentPotions: 0
   healAmount: 20
   pickupClip: {fileID: 8300000, guid: dd035eb23b7f64d4ca6845040ca18d05, type: 3}
@@ -733,6 +751,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KeySystem
   keyCount: 0
+--- !u!114 &5044972556797584399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384424839921047904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ead5d151739e1341ac4dc8557375769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  damageMultiplier: 1
+  rangedDamageMultiplier: 1
+  critChance: 0
+  critMultiplier: 2
+  lifeStealAmount: 0
+  bonusMaxHealth: 0
+  bonusMaxPotions: 0
+  bonusMaxArrows: 0
+  doubleJumpUnlocked: 0
 --- !u!1 &1779173700223183661
 GameObject:
   m_ObjectHideFlags: 0

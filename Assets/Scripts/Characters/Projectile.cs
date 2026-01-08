@@ -25,14 +25,31 @@ public class Projectile : MonoBehaviour
     {
         Damageable damageable = collision.GetComponent<Damageable>();
 
-        Vector2 deliveredKnockBack = transform.localScale.x > 0 ? knockBack : new Vector2(-knockBack.x, knockBack.y);
-
-        bool gotHit = damageable.Hit(damage, deliveredKnockBack);
-
-        if (gotHit)
+        if (damageable != null)
         {
-            Debug.Log(collision.name + " hit for " + damage);
-            Destroy(gameObject);
+            Vector2 deliveredKnockBack = transform.localScale.x > 0 ? knockBack : new Vector2(-knockBack.x, knockBack.y);
+
+            float finalDamage = damage;
+            bool isCritical = false;
+
+            if (PlayerStats.Instance != null)
+            {
+                finalDamage *= PlayerStats.Instance.rangedDamageMultiplier;
+            }
+
+            if (Random.value < PlayerStats.Instance.critChance)
+            {
+                finalDamage *= PlayerStats.Instance.critMultiplier;
+                isCritical = true;
+            }
+
+            bool gotHit = damageable.Hit(Mathf.RoundToInt(finalDamage), deliveredKnockBack);
+
+            if (gotHit)
+            {
+                Debug.Log($"{collision.name} hit for {finalDamage} {(isCritical ? "(CRIT!)" : "")}");
+                Destroy(gameObject);
+            }
         }
     }
 

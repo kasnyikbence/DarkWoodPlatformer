@@ -7,7 +7,20 @@ public class ProjectileLauncher : MonoBehaviour
     public GameObject projectilePrefab;
 
     [Header("Arrow Count")]
-    public int maxArrows = 10;
+    [SerializeField] private int baseMaxArrows = 5;
+    public int MaxArrows
+    {
+        get
+        {
+            int bonus = 0;
+            if (PlayerStats.Instance != null)
+            {
+                bonus = PlayerStats.Instance.bonusMaxArrows;
+            }
+            return baseMaxArrows + bonus;
+        }
+    }
+
     public int currentArrows;
 
     void Awake()
@@ -19,8 +32,10 @@ public class ProjectileLauncher : MonoBehaviour
     {
         if (currentArrows == 0)
         {
-            currentArrows = maxArrows;
+            currentArrows = MaxArrows;
         }
+
+        if (currentArrows > MaxArrows) currentArrows = MaxArrows;
 
         if (UIManager.Instance != null)
         {
@@ -52,7 +67,7 @@ public class ProjectileLauncher : MonoBehaviour
     }
     public void AddArrows(int amount)
     {
-        currentArrows = Mathf.Clamp(currentArrows + amount, 0, maxArrows);
+        currentArrows = Mathf.Clamp(currentArrows + amount, 0, MaxArrows);
         UIManager.Instance.UpdateArrowUI(currentArrows);
     }
 

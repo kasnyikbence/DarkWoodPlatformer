@@ -7,8 +7,8 @@ public class Damageable : MonoBehaviour
 {
 
     public UnityEvent<int, Vector2> damageableHit;
-
     public UnityEvent<int, int> healthChanged;
+
     Animator animator;
     public float timeSinceHit = 0;
     public float invincibilityTimer = 0.25f;
@@ -32,17 +32,17 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private int _maxHealth = 100;
+    [SerializeField] private int _baseMaxHealth = 100;
     public int MaxHealth
     {
         get
         {
-            return _maxHealth;
-        }
-        set
-        {
-            _maxHealth = value;
+            int bonus = 0;
+            if (gameObject.CompareTag("Player") && PlayerStats.Instance != null)
+            {
+                bonus = PlayerStats.Instance.bonusMaxHealth;
+            }
+            return _baseMaxHealth + bonus;
         }
     }
 
@@ -58,6 +58,8 @@ public class Damageable : MonoBehaviour
         set
         {
             _health = value;
+
+            if (_health > MaxHealth) _health = MaxHealth;
 
             healthChanged?.Invoke(_health, MaxHealth);
 
@@ -94,6 +96,11 @@ public class Damageable : MonoBehaviour
             animator.SetBool(AnimationStrings.lockVelocity, value);
         }
 
+    }
+
+    private void Start()
+    {
+        healthChanged?.Invoke(Health, MaxHealth);
     }
 
     void Awake()
@@ -143,5 +150,10 @@ public class Damageable : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void UpdateMaxHealthUI()
+    {
+        healthChanged?.Invoke(Health, MaxHealth);
     }
 }
