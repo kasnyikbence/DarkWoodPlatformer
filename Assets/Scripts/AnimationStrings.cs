@@ -12,7 +12,7 @@ internal class AnimationStrings
     internal static string isGrounded = "isGrounded";
     internal static string yVelocity = "yVelocity";
     internal static string jumpTrigger = "jump";
-    internal static string slideTrigger = "slide";
+    internal static string dashTrigger = "dash";
     internal static string potionTrigger = "usePotion";
     internal static string isOnWall = "isOnWall";
     internal static string isOnCeiling = "isOnCeiling";

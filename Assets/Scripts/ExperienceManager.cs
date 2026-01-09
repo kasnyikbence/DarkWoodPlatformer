@@ -29,6 +29,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] Image expFill;
 
     public int CurrentLevel { get; private set; } = 1;
+    public int TotalExperience => totalExperience;
 
 
     void Start()
@@ -76,5 +77,13 @@ public class ExperienceManager : MonoBehaviour
         {
             expFill.fillAmount = (float)start / (float)end;
         }
+    }
+
+    public void LoadExperience(int level, int currentXP)
+    {
+        CurrentLevel = level;
+        totalExperience = currentXP;
+
+        UpdateLevel();
     }
 }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems; // Kell a Tooltiphez
 
-public class SkillSlot : MonoBehaviour
+public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
     [Header("Skill Adatok")]
     public int skillID;
     public SkillType skillType;
@@ -18,11 +18,15 @@ public class SkillSlot : MonoBehaviour
     private Image frameImage;
 
     [Header("Színek")]
-    public Color lockedColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-    public Color notOwnedColor = Color.gray;
-    public Color ownedColor = Color.white;
+    public Color lockedColor = new Color(0.3f, 0.3f, 0.3f, 1f); // Sötétszürke (Zárva)
+    public Color notOwnedColor = Color.gray;                    // Világosszürke (Megvehetõ)
+    public Color ownedColor = Color.white;                      // Fehér (Megvan)
 
     public SkillSlot[] parentSkills;
+
+    // --- ÁLLAPOTOK ---
+    private SkillState currentState;
+    private bool isHovered = false; // ÚJ: Tudjuk, hogy rajta van-e az egér
 
     void Awake()
     {
@@ -47,8 +51,6 @@ public class SkillSlot : MonoBehaviour
         if (SkillManager.Instance != null)
         {
             SkillManager.Instance.OnSkillTreeChanged += UpdateUI;
-
-            // Azonnali frissítés induláskor
             UpdateUI();
         }
     }
@@ -63,6 +65,8 @@ public class SkillSlot : MonoBehaviour
 
     public void UpdateUIState(SkillState state)
     {
+        currentState = state;
+
         if (frameImage == null && button != null) frameImage = button.GetComponent<Image>();
 
         switch (state)
@@ -71,7 +75,6 @@ public class SkillSlot : MonoBehaviour
                 if (button) button.interactable = false;
                 SetColor(lockedColor);
                 break;
-
 
             case SkillState.Unlockable:
                 if (button) button.interactable = true;
@@ -89,25 +92,31 @@ public class SkillSlot : MonoBehaviour
     {
         if (SkillManager.Instance == null) return;
 
+        // 1. Állapot frissítése
         if (SkillManager.Instance.IsSkillUnlocked(skillID))
         {
             UpdateUIState(SkillState.Unlocked);
-            return;
         }
-
-        if (AreParentsUnlocked())
+        else if (AreParentsUnlocked())
         {
             UpdateUIState(SkillState.Unlockable);
         }
         else
         {
             UpdateUIState(SkillState.Locked);
+        }
 
+        // 2. ÚJ: Ha épp rajta van az egér, frissítjük a Tooltipet is azonnal!
+        // Így kattintás után rögtön átvált a szöveg [Owned]-re.
+        if (isHovered)
+        {
+            ShowTooltipContent();
         }
     }
+
     private bool AreParentsUnlocked()
     {
-        if (parentSkills == null || parentSkills.Length == 0) return true; // Tier 1
+        if (parentSkills == null || parentSkills.Length == 0) return true;
 
         foreach (var parent in parentSkills)
         {
@@ -130,6 +139,43 @@ public class SkillSlot : MonoBehaviour
         if (SkillManager.Instance != null)
         {
             SkillManager.Instance.TryUnlockSkill(this);
+        }
+    }
+
+    // --- TOOLTIP LOGIKA ---
+
+    // Kiemeltem egy külön függvénybe, hogy többször is meg lehessen hívni
+    private void ShowTooltipContent()
+    {
+        if (SkillTooltip.Instance != null)
+        {
+            string header = $"{skillName} (Cost: {cost})";
+
+            if (currentState == SkillState.Locked)
+            {
+                header = $"{skillName} <color=red>[Locked]</color>";
+            }
+            else if (currentState == SkillState.Unlocked)
+            {
+                header = $"{skillName} <color=green>[Owned]</color>";
+            }
+
+            SkillTooltip.Instance.ShowTooltip(header, description);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isHovered = true;
+        ShowTooltipContent();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isHovered = false;
+        if (SkillTooltip.Instance != null)
+        {
+            SkillTooltip.Instance.HideTooltip();
         }
     }
 }

@@ -72,6 +72,32 @@ public class Checkpoint : MonoBehaviour
 
         saveGameData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+        if (ExperienceManager.Instance != null)
+        {
+            saveGameData.currentLevel = ExperienceManager.Instance.CurrentLevel;
+            saveGameData.totalExperience = ExperienceManager.Instance.TotalExperience;
+        }
+
+        if (SkillManager.Instance != null)
+        {
+            saveGameData.skillPoints = SkillManager.Instance.skillPoints;
+            saveGameData.unlockedSkillIDs = SkillManager.Instance.unlockedSkilIDs;
+        }
+
+        if (PlayerStats.Instance != null)
+        {
+            saveGameData.damageMultiplier = PlayerStats.Instance.damageMultiplier;
+            saveGameData.rangedDamageMultiplier = PlayerStats.Instance.rangedDamageMultiplier;
+            saveGameData.critChance = PlayerStats.Instance.critChance;
+            saveGameData.lifeStealAmount = PlayerStats.Instance.lifeStealAmount;
+
+            saveGameData.bonusMaxHealth = PlayerStats.Instance.bonusMaxHealth;
+            saveGameData.bonusMaxPotions = PlayerStats.Instance.bonusMaxPotions;
+            saveGameData.bonusMaxArrows = PlayerStats.Instance.bonusMaxArrows;
+
+            saveGameData.doubleJumpUnlocked = PlayerStats.Instance.doubleJumpUnlocked;
+        }
+
         if (UIManager.Instance != null)
         {
             UIManager.Instance.ShowGameSavedText(transform.position);

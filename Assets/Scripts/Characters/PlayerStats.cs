@@ -72,7 +72,7 @@ public class PlayerStats : MonoBehaviour
 
             //Tier 4
             case SkillType.LifeSteal:
-                lifeStealAmount += 1;
+                lifeStealAmount += 3;
                 break;
             case SkillType.CriticalStrike:
                 critChance += 0.1f;

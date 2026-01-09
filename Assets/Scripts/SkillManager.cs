@@ -26,7 +26,7 @@ public class SkillManager : MonoBehaviour
     {
         if (skillPoints == 0)
         {
-           // skillPoints = 5; // Teszt
+           // skillPoints = 5; Teszt
             OnSkillTreeChanged?.Invoke();
         }
     }
@@ -91,5 +91,21 @@ public class SkillManager : MonoBehaviour
     { 
         skillPoints += amount; 
         OnSkillTreeChanged?.Invoke(); 
+    }
+
+    public void LoadSkills(int points, List<int> unlockedIds)
+    {
+        skillPoints = points;
+
+        if (unlockedIds != null)
+        {
+            unlockedSkilIDs = new List<int>(unlockedIds);
+        }
+        else
+        {
+            unlockedSkilIDs = new List<int>();
+        }
+
+        OnSkillTreeChanged?.Invoke();
     }
 }

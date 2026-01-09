@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,18 +8,31 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
+    [Header("Mozgás")]
     public float runSpeed = 7f;
     public float airWalkSpeed = 7f;
-    public float jumpImpulse = 7f;
-    public float douleJumpImpulse = 7f;
-    public float slideImpulse = 5f;
+    public float jumpImpulse = 9f;
+    public float douleJumpImpulse = 8f;
+
+    [Header("Fizika")]
     public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
+
+    [Header("Dash Beállítások")]
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+    public GameObject ghostPrefab;
+    public float ghostSpawnRate = 0.05f;
+
+    private bool isDashing = false;
+    private bool canDash = true;
+    private float lastGhostTime;
+
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
     ProjectileLauncher projectileLauncher;
+    SpriteRenderer spriteRenderer;
 
     Rigidbody2D rb;
     Animator animator;
@@ -79,7 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            return animator.GetBool(AnimationStrings.canMove);
+            return animator.GetBool(AnimationStrings.canMove) && !isDashing;
         }
     }
 
@@ -98,7 +113,7 @@ public class PlayerController : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         projectileLauncher = GetComponent<ProjectileLauncher>();
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -116,6 +131,16 @@ public class PlayerController : MonoBehaviour
 
         if (damageable.LockVelocity || PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
+            return;
+        }
+
+        if (isDashing)
+        {
+            if (Time.time >= lastGhostTime + ghostSpawnRate)
+            {
+                SpawnGhost();
+                lastGhostTime = Time.time;
+            }
             return;
         }
 
@@ -212,14 +237,48 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (context.started && touchingDirections.IsGrounded && CanMove)
+
+        if (context.started && canDash && IsAlive && IsMoving)
         {
-            animator.SetTrigger(AnimationStrings.slideTrigger);
-            rb.linearVelocity = new Vector2(slideImpulse * (IsFacingRight ? 1 : -1), rb.linearVelocity.y);
-            damageable.IsInvincible = true;
-
+            StartCoroutine(DashCoroutine());
         }
+    }
+    private IEnumerator DashCoroutine()
+    {
+        canDash = false;
+        isDashing = true;
 
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+
+        damageable.IsInvincible = true;
+
+        animator.SetTrigger(AnimationStrings.dashTrigger);
+
+        float dashDirection = IsFacingRight ? 1f : -1f;
+        if (moveInput.x != 0) dashDirection = Mathf.Sign(moveInput.x);
+
+        rb.linearVelocity = new Vector2(dashDirection * dashSpeed, 0f);
+
+        yield return new WaitForSeconds(dashDuration);
+
+
+        rb.gravityScale = originalGravity;
+        rb.linearVelocity = Vector2.zero;
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+
+
+    private void SpawnGhost()
+    {
+        if (ghostPrefab != null)
+        {
+            GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation);
+            ghost.GetComponent<GhostSprite>().Setup(spriteRenderer.sprite, !IsFacingRight);
+        }
     }
 
     public void OnAttack(InputAction.CallbackContext context)

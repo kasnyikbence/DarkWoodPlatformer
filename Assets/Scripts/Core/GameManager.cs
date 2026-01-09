@@ -222,18 +222,28 @@ public class GameManager : MonoBehaviour
 
         player.transform.position = new Vector3(data.playerPositionX, data.playerPositionY, data.playerPositionZ);
 
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
         Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
         if (rb2d != null)
         {
             rb2d.linearVelocity = Vector2.zero;
             rb2d.angularVelocity = 0f;
         }
+
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.damageMultiplier = data.damageMultiplier;
+            PlayerStats.Instance.rangedDamageMultiplier = data.rangedDamageMultiplier;
+            PlayerStats.Instance.critChance = data.critChance;
+            PlayerStats.Instance.lifeStealAmount = data.lifeStealAmount;
+
+            PlayerStats.Instance.bonusMaxHealth = data.bonusMaxHealth;
+            PlayerStats.Instance.bonusMaxPotions = data.bonusMaxPotions;
+            PlayerStats.Instance.bonusMaxArrows = data.bonusMaxArrows;
+
+            PlayerStats.Instance.doubleJumpUnlocked = data.doubleJumpUnlocked;
+        }
+
+
 
         // --- STATISZTIKÁK VISSZAÁLLÍTÁSA ---
         var dmg = player.GetComponent<Damageable>();
@@ -242,6 +252,7 @@ public class GameManager : MonoBehaviour
             dmg.Health = data.health;
             dmg.IsAlive = true;
             dmg.LockVelocity = false;
+            dmg.UpdateMaxHealthUI();
         }
 
         var potion = player.GetComponent<PotionSystem>();
@@ -256,6 +267,16 @@ public class GameManager : MonoBehaviour
         {
             proj.currentArrows = data.arrowAmount;
             if (UIManager.Instance != null) UIManager.Instance.UpdateArrowUI(data.arrowAmount);
+        }
+
+        if (ExperienceManager.Instance != null)
+        {
+            ExperienceManager.Instance.LoadExperience(data.currentLevel, data.totalExperience);
+        }
+
+        if (SkillManager.Instance != null)
+        {
+            SkillManager.Instance.LoadSkills(data.skillPoints, data.unlockedSkillIDs);
         }
     }
 
@@ -277,6 +298,7 @@ public class GameManager : MonoBehaviour
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
 
         Time.timeScale = 1f;
+        RespawnMenuManager.Instance.CloseRespawnMenu();
         SceneManager.LoadScene("MainMenu");
     }
 }
