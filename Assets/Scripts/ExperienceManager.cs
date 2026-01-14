@@ -86,4 +86,9 @@ public class ExperienceManager : MonoBehaviour
 
         UpdateLevel();
     }
+
+    public void ResetExperience()
+    {
+        LoadExperience(1, 0);
+    }
 }

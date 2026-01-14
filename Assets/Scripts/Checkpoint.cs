@@ -115,6 +115,6 @@ public class Checkpoint : MonoBehaviour
 
         saveFile.Close();
 
-        print("JÃ¡tÃ©k mentve: " + savePath + "/" + saveName + ".bin");
+        print("Játék mentve: " + savePath + "/" + saveName + ".bin");
     }
 }

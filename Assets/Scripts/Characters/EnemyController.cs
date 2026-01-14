@@ -16,6 +16,13 @@ public class EnemyController : MonoBehaviour
     Animator animator;
     Damageable damageable;
 
+    public enum EnemyPhase
+    {
+        Idle,
+        Patrol,
+        Chase,
+        Attack
+    }
 
     public enum WalkableDirection { Right, Left }
 

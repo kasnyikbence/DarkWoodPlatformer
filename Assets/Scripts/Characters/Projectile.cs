@@ -2,23 +2,46 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
     public int damage = 10;
     public Vector2 moveSpeed = new Vector2(10f, 0);
     public Vector2 knockBack = new Vector2(0, 0);
 
+    public LayerMask groundLayer;
+
     Rigidbody2D rb;
+    private Vector2 previousPosition;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    
     void Start()
     {
-        rb.linearVelocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
+        previousPosition = rb.position;
+
+        float direction = Mathf.Sign(transform.localScale.x);
+        rb.linearVelocity = new Vector2(moveSpeed.x * direction, moveSpeed.y);
+
         Destroy(gameObject, 5f);
+    }
+
+    void FixedUpdate()
+    {
+        Vector2 currentPosition = rb.position;
+        RaycastHit2D hit = Physics2D.Linecast(previousPosition, currentPosition, groundLayer);
+
+        if (hit.collider != null)
+        {
+            if (!hit.collider.isTrigger)
+            {
+                Debug.Log($"Fal találat! ({hit.collider.name})");
+                Destroy(gameObject);
+                return;
+            }
+        }
+
+        previousPosition = currentPosition;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -35,12 +58,12 @@ public class Projectile : MonoBehaviour
             if (PlayerStats.Instance != null)
             {
                 finalDamage *= PlayerStats.Instance.rangedDamageMultiplier;
-            }
 
-            if (Random.value < PlayerStats.Instance.critChance)
-            {
-                finalDamage *= PlayerStats.Instance.critMultiplier;
-                isCritical = true;
+                if (Random.value < PlayerStats.Instance.critChance)
+                {
+                    finalDamage *= PlayerStats.Instance.critMultiplier;
+                    isCritical = true;
+                }
             }
 
             bool gotHit = damageable.Hit(Mathf.RoundToInt(finalDamage), deliveredKnockBack);

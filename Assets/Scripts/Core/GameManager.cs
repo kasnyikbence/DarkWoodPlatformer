@@ -39,15 +39,11 @@ public class GameManager : MonoBehaviour
     // ---------------- scene load handling ----------------
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"[GameManager] Scene loaded: {scene.name} (buildIndex {scene.buildIndex}).");
-
         // FŐMENÜ KEZELÉS
         if (scene.buildIndex == 0)
         {
-            // Megpróbáljuk megtalálni a játékost, ha nincs meg
             if (player == null) player = GameObject.FindGameObjectWithTag("Player");
 
-            // Ha megvan, elrejtjük
             if (player != null)
             {
                 player.SetActive(false);
@@ -55,7 +51,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // JÁTÉKMENET PÁLYA BETÖLTÉSE
         StartCoroutine(HandleSceneLoadedCoroutine());
     }
 
@@ -142,7 +137,6 @@ public class GameManager : MonoBehaviour
                 try
                 {
                     SaveGameData data = (SaveGameData)formatter.Deserialize(file);
-                    Debug.Log("[GameManager] Save found. Loading scene index: " + data.sceneIndex);
 
                     if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
                     {

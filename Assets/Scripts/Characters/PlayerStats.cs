@@ -78,8 +78,6 @@ public class PlayerStats : MonoBehaviour
                 critChance += 0.1f;
                 break;
         }
-
-        Debug.Log($"[PlayerStats] Bónusz aktiválva: {type}");
     }
 
     private void UpdateHealthComponent()
@@ -88,12 +86,24 @@ public class PlayerStats : MonoBehaviour
         if (dmg != null)
         {
             dmg.UpdateMaxHealthUI();
-            Debug.Log($"Új Max HP bónusz érvényesítve: +{bonusMaxHealth}");
         }
     }
+    public void ResetStats()
+    {
+        damageMultiplier = 1.0f;
+        rangedDamageMultiplier = 1.0f;
+        critChance = 0.0f;
+        critMultiplier = 2f;
+        lifeStealAmount = 0f;
+
+        bonusMaxHealth = 0;
+        bonusMaxPotions = 0;
+        bonusMaxArrows = 0;
+
+        doubleJumpUnlocked = false;
+
+    }
 }
-
-
 
 public enum SkillType
 {

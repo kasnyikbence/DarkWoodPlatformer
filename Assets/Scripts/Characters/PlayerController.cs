@@ -248,6 +248,8 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         isDashing = true;
 
+        animator.SetBool("isDashing", true);
+
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 
@@ -265,7 +267,10 @@ public class PlayerController : MonoBehaviour
 
         rb.gravityScale = originalGravity;
         rb.linearVelocity = Vector2.zero;
+
         isDashing = false;
+
+        animator.SetBool("isDashing", false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;

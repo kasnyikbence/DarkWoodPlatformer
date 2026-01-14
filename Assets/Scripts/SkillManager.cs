@@ -108,4 +108,11 @@ public class SkillManager : MonoBehaviour
 
         OnSkillTreeChanged?.Invoke();
     }
+
+    public void ResetSkills()
+    {
+        skillPoints = 0;
+        unlockedSkilIDs.Clear();
+        OnSkillTreeChanged?.Invoke();
+    }
 }
