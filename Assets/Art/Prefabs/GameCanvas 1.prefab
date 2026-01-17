@@ -5344,9 +5344,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1523561040342264914}
+      - m_Target: {fileID: 5317123090748853703}
         m_TargetAssemblyTypeName: RespawnEvents, Assembly-CSharp
-        m_MethodName: RespawnConfirmed
+        m_MethodName: OnRespawnClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9484,9 +9484,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1523561040342264914}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+      - m_Target: {fileID: 2963209348385613702}
+        m_TargetAssemblyTypeName: RespawnEvents, Assembly-CSharp
+        m_MethodName: OnMainMenuClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

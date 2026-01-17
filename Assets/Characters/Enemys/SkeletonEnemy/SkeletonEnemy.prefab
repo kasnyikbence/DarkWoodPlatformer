@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 6310958523817333373}
   - component: {fileID: 4144351779104498299}
   - component: {fileID: 6969568519593819004}
+  - component: {fileID: -1897897524364409169}
   m_Layer: 8
   m_Name: SkeletonEnemy
   m_TagString: Untagged
@@ -355,9 +356,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   walkAcceleration: 50
   maxSpeed: 4
+  chaseMaxSpeed: 5
   walkStopRate: 0.05
+  aggroDistance: 5
+  stopChaseDistance: 10
+  knockbackDuration: 0.2
   attackZone: {fileID: 7210001882947909207}
   cliffDetectionZone: {fileID: 5389994568650262330}
+  currentPhase: 0
   _hasTarget: 0
 --- !u!95 &4144351779104498299
 Animator:
@@ -394,6 +400,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyXP
   xpAmount: 18
+--- !u!114 &-1897897524364409169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3834403787104400076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503c6afd3e5277545908a4cd877a2318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootSpawner
+  potionDropPrefab: {fileID: 8945401877307002409, guid: a3b474a45ab7d9f4a8df000644e20c67, type: 3}
+  arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
+  dropChance: 60
+  potionRate: 40
 --- !u!1 &5336898298048284773
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +483,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.024487615, y: -0.18564332}
+  m_Offset: {x: -0.13303375, y: -0.2199862}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -471,7 +493,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.4413397, y: 1.9211805}
+  m_Size: {x: 2.2339325, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &7210001882947909207
 MonoBehaviour:
@@ -516,7 +538,7 @@ Transform:
   m_GameObject: {fileID: 5639416994493808891}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.22, y: -2.8, z: 0}
+  m_LocalPosition: {x: 1.54, y: -2.8, z: 0}
   m_LocalScale: {x: 1.4285715, y: 1.4285715, z: 1.4285715}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -683,10 +705,10 @@ PolygonCollider2D:
       - {x: -0.7520485, y: 0.8361527}
       - {x: -0.9882405, y: 0.8432082}
       - {x: -1.158325, y: 0.8442013}
-      - {x: -1.4141617, y: 0.81228113}
-      - {x: -1.4802933, y: 0.7469263}
-      - {x: -1.4975238, y: 0.6837089}
-      - {x: -1.4246602, y: 0.56222844}
+      - {x: -1.3965759, y: 0.8474536}
+      - {x: -1.5740814, y: 0.787961}
+      - {x: -1.7026935, y: 0.6661227}
+      - {x: -1.6415563, y: 0.532918}
       - {x: -1.0965042, y: 0.45740187}
       - {x: -0.8281592, y: 0.43923974}
       - {x: -0.6685624, y: 0.4433527}

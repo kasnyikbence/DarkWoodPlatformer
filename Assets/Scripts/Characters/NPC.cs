@@ -78,11 +78,18 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
         if (Vector2.Distance(_playerTransform.position, transform.position) < INTERACT_DISTANCE)
         {
+            FacePlayer();
             return true;
         }
         else
         {
             return false;
         }
+    }
+
+    private void FacePlayer()
+    {
+        if (_playerTransform.position.x < transform.position.x) transform.localScale = new Vector3(1, 1, 1);
+        else transform.localScale = new Vector3(-1, 1, 1);
     }
 }

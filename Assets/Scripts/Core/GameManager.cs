@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.Rendering.Universal;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -39,16 +41,32 @@ public class GameManager : MonoBehaviour
     // ---------------- scene load handling ----------------
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // FŐMENÜ KEZELÉS
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
         if (scene.buildIndex == 0)
         {
-            if (player == null) player = GameObject.FindGameObjectWithTag("Player");
-
             if (player != null)
             {
                 player.SetActive(false);
             }
             return;
+        }
+
+        if (player != null)
+        {
+            Light2D playerLight = player.GetComponentInChildren<Light2D>();
+
+            if (playerLight != null)
+            {
+
+                if (scene.name == "DungeonScene" || scene.name == "CastleScene")
+                {
+                    playerLight.enabled = true;
+                }
+                else
+                {
+                    playerLight.enabled = false;
+                }
+            }
         }
 
         StartCoroutine(HandleSceneLoadedCoroutine());

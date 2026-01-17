@@ -106,13 +106,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  moveSpeed: {x: 12, y: 0}
+  moveSpeed: {x: 15, y: 0}
   knockBack: {x: 5, y: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8256
-  hitOffset: 3
-  belongedToPlayer: 0
 --- !u!50 &6659686730639514295
 Rigidbody2D:
   serializedVersion: 5

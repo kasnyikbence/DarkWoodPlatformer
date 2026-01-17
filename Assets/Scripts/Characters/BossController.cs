@@ -84,8 +84,6 @@ public class BossController : MonoBehaviour
         }
 
         damageable.OnPlayerDied += Die;
-        //Debug.Log("[BOSS] Harc indítása! Várakozás...");
-        //StartCoroutine(MainCombatLoop());
     }
 
     void Update()
@@ -126,7 +124,7 @@ public class BossController : MonoBehaviour
 
         isActive = true;
 
-        Debug.Log("[BOSS] A Boss felébredt!");
+        Debug.Log("The Dark Mage woke up!");
 
         StartCoroutine(MainCombatLoop());
     }

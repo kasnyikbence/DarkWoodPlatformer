@@ -305,8 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de29536b620c8994b900d99f206aed9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
-  knockBack: {x: 3, y: 1}
+  attackDamage: 7
+  knockBack: {x: 2, y: 1}
 --- !u!1 &9113506989406184124
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 1777301543393834149}
   - component: {fileID: 3451989451759594025}
   - component: {fileID: 1480881680753489134}
+  - component: {fileID: 1312283478263965789}
   m_Layer: 8
   m_Name: SlimeEnemy
   m_TagString: Untagged
@@ -507,7 +508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TouchingDirections
   castFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
@@ -519,7 +520,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  groundDistance: 0.05
+  groundDistance: 0.1
   wallDistance: 0.3
   ceilingDistance: 0.05
   _isGrounded: 1
@@ -575,9 +576,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   walkAcceleration: 50
   maxSpeed: 3
+  chaseMaxSpeed: 4
   walkStopRate: 0.05
+  aggroDistance: 5
+  stopChaseDistance: 10
+  knockbackDuration: 0.2
   attackZone: {fileID: 8751362821940494805}
   cliffDetectionZone: {fileID: 530688244792726332}
+  currentPhase: 0
   _hasTarget: 0
 --- !u!114 &1480881680753489134
 MonoBehaviour:
@@ -592,3 +598,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyXP
   xpAmount: 10
+--- !u!114 &1312283478263965789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113506989406184124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503c6afd3e5277545908a4cd877a2318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LootSpawner
+  potionDropPrefab: {fileID: 8945401877307002409, guid: a3b474a45ab7d9f4a8df000644e20c67, type: 3}
+  arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
+  dropChance: 60
+  potionRate: 40

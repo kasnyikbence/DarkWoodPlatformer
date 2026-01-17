@@ -1,5 +1,4 @@
-using System;
-using System.Security.Cryptography;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
@@ -8,21 +7,32 @@ public class EnemyController : MonoBehaviour
 
     public float walkAcceleration = 3f;
     public float maxSpeed = 3f;
+    public float chaseMaxSpeed = 5f;
     public float walkStopRate = 0.05f;
+
+    public float aggroDistance = 5f;
+    public float stopChaseDistance = 10f;
+    private Transform player;
+
+    public float knockbackDuration = 0.2f;
+    private bool isKnockedBack = false;
+
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
-    Rigidbody2D rb;
+
     TouchingDirections touchingDirections;
     Animator animator;
     Damageable damageable;
+    Rigidbody2D rb;
 
     public enum EnemyPhase
     {
-        Idle,
         Patrol,
         Chase,
         Attack
     }
+
+    public EnemyPhase currentPhase = EnemyPhase.Patrol;
 
     public enum WalkableDirection { Right, Left }
 
@@ -97,6 +107,15 @@ public class EnemyController : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
+    private void Start()
+    {
+        if (player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) player = p.transform;
+        }
+    }
+
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
@@ -105,26 +124,101 @@ public class EnemyController : MonoBehaviour
         {
             AttackCooldown -= Time.deltaTime;
         }
+        
+        UpdateEnemyPhase();
+
     }
+
 
     void FixedUpdate()
     {
-        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
+        if (isKnockedBack) return;
+
+        UpdateLockState();
+        HandleMovePhases();
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        if (currentPhase == EnemyPhase.Attack)
         {
-            FlipDirection();
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
         }
 
         if (!damageable.LockVelocity)
         {
-            if (CanMove)
+            if (CanMove && currentPhase == EnemyPhase.Patrol)
             {
-                rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed),
-                 rb.linearVelocity.y);
+                rb.linearVelocity = new Vector2(
+                    Mathf.Clamp(rb.linearVelocity.x +
+                    (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
+                    -maxSpeed, maxSpeed), rb.linearVelocity.y
+                );
+            }
+            else if (CanMove && currentPhase == EnemyPhase.Chase)
+            {
+                rb.linearVelocity = new Vector2(
+                    Mathf.Clamp(rb.linearVelocity.x +
+                    (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
+                    -chaseMaxSpeed, chaseMaxSpeed), rb.linearVelocity.y
+                );
             }
             else
             {
                 rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0, walkStopRate), rb.linearVelocity.y);
+                return;
             }
+        }
+    }
+
+    private void HandleMovePhases()
+    {
+        if (currentPhase == EnemyPhase.Chase)
+        {
+            FaceToPlayer();
+        }
+        else if (currentPhase == EnemyPhase.Patrol)
+        {
+            if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
+            {
+                FlipDirection();
+            }
+        }
+    }
+
+    private void UpdateEnemyPhase()
+    {
+        if (player == null) return;
+
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        if (HasTarget)
+        {
+            currentPhase = EnemyPhase.Attack;
+            damageable.LockVelocity = true;
+        }
+        else if (distance < aggroDistance)
+        {
+            currentPhase = EnemyPhase.Chase;
+            FaceToPlayer();
+        }
+        else if (distance > stopChaseDistance)
+        {
+            currentPhase = EnemyPhase.Patrol;
+        }
+    }
+
+    private void UpdateLockState()
+    {
+        if (currentPhase == EnemyPhase.Attack)
+        {
+            damageable.LockVelocity = true;
+        }
+        else
+        {
+            damageable.LockVelocity = false;
         }
     }
 
@@ -147,13 +241,39 @@ public class EnemyController : MonoBehaviour
     public void OnHit(int damage, Vector2 knockBack)
     {
         rb.linearVelocity = new Vector2(knockBack.x, rb.linearVelocity.y + knockBack.y);
+
+        StartCoroutine(KnockbackRoutine());
+    }
+
+    private IEnumerator KnockbackRoutine()
+    {
+        isKnockedBack = true;
+        yield return new WaitForSeconds(knockbackDuration);
+        isKnockedBack = false;
     }
 
     public void OnCliffDetected()
     {
         if (touchingDirections.IsGrounded)
         {
-            FlipDirection();
+            if (currentPhase == EnemyPhase.Patrol)
+            {
+                FlipDirection();
+            }
+        }
+    }
+
+    void FaceToPlayer()
+    {
+        if (player == null) return;
+
+        if (player.position.x > transform.position.x)
+        {
+            WalkDirection = WalkableDirection.Right;
+        }
+        else
+        {
+            WalkDirection = WalkableDirection.Left;
         }
     }
 }
