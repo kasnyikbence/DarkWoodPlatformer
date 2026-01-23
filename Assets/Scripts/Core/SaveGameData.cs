@@ -30,6 +30,14 @@ public struct SaveGameData
     public int bonusMaxArrows;
     public bool doubleJumpUnlocked;
 
+    //Opened chests
+    public List<string> openedChestIDs;
+
+
+    //Dead enemys
+    public List<string> deadEnemyIDs;
+
+
     //Save Slot
     //public string lastPlayedDate;
     //public float playTimeSeconds;

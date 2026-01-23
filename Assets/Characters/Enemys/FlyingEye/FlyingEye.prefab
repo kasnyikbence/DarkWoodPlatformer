@@ -160,8 +160,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.2919259, y: -0.3062824}
-  m_Size: {x: 1.0788832, y: 1.4995625}
+  m_Offset: {x: 0.2919259, y: -0.18881053}
+  m_Size: {x: 1.0788832, y: 1.2646188}
   m_Direction: 0
 --- !u!114 &5146134937713610176
 MonoBehaviour:
@@ -221,12 +221,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c9547316256c0642adba8b2d22a2511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightSpeed: 5
-  wayPointReachedDistance: 0.1
+  flightSpeed: 3.5
+  chaseSpeed: 5
+  waypointReachedDistance: 0.1
+  aggroDistance: 6
+  stopChaseDistance: 8
   biteDetectionZone: {fileID: 3262169751164079404}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  currentState: 0
   _hasTarget: 0
 --- !u!114 &4990984208172858048
 MonoBehaviour:

@@ -4,24 +4,50 @@ using Random = UnityEngine.Random;
 
 public class Chest : MonoBehaviour
 {
+    [Header("ID")]
+    public string chestID;
+
     private GameObject player;
     private PlayerInput playerInput;
     private bool isOpen = false;
     Animator animator;
 
-    private int potionAmount;
-    private int arrowAmount;
-
+    private int potionAmountInChest;
+    private int arrowAmountInChest;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        potionAmount = Random.Range(1, 3);
-        arrowAmount = Random.Range(1, 3);
+
+        potionAmountInChest = Random.Range(1, 3);
+        arrowAmountInChest = Random.Range(1, 3);
+
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.IsChestOpen(chestID))
+            {
+                OpenChestVisualsOnly();
+            }
+        }
+
+        if (string.IsNullOrEmpty(chestID))
+        {
+            Debug.LogWarning($"{gameObject.name} ládának nincs ID-ja! Nem lesz mentve az állapota.");
+        }
+    }
+
+    private void OpenChestVisualsOnly()
+    {
+        isOpen = true;
+        if (animator != null) animator.SetBool("isOpen", true);
+
+        GetComponent<Collider2D>().enabled = false;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (isOpen) return;
+
         if (col.CompareTag("Player"))
         {
             player = col.gameObject;
@@ -33,16 +59,10 @@ public class Chest : MonoBehaviour
                 playerInput.actions["ChestOpen"].performed += OnInteract;
             }
 
-            if (!isOpen)
-            {
-                if (UIManager.Instance != null) UIManager.Instance.ShowInteractHint();
-            }
-            else
-            {
-                if (UIManager.Instance != null) UIManager.Instance.HideInteractHint();
-            }
+            if (UIManager.Instance != null) UIManager.Instance.ShowInteractHint();
         }
     }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
@@ -53,10 +73,7 @@ public class Chest : MonoBehaviour
                 playerInput = null;
                 player = null;
             }
-            if (UIManager.Instance != null)
-            {
-                UIManager.Instance.HideInteractHint();
-            }
+            if (UIManager.Instance != null) UIManager.Instance.HideInteractHint();
         }
     }
 
@@ -65,63 +82,57 @@ public class Chest : MonoBehaviour
         if (!isOpen)
         {
             PotionSystem potionSystem = player.GetComponent<PotionSystem>();
-
             if (potionSystem != null)
             {
-                string potionWord = "Potion";
-                int spaceForPotions = potionSystem.MaxPotions - potionSystem.currentPotions;
-
-                if (spaceForPotions > 0)
+                int space = potionSystem.MaxPotions - potionSystem.currentPotions;
+                if (space > 0)
                 {
-                    int amountToAdd = Mathf.Min(potionAmount, spaceForPotions);
-
-                    potionSystem.AddPotion(amountToAdd);
-
-                    if (amountToAdd > 1)
-                    {
-                        potionWord = "Potions";
-                    }
-
-                    UIManager.Instance.ShowPickupMessage("+" + amountToAdd + " " + potionWord);
+                    int add = Mathf.Min(potionAmountInChest, space);
+                    potionSystem.AddPotion(add);
+                    if (UIManager.Instance) UIManager.Instance.ShowPickupMessage("+" + add + " Potion");
+                    if (UIManager.Instance) UIManager.Instance.ShowPotionUI(true);
                 }
                 else
                 {
-                    UIManager.Instance.ShowPickupMessage("Potions are full!");
+                    if (UIManager.Instance) UIManager.Instance.ShowPickupMessage("Potions full!");
                 }
             }
 
             ProjectileLauncher projectileLauncher = player.GetComponent<ProjectileLauncher>();
             if (projectileLauncher != null)
             {
-                string arrowWord = "Arrow";
-                int spaceForarrows = projectileLauncher.MaxArrows - projectileLauncher.currentArrows;
-
-                if (spaceForarrows > 0)
+                int space = projectileLauncher.MaxArrows - projectileLauncher.currentArrows;
+                if (space > 0)
                 {
-                    int amountToAdd = Mathf.Min(arrowAmount, spaceForarrows);
-
-                    projectileLauncher.AddArrows(amountToAdd);
-
-                    if (amountToAdd > 1)
-                    {
-                        arrowWord = "Arrows";
-                    }
-                    UIManager.Instance.ShowPickupMessage("+" + amountToAdd + " " + arrowWord);
+                    int add = Mathf.Min(arrowAmountInChest, space);
+                    projectileLauncher.AddArrows(add);
+                    if (UIManager.Instance) UIManager.Instance.ShowPickupMessage("+" + add + " Arrow");
+                    if (UIManager.Instance) UIManager.Instance.ShowArrowUI(true);
                 }
                 else
                 {
-                    UIManager.Instance.ShowPickupMessage("Arrows are full!");
+                    if (UIManager.Instance) UIManager.Instance.ShowPickupMessage("Arrows full!");
                 }
             }
+            // ----------------------------------
 
             isOpen = true;
-            animator.SetBool("isOpen", true);
-            UIManager.Instance.HideInteractHint();
+            if (animator != null) animator.SetBool("isOpen", true);
+
+            if (UIManager.Instance != null) UIManager.Instance.HideInteractHint();
+
+            if (GameManager.Instance != null && !string.IsNullOrEmpty(chestID))
+            {
+                GameManager.Instance.RegisterOpenedChest(chestID);
+            }
+            // -----------------------------------------
 
             if (playerInput != null)
             {
                 playerInput.actions["ChestOpen"].performed -= OnInteract;
             }
+
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

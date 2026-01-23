@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     private SaveGameData? pendingLoadData = null;
     private GameObject player;
+
+    public List<string> openedChests = new List<string>();
+    public List<string> deadEnemies = new List<string>();
 
 
     private void Awake()
@@ -42,30 +46,19 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+
         if (scene.buildIndex == 0)
         {
-            if (player != null)
-            {
-                player.SetActive(false);
-            }
+            if (player != null) player.SetActive(false);
             return;
         }
 
         if (player != null)
         {
             Light2D playerLight = player.GetComponentInChildren<Light2D>();
-
             if (playerLight != null)
             {
-
-                if (scene.name == "DungeonScene" || scene.name == "CastleScene")
-                {
-                    playerLight.enabled = true;
-                }
-                else
-                {
-                    playerLight.enabled = false;
-                }
+                playerLight.enabled = (scene.name == "DungeonScene");
             }
         }
 
@@ -96,9 +89,14 @@ public class GameManager : MonoBehaviour
 
         if (player != null)
         {
-            if (!player.activeInHierarchy)
+            if (!player.activeInHierarchy) player.SetActive(true);
+
+            PlayerInput input = player.GetComponent<PlayerInput>();
+            if (input != null)
             {
-                player.SetActive(true);
+                input.DeactivateInput();
+                yield return null;
+                input.ActivateInput();
             }
 
             var dmg = player.GetComponent<Damageable>();
@@ -156,6 +154,12 @@ public class GameManager : MonoBehaviour
                 {
                     SaveGameData data = (SaveGameData)formatter.Deserialize(file);
 
+                    if (data.openedChestIDs != null) openedChests = new List<string>(data.openedChestIDs);
+                    else openedChests = new List<string>();
+
+                    if (data.deadEnemyIDs != null) deadEnemies = new List<string>(data.deadEnemyIDs);
+                    else deadEnemies = new List<string>();
+
                     if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
                     {
                         pendingLoadData = data;
@@ -171,6 +175,8 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.LogError("Hiba a mentés betöltésekor: " + e.Message);
                     pendingLoadData = null;
+                    openedChests.Clear();
+                    deadEnemies.Clear();
                     SceneManager.LoadScene(gameStartScene);
                 }
             }
@@ -179,6 +185,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("[GameManager] No save found. Loading default start scene.");
             pendingLoadData = null;
+            openedChests.Clear();
+            deadEnemies.Clear();
             SceneManager.LoadScene(gameStartScene);
         }
     }
@@ -196,34 +204,43 @@ public class GameManager : MonoBehaviour
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream file = File.Open(path, FileMode.Open))
             {
-                SaveGameData data = (SaveGameData)formatter.Deserialize(file);
-
-                if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
+                try
                 {
+                    SaveGameData data = (SaveGameData)formatter.Deserialize(file);
+
+                    if (data.openedChestIDs != null) openedChests = new List<string>(data.openedChestIDs);
+                    else openedChests = new List<string>();
+
+                    if (data.deadEnemyIDs != null) deadEnemies = new List<string>(data.deadEnemyIDs);
+                    else deadEnemies = new List<string>();
+
                     pendingLoadData = data;
                     SceneManager.LoadScene(data.sceneIndex);
                 }
-                else
+                catch (System.Exception ex)
                 {
-                    StartCoroutine(ApplyLoadDataCoroutine(data));
+                    Debug.LogError("Hiba az adatok betöltésénél!" + ex.Message);
+                    SceneManager.LoadScene(gameStartScene);
                 }
             }
         }
         else
         {
+            openedChests.Clear();
+            deadEnemies.Clear();
             SceneManager.LoadScene(gameStartScene);
         }
-    }
-
-    private IEnumerator ApplyLoadDataCoroutine(SaveGameData data)
-    {
-        yield return null;
-        ApplyLoadData(data);
     }
 
     // ---------------- apply loaded data ----------------
     private void ApplyLoadData(SaveGameData data)
     {
+        if (data.openedChestIDs != null) openedChests = new List<string>(data.openedChestIDs);
+        else openedChests = new List<string>();
+
+        if (data.deadEnemyIDs != null) deadEnemies = new List<string>(data.deadEnemyIDs);
+        else deadEnemies = new List<string>();
+
         if (player == null)
         {
             pendingLoadData = data;
@@ -253,6 +270,15 @@ public class GameManager : MonoBehaviour
             PlayerStats.Instance.bonusMaxArrows = data.bonusMaxArrows;
 
             PlayerStats.Instance.doubleJumpUnlocked = data.doubleJumpUnlocked;
+        }
+
+        if (data.openedChestIDs != null)
+        {
+            openedChests = new List<string>(data.openedChestIDs);
+        }
+        else
+        {
+            openedChests = new List<string>();
         }
 
 
@@ -312,5 +338,31 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         RespawnMenuManager.Instance.CloseRespawnMenu();
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RegisterOpenedChest(string id)
+    {
+        if (!openedChests.Contains(id))
+        {
+            openedChests.Add(id);
+        }
+    }
+
+    public bool IsChestOpen(string id)
+    {
+        return openedChests.Contains(id);
+    }
+
+    public void RegisterDeadEnemy(string id)
+    {
+        if (!deadEnemies.Contains(id))
+        {
+            deadEnemies.Add(id);
+        }
+    }
+
+    public bool IsEnemyDead(string id)
+    {
+        return deadEnemies.Contains(id);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -98,6 +99,17 @@ public class Checkpoint : MonoBehaviour
             saveGameData.doubleJumpUnlocked = PlayerStats.Instance.doubleJumpUnlocked;
         }
 
+        if (GameManager.Instance != null)
+        {
+            saveGameData.openedChestIDs = new List<string>(GameManager.Instance.openedChests);
+            saveGameData.deadEnemyIDs = new List<string>(GameManager.Instance.deadEnemies);
+        }
+        else
+        {
+            saveGameData.openedChestIDs = new List<string>();
+            saveGameData.deadEnemyIDs = new List<string>();
+        }
+
         if (UIManager.Instance != null)
         {
             UIManager.Instance.ShowGameSavedText(transform.position);
@@ -112,7 +124,6 @@ public class Checkpoint : MonoBehaviour
         FileStream saveFile = File.Create(savePath + "/" + saveName + ".bin");
 
         formatter.Serialize(saveFile, saveGameData);
-
         saveFile.Close();
 
         print("Játék mentve: " + savePath + "/" + saveName + ".bin");

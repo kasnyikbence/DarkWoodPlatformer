@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knockBack: {x: 3, y: 1}
+  knockBack: {x: 2, y: 1}
 --- !u!1 &3834403787104400076
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -278.20328, y: 16.12, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2764651328622962160}
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LootSpawner
   potionDropPrefab: {fileID: 8945401877307002409, guid: a3b474a45ab7d9f4a8df000644e20c67, type: 3}
   arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
-  dropChance: 60
+  dropChance: 50
   potionRate: 40
 --- !u!1 &5336898298048284773
 GameObject:
@@ -483,7 +483,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.13303375, y: -0.2199862}
+  m_Offset: {x: -0.17371783, y: -0.2199862}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -493,7 +493,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.2339325, y: 2}
+  m_Size: {x: 2.1525643, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &7210001882947909207
 MonoBehaviour:
@@ -727,4 +727,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 15
-  knockBack: {x: 5, y: 2}
+  knockBack: {x: 5, y: 3}

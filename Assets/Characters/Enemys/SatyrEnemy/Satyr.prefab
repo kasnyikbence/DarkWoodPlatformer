@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 8112478051880769261}
   - component: {fileID: 7179337241010115944}
   - component: {fileID: 2405478570794345445}
+  - component: {fileID: 1748424810432113109}
   m_Layer: 8
   m_Name: Satyr
   m_TagString: Untagged
@@ -360,8 +361,8 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _baseMaxHealth: 100
-  _health: 100
+  _baseMaxHealth: 70
+  _health: 70
 --- !u!114 &8112478051880769261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,8 +375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c9862724d32114ab5096d98d41cec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  walkAcceleration: 30
-  maxSpeed: 5
+  walkAcceleration: 50
+  maxSpeed: 4
   chaseMaxSpeed: 6
   walkStopRate: 0.05
   aggroDistance: 5
@@ -414,6 +415,19 @@ MonoBehaviour:
   arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
   dropChance: 60
   potionRate: 40
+--- !u!114 &1748424810432113109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453866106840911015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
+  enemyID: 538c2d26-5d6d-4b7f-8334-19e67cda82ee
 --- !u!1 &1556265077366979444
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,22 +602,23 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.05634141, y: 0.09225702}
-      - {x: 0.2007699, y: 0.15312016}
-      - {x: 0.35945892, y: 0.086211205}
-      - {x: 0.65080976, y: 0.02154982}
-      - {x: 0.87963486, y: -0.030113578}
-      - {x: 1.0473583, y: -0.04175985}
-      - {x: 1.3991089, y: -0.0507555}
+    - - {x: 0.22405076, y: 0.26915562}
+      - {x: 0.3147378, y: 0.2768401}
+      - {x: 0.48441315, y: 0.09840417}
+      - {x: 0.62090254, y: -0.019574642}
+      - {x: 0.86841965, y: -0.07497668}
+      - {x: 1.0398815, y: -0.09783864}
+      - {x: 1.4028473, y: -0.0844028}
       - {x: 1.5562286, y: -0.025951385}
       - {x: 1.8015139, y: 0.04668641}
+      - {x: 1.8487701, y: -0.023260593}
       - {x: 1.738873, y: -0.17059541}
       - {x: 1.1523509, y: -0.23716807}
-      - {x: 0.8630066, y: -0.2697457}
+      - {x: 0.8630066, y: -0.24357557}
       - {x: 0.642048, y: -0.20653713}
       - {x: 0.52330923, y: -0.18173313}
-      - {x: 0.2524023, y: -0.1233933}
-      - {x: 0.09692216, y: -0.028247654}
+      - {x: 0.4583044, y: -0.14949417}
+      - {x: 0.23861527, y: 0.13265032}
   m_UseDelaunayMesh: 0
 --- !u!114 &3757890437082269306
 MonoBehaviour:

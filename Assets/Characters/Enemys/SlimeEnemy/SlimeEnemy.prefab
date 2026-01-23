@@ -281,17 +281,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.16823912, y: 0.3652501}
-      - {x: -0.5212178, y: 0.4228536}
-      - {x: -0.75606155, y: 0.43870604}
-      - {x: -1.0179799, y: 0.35217202}
-      - {x: -1.1710508, y: 0.17559028}
-      - {x: -1.2159305, y: -0.073605776}
-      - {x: -1.21563, y: -0.3175037}
-      - {x: -1.1259155, y: -0.5470542}
+    - - {x: -0.40859893, y: 0.25886112}
+      - {x: -0.5409186, y: 0.3322262}
+      - {x: -0.75606155, y: 0.3520189}
+      - {x: -0.99432874, y: 0.30882856}
+      - {x: -1.2104524, y: 0.1795308}
+      - {x: -1.3223181, y: -0.018441275}
+      - {x: -1.3180845, y: -0.3884295}
+      - {x: -1.1732008, y: -0.5982784}
+      - {x: -1.0166857, y: -0.69386464}
       - {x: -0.7099265, y: -0.75406206}
-      - {x: -0.15714121, y: -0.70990634}
-      - {x: -0.036182404, y: -0.1472879}
+      - {x: -0.34626544, y: -0.54441255}
+      - {x: -0.25684148, y: -0.07242183}
   m_UseDelaunayMesh: 0
 --- !u!114 &8635458728700078365
 MonoBehaviour:
@@ -325,6 +326,7 @@ GameObject:
   - component: {fileID: 3451989451759594025}
   - component: {fileID: 1480881680753489134}
   - component: {fileID: 1312283478263965789}
+  - component: {fileID: 3395159691178081935}
   m_Layer: 8
   m_Name: SlimeEnemy
   m_TagString: Untagged
@@ -342,7 +344,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -414.92, y: 8.94, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4991554854683654707}
@@ -614,3 +616,16 @@ MonoBehaviour:
   arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
   dropChance: 60
   potionRate: 40
+--- !u!114 &3395159691178081935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113506989406184124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
+  enemyID: 827d14c6-8009-4ff7-902b-e893a4acb1e3

@@ -23,7 +23,7 @@ public class BossController : MonoBehaviour
     [Header("Attack - Projectile")]
     public GameObject projectilePrefab;
     public Transform firePoint;
-    public float timeBetweenShots = 0.5f;
+    public float timeBetweenShots = 0.7f;
 
     [Header("Summon")]
     public GameObject minionPrefab;
@@ -234,10 +234,9 @@ public class BossController : MonoBehaviour
         animator.SetBool("isAttacking", true);
 
         animator.SetTrigger("CastSpell");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
-        Debug.Log("[BOSS] Gyors idézés: 1 Minion");
-        if (minionSpawnPoints.Length > 0 && activeMinions.Count <= 2)
+        if (minionSpawnPoints.Length > 0 && activeMinions.Count < 3)
         {
             Transform spawnPos = minionSpawnPoints[Random.Range(0, minionSpawnPoints.Length)];
             GameObject minion = Instantiate(minionPrefab, spawnPos.position, Quaternion.identity);
@@ -353,16 +352,16 @@ public class BossController : MonoBehaviour
 
             if (shieldVisual) shieldVisual.SetActive(false);
 
-            damageable.IsInvincible = false;
             isInvincibleAction = false;
             currentState = BossState.Phase2_Vulnerable;
 
             if (bossCollider != null) bossCollider.enabled = true;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = defaultGravity;
 
             animator.SetTrigger("Stunned");
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
 
             if (waveCount < 1)
             {

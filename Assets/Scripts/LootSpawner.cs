@@ -46,7 +46,7 @@ public class LootSpawner : MonoBehaviour
 
             if (itemToSpawn != null)
             {
-                Instantiate(itemToSpawn, transform.position + Vector3.up * 0.5f, Quaternion.identity);
+                Instantiate(itemToSpawn, transform.position + Vector3.up * 0.2f, Quaternion.identity);
             }
         }
     }

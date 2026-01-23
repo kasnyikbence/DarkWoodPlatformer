@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  moveSpeed: {x: 15, y: 0}
+  moveSpeed: {x: 20, y: 0}
   knockBack: {x: 5, y: 0}
   groundLayer:
     serializedVersion: 2

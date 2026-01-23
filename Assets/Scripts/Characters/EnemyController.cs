@@ -109,15 +109,17 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        if (player == null)
-        {
-            GameObject p = GameObject.FindGameObjectWithTag("Player");
-            if (p != null) player = p.transform;
-        }
+        FindPlayer();
     }
 
     void Update()
     {
+
+        if (player == null)
+        {
+            FindPlayer();
+            if (player == null) return;
+        }
         HasTarget = attackZone.detectedColliders.Count > 0;
 
         if (AttackCooldown > 0)
@@ -144,6 +146,8 @@ public class EnemyController : MonoBehaviour
         if (currentPhase == EnemyPhase.Attack)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            damageable.LockVelocity = true;
+            animator.SetBool("lockVelocity", false);
             return;
         }
 
@@ -215,10 +219,12 @@ public class EnemyController : MonoBehaviour
         if (currentPhase == EnemyPhase.Attack)
         {
             damageable.LockVelocity = true;
+            animator.SetBool("lockVelocity", true);
         }
         else
         {
             damageable.LockVelocity = false;
+            animator.SetBool("lockVelocity", false);
         }
     }
 
@@ -274,6 +280,26 @@ public class EnemyController : MonoBehaviour
         else
         {
             WalkDirection = WalkableDirection.Left;
+        }
+    }
+    private void FindPlayer()
+    {
+        if (player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) player = p.transform;
+        }
+        else
+        {
+            var allDamageables = Resources.FindObjectsOfTypeAll<Damageable>();
+            foreach (var d in allDamageables)
+            {
+                if (d.gameObject.scene.IsValid() && d.gameObject.CompareTag("Player"))
+                {
+                    player = d.gameObject.transform;
+                    break;
+                }
+            }
         }
     }
 }

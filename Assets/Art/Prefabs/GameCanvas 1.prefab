@@ -6622,6 +6622,8 @@ MonoBehaviour:
   gameStartScene: 1
   saveName: savedGame
   directoryName: Saves
+  openedChests: []
+  deadEnemies: []
 --- !u!1 &5517148902309738965
 GameObject:
   m_ObjectHideFlags: 0

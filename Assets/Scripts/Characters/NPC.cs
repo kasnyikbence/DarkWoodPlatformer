@@ -8,11 +8,13 @@ public abstract class NPC : MonoBehaviour, IInteractable
     private const float INTERACT_DISTANCE = 2f;
     protected bool isTalking = false;
     private bool wasWithinInteractDistance = false;
+    private Vector3 originalScale;
 
 
     private void Start()
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        originalScale = transform.localScale;
     }
 
 
@@ -89,7 +91,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
     private void FacePlayer()
     {
-        if (_playerTransform.position.x < transform.position.x) transform.localScale = new Vector3(1, 1, 1);
-        else transform.localScale = new Vector3(-1, 1, 1);
+        if (_playerTransform.position.x < transform.position.x) transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+        else transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
     }
 }
