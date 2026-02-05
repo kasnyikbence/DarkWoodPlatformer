@@ -22,15 +22,12 @@ public class PotionSystem : MonoBehaviour
 
     private Damageable playerDamageable;
 
-    [Header("Audio")]
-    public AudioClip pickupClip;
-    private AudioSource audioSource;
+
     Animator animator;
 
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         playerDamageable = GetComponent<Damageable>();
         animator = GetComponent<Animator>();
     }
@@ -58,12 +55,6 @@ public class PotionSystem : MonoBehaviour
                 {
                     animator.SetTrigger(AnimationStrings.potionTrigger);
 
-                }
-
-
-                if (pickupClip != null && audioSource != null)
-                {
-                    audioSource.PlayOneShot(pickupClip);
                 }
             }
         }

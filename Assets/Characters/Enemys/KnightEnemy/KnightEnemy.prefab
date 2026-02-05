@@ -67,7 +67,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.6295538, y: -0.16786695}
+  m_Offset: {x: 0.39233017, y: -0.16786695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -77,7 +77,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.1558971, y: 1.8856277}
+  m_Size: {x: 3.2270584, y: 1.8856277}
   m_EdgeRadius: 0
 --- !u!114 &9092125135730152969
 MonoBehaviour:
@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 8923610804931861680}
   - component: {fileID: 2153000130043979230}
   - component: {fileID: -9018142947896486055}
+  - component: {fileID: 596199338024449073}
   m_Layer: 8
   m_Name: KnightEnemy
   m_TagString: Untagged
@@ -373,8 +374,8 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _baseMaxHealth: 100
-  _health: 100
+  _baseMaxHealth: 150
+  _health: 150
 --- !u!82 &8923610804931861680
 AudioSource:
   m_ObjectHideFlags: 0
@@ -484,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd1973cd80529b40a570b5a38d064d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyXP
-  xpAmount: 15
+  xpAmount: 50
 --- !u!114 &-9018142947896486055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,8 +500,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LootSpawner
   potionDropPrefab: {fileID: 8945401877307002409, guid: a3b474a45ab7d9f4a8df000644e20c67, type: 3}
   arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
-  dropChance: 60
+  dropChance: 50
   potionRate: 40
+--- !u!114 &596199338024449073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952324301547606914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
+  enemyID: 942a78f5-8361-4588-83f3-b8964b248d3f
 --- !u!1 &2531879665172111609
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,17 +594,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.16525698, y: 1.1051637}
-      - {x: -0.55805254, y: 1.492441}
-      - {x: -1.405201, y: 1.5230461}
+    - - {x: 0.0039486885, y: 1.05929}
+      - {x: -0.65769243, y: 1.4006957}
+      - {x: -1.4241905, y: 1.4186121}
       - {x: -2.2867482, y: 1.340618}
+      - {x: -2.5115433, y: 1.1022062}
       - {x: -1.6873777, y: 1.0607662}
-      - {x: -1.5331302, y: 0.66404057}
-      - {x: -1.422173, y: 0.11770773}
-      - {x: -0.9783935, y: -0.59868944}
-      - {x: 0.6178323, y: -1.0343678}
-      - {x: 0.8010192, y: -0.36843824}
-      - {x: 0.69565964, y: 0.29399365}
+      - {x: -1.4067798, y: 0.7272167}
+      - {x: -0.97203875, y: 0.32302904}
+      - {x: -0.8567276, y: -0.12475109}
+      - {x: -1.0168076, y: -0.24967194}
+      - {x: -1.2389984, y: -0.54341066}
+      - {x: 0.22298825, y: -1.0027802}
+      - {x: 0.5653472, y: -0.41431093}
+      - {x: 0.4647789, y: 0.31298226}
   m_UseDelaunayMesh: 0
 --- !u!114 &8721804533900501955
 MonoBehaviour:

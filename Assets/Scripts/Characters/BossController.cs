@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,8 @@ public class BossController : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D bossCollider;
 
+    public event Action OnBossDeath;
+
     private bool isDead = false;
     private bool isInvincibleAction = false;
     private int waveCount = 0;
@@ -43,6 +46,8 @@ public class BossController : MonoBehaviour
     private bool lastAttackWasMelee = false;
     private bool isActive = false;
     private float defaultGravity;
+    private int maxMinions = 2;
+
 
     private enum BossState 
     { 
@@ -173,7 +178,9 @@ public class BossController : MonoBehaviour
             {
                 yield return StartCoroutine(TeleportToRandomPoint());
 
-                int rng = Random.Range(0, 3);
+                int range = (activeMinions.Count >= maxMinions) ? 2 : 3; 
+
+                int rng = UnityEngine.Random.Range(0, range);
                 Debug.Log($"[BOSS] Phase 3 Akció: {rng} (0=Melee, 1=Ranged, 2=Summon)");
 
                 if (rng == 0)
@@ -229,6 +236,7 @@ public class BossController : MonoBehaviour
     IEnumerator SummonActionRoutine()
     {
         currentState = BossState.Summoning;
+        rb.linearVelocity = Vector2.zero;
         rb.gravityScale = defaultGravity;
 
         animator.SetBool("isAttacking", true);
@@ -236,9 +244,9 @@ public class BossController : MonoBehaviour
         animator.SetTrigger("CastSpell");
         yield return new WaitForSeconds(0.3f);
 
-        if (minionSpawnPoints.Length > 0 && activeMinions.Count < 3)
+        if (minionSpawnPoints.Length > 0 && activeMinions.Count < maxMinions)
         {
-            Transform spawnPos = minionSpawnPoints[Random.Range(0, minionSpawnPoints.Length)];
+            Transform spawnPos = minionSpawnPoints[UnityEngine.Random.Range(0, minionSpawnPoints.Length)];
             GameObject minion = Instantiate(minionPrefab, spawnPos.position, Quaternion.identity);
             activeMinions.Add(minion);
         }
@@ -276,7 +284,7 @@ public class BossController : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.linearVelocity = Vector2.zero;
-            if (bossCollider != null) bossCollider.enabled = false;
+          //  if (bossCollider != null) bossCollider.enabled = false;
 
             animator.SetBool("isAttacking", true);
             animator.SetTrigger("MeleeAttack1");
@@ -286,7 +294,7 @@ public class BossController : MonoBehaviour
 
             animator.SetBool("isAttacking", false);
 
-            if (bossCollider != null) bossCollider.enabled = true;
+            //if (bossCollider != null) bossCollider.enabled = true;
             rb.gravityScale = defaultGravity;
         }
         currentState = BossState.Idle;
@@ -299,7 +307,7 @@ public class BossController : MonoBehaviour
 
         rb.gravityScale = 0f;
         rb.linearVelocity = Vector2.zero;
-        if (bossCollider != null) bossCollider.enabled = false;
+       // if (bossCollider != null) bossCollider.enabled = false;
 
         animator.SetBool("isAttacking", true);
         animator.SetTrigger("CastSpell");
@@ -328,6 +336,7 @@ public class BossController : MonoBehaviour
 
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         sanctuaryBasePos = transform.position;
 
         waveCount = 0;
@@ -357,18 +366,17 @@ public class BossController : MonoBehaviour
 
             if (bossCollider != null) bossCollider.enabled = true;
             rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = defaultGravity;
 
-            animator.SetTrigger("Stunned");
-
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
 
             if (waveCount < 1)
             {
                 yield return StartCoroutine(TeleportToPoint(sanctuaryPoint, true));
 
                 rb.linearVelocity = Vector2.zero;
-                rb.gravityScale = 0f;
+                rb.bodyType = RigidbodyType2D.Kinematic;
                 sanctuaryBasePos = transform.position;
             }
 
@@ -377,6 +385,7 @@ public class BossController : MonoBehaviour
 
         Debug.LogWarning("[BOSS] FÁZISVÁLTÁS: Phase 3 indul!");
 
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = defaultGravity;
         currentPhase = BossPhase.Phase3;
         currentState = BossState.Idle;
@@ -398,6 +407,7 @@ public class BossController : MonoBehaviour
         if (targetPoint == null) yield break;
 
         rb.gravityScale = 0f;
+        rb.linearVelocity = Vector2.zero;
         if (bossCollider != null) bossCollider.enabled = false;
 
         animator.SetTrigger("TeleportOut");
@@ -469,24 +479,27 @@ public class BossController : MonoBehaviour
             return transform;
         }
 
-        Transform bestTarget = groundTeleportPoints[0]; float closestDistanceSqr = Mathf.Infinity;
+        Transform bestTarget = groundTeleportPoints[0]; 
+        float closestDistanceSqr = Mathf.Infinity;
+
         foreach (Transform potentialTarget in groundTeleportPoints)
         {
             float dSqrToTarget = (potentialTarget.position - player.position).sqrMagnitude;
             if (dSqrToTarget < closestDistanceSqr) { closestDistanceSqr = dSqrToTarget; bestTarget = potentialTarget; }
         }
+
         return bestTarget;
     }
     Transform GetRandomGroundPoint() 
     { 
         if (groundTeleportPoints.Length == 0) return transform; 
-        return groundTeleportPoints[Random.Range(0, groundTeleportPoints.Length)]; 
+        return groundTeleportPoints[UnityEngine.Random.Range(0, groundTeleportPoints.Length)]; 
     }
 
     IEnumerator TeleportToRandomPoint() 
     { 
         if (allTeleportPoints.Length > 0) 
-            yield return StartCoroutine(TeleportToPoint(allTeleportPoints[Random.Range(0, allTeleportPoints.Length)])); 
+            yield return StartCoroutine(TeleportToPoint(allTeleportPoints[UnityEngine.Random.Range(0, allTeleportPoints.Length)])); 
     }
 
     void Die()
@@ -495,6 +508,6 @@ public class BossController : MonoBehaviour
         StopAllCoroutines();
         Debug.Log("[BOSS] MEGHALTAM!");
         rb.gravityScale = defaultGravity;
-        Destroy(gameObject, 3f);
+        OnBossDeath?.Invoke();
     }
 }

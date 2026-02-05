@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayOneShotBehavior : StateMachineBehaviour
 {
     public AudioClip soundToPlay;
-    public float volume = 1f;
+    [Range(0f, 1f)] public float volume = 0.5f;
     public bool playOnEnter = true, playOnExit = false, playAfterDelay = false;
 
     public float playDelay = 0.25f;
@@ -18,9 +18,9 @@ public class PlayOneShotBehavior : StateMachineBehaviour
         // Lekéri az AudioSource komponenst, vagy hozzáadja, ha még nincs
         audioSource = animator.gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
-        {
             audioSource = animator.gameObject.AddComponent<AudioSource>();
-        }
+
+        audioSource.pitch = 1f;
 
         if (playOnEnter)
         {
@@ -40,6 +40,7 @@ public class PlayOneShotBehavior : StateMachineBehaviour
 
             if (timeSinceEntered > playDelay)
             {
+                audioSource.pitch = 1f;
                 audioSource.PlayOneShot(soundToPlay, volume);
                 hasDelayedSoundPlayed = true;
             }
@@ -51,6 +52,7 @@ public class PlayOneShotBehavior : StateMachineBehaviour
     {
         if (playOnExit)
         {
+            audioSource.pitch = 1f;
             audioSource.PlayOneShot(soundToPlay, volume);
         }
     }

@@ -393,8 +393,8 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _baseMaxHealth: 100
-  _health: 100
+  _baseMaxHealth: 150
+  _health: 150
 --- !u!114 &2762570225422554983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,12 +424,12 @@ MonoBehaviour:
   hoverFrequency: 2
   projectilePrefab: {fileID: 4227348451805677921, guid: 8ea11801b31c2434880da6902c38ea4f, type: 3}
   firePoint: {fileID: 3194395139917663416}
-  timeBetweenShots: 0.5
+  timeBetweenShots: 0.7
   minionPrefab: {fileID: 3834403787104400076, guid: 8cbb926911ade644487e07e040dc8116, type: 3}
   minionSpawnPoints:
   - {fileID: 0}
   - {fileID: 0}
-  shieldVisual: {fileID: 5794416835985551820, guid: c03ae6637e94307439108b9c55be05e6, type: 3}
+  shieldVisual: {fileID: 4721422429098409828}
 --- !u!70 &8788940330889980746
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -575,6 +575,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c03ae6637e94307439108b9c55be05e6, type: 3}
+--- !u!1 &4721422429098409828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5794416835985551820, guid: c03ae6637e94307439108b9c55be05e6, type: 3}
+  m_PrefabInstance: {fileID: 1291472917515652776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6483304518247481306 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5194173045138108786, guid: c03ae6637e94307439108b9c55be05e6, type: 3}

@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\characters\\bossminion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\bossminion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\characters\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\characters\\bosstrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\bosstrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\characters\\damageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\damageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\characters\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\characters\\enemycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\enemystatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\enemystatemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|f:\\projektek\\unitygame\\darkwoodplatformer\\assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\core\\savegamedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\savegamedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\assets\\scripts\\chest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C159E539-4117-1387-5570-96DC24D2BBC0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\chest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,81 +30,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Damageable.cs",
               "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\Damageable.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\Damageable.cs",
               "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\Damageable.cs",
               "RelativeToolTip": "Assets\\Scripts\\Characters\\Damageable.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAhwI4AAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAApwF8AAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-22T13:58:25.545Z",
+              "WhenOpened": "2026-02-04T15:42:22.005Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EnemyController.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\EnemyController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\EnemyController.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\EnemyController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Characters\\EnemyController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAAwIcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T13:10:41.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EnemyStateManager.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\EnemyStateManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\EnemyStateManager.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\EnemyStateManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Core\\EnemyStateManager.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAArwCwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T12:52:35.392Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Chest.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Chest.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Chest.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Chest.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Chest.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAgwHIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T12:07:46.539Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Checkpoint.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Checkpoint.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Checkpoint.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Checkpoint.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Checkpoint.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAqwG0AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T12:06:44.548Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SaveGameData.cs",
-              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\SaveGameData.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\SaveGameData.cs",
-              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\SaveGameData.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Core\\SaveGameData.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAgwCQAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T12:00:50.874Z"
             },
             {
               "$type": "Document",
@@ -122,9 +53,49 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\GameManager.cs",
               "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Core\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Core\\GameManager.cs",
-              "ViewState": "AgIAANsAAAAAAAAAAAAAwPIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAF8BAAAAAAAAAAAqwHIBAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-21T11:44:54.538Z"
+              "WhenOpened": "2026-02-04T15:29:22.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BossMinion.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\BossMinion.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\BossMinion.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\BossMinion.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Characters\\BossMinion.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAASwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-04T12:56:14.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BossController.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\BossController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\BossController.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\BossController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Characters\\BossController.cs",
+              "ViewState": "AgIAAG8BAAAAAAAAAAD4v/IBAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T13:30:14.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BossTrigger.cs",
+              "DocumentMoniker": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\BossTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Characters\\BossTrigger.cs",
+              "ToolTip": "F:\\Projektek\\UnityGame\\DarkWoodPlatformer\\Assets\\Scripts\\Characters\\BossTrigger.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Characters\\BossTrigger.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAAEwAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T12:47:07.294Z",
+              "EditorCaption": ""
             }
           ]
         }

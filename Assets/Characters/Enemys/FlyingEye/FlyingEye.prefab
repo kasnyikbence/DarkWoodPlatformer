@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 4929126265248919325}
   - component: {fileID: 4183800801112947421}
   - component: {fileID: 3525635983594865752}
-  - component: {fileID: 5146134937713610176}
   - component: {fileID: 5930463060131891440}
+  - component: {fileID: 5146134937713610176}
   - component: {fileID: 387538747099974546}
   - component: {fileID: 4990984208172858048}
   - component: {fileID: 7205712114843024182}
+  - component: {fileID: 1452106763367668378}
   m_Layer: 8
   m_Name: FlyingEye
   m_TagString: Untagged
@@ -163,6 +164,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0.2919259, y: -0.18881053}
   m_Size: {x: 1.0788832, y: 1.2646188}
   m_Direction: 0
+--- !u!95 &5930463060131891440
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853128186588725939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4d69143a550c9ba4597ed24eef7b7440, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5146134937713610176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,28 +210,6 @@ MonoBehaviour:
   _isInvincible: 0
   _baseMaxHealth: 100
   _health: 50
---- !u!95 &5930463060131891440
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853128186588725939}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4d69143a550c9ba4597ed24eef7b7440, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &387538747099974546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +228,10 @@ MonoBehaviour:
   aggroDistance: 6
   stopChaseDistance: 8
   biteDetectionZone: {fileID: 3262169751164079404}
+  groundCheckDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -244,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd1973cd80529b40a570b5a38d064d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyXP
-  xpAmount: 12
+  xpAmount: 18
 --- !u!114 &7205712114843024182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +266,19 @@ MonoBehaviour:
   arrowDropPrefab: {fileID: 7446808621360810033, guid: 3e7ae2baf3d9751468771944c12e69d2, type: 3}
   dropChance: 60
   potionRate: 40
+--- !u!114 &1452106763367668378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853128186588725939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
+  enemyID: 6409f7d1-1a18-43e1-a57e-851755955814
 --- !u!1 &3657208705276248218
 GameObject:
   m_ObjectHideFlags: 0

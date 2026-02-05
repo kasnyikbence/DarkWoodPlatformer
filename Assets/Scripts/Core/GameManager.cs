@@ -94,9 +94,13 @@ public class GameManager : MonoBehaviour
             PlayerInput input = player.GetComponent<PlayerInput>();
             if (input != null)
             {
-                input.DeactivateInput();
-                yield return null;
-                input.ActivateInput();
+                input.enabled = false;
+
+                yield return new WaitForEndOfFrame();
+
+                input.enabled = true;
+
+                // input.ActivateInput(); 
             }
 
             var dmg = player.GetComponent<Damageable>();
@@ -122,21 +126,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void DisablePlayerInput()
+    {
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            PlayerInput input = player.GetComponent<PlayerInput>();
+            if (input != null)
+            {
+                input.enabled = false;
+            }
+        }
+    }
+
     // ---------------- delete save ----------------
     public void DeleteSaveData()
     {
         string savePath = Application.persistentDataPath + "/" + directoryName;
         string filePath = savePath + "/" + saveName + ".bin";
 
+        // 1. Töröljük a fájlt
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
-            Debug.Log("[GameManager] Save file deleted: " + filePath);
+            Debug.Log("[GameManager] Mentés törölve: " + filePath);
         }
         else
         {
-            Debug.Log("[GameManager] No save file to delete at: " + filePath);
+            Debug.Log("[GameManager] Nincs törlendő fájl.");
         }
+
+        ResetGameData();
+    }
+
+    private void ResetGameData()
+    {
+        openedChests.Clear();
+        deadEnemies.Clear();
     }
 
     // ---------------- start / load game ----------------
@@ -144,6 +171,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         string path = Application.persistentDataPath + "/" + directoryName + "/" + saveName + ".bin";
+
+        DisablePlayerInput();
 
         if (File.Exists(path))
         {
@@ -163,7 +192,7 @@ public class GameManager : MonoBehaviour
                     if (SceneManager.GetActiveScene().buildIndex != data.sceneIndex)
                     {
                         pendingLoadData = data;
-                        SceneManager.LoadScene(data.sceneIndex);
+                        LoadingScreenManager.Instance.LoadScene(data.sceneIndex);
                     }
                     else
                     {
@@ -177,7 +206,7 @@ public class GameManager : MonoBehaviour
                     pendingLoadData = null;
                     openedChests.Clear();
                     deadEnemies.Clear();
-                    SceneManager.LoadScene(gameStartScene);
+                    LoadingScreenManager.Instance.LoadScene(gameStartScene);
                 }
             }
         }
@@ -187,7 +216,7 @@ public class GameManager : MonoBehaviour
             pendingLoadData = null;
             openedChests.Clear();
             deadEnemies.Clear();
-            SceneManager.LoadScene(gameStartScene);
+            LoadingScreenManager.Instance.LoadScene(gameStartScene);
         }
     }
 
@@ -196,6 +225,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         RespawnMenuManager.Instance.CloseRespawnMenu();
         EventSystem.current.SetSelectedGameObject(null);
+
+        DisablePlayerInput();
 
         string path = Application.persistentDataPath + "/" + directoryName + "/" + saveName + ".bin";
 
@@ -215,12 +246,12 @@ public class GameManager : MonoBehaviour
                     else deadEnemies = new List<string>();
 
                     pendingLoadData = data;
-                    SceneManager.LoadScene(data.sceneIndex);
+                    LoadingScreenManager.Instance.LoadScene(data.sceneIndex);
                 }
                 catch (System.Exception ex)
                 {
                     Debug.LogError("Hiba az adatok betöltésénél!" + ex.Message);
-                    SceneManager.LoadScene(gameStartScene);
+                    LoadingScreenManager.Instance.LoadScene(gameStartScene);
                 }
             }
         }
@@ -228,7 +259,7 @@ public class GameManager : MonoBehaviour
         {
             openedChests.Clear();
             deadEnemies.Clear();
-            SceneManager.LoadScene(gameStartScene);
+            LoadingScreenManager.Instance.LoadScene(gameStartScene);
         }
     }
 
@@ -337,7 +368,8 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
         RespawnMenuManager.Instance.CloseRespawnMenu();
-        SceneManager.LoadScene("MainMenu");
+        DisablePlayerInput();
+        LoadingScreenManager.Instance.LoadScene ("MainMenu");
     }
 
     public void RegisterOpenedChest(string id)

@@ -4,7 +4,7 @@ using System.Collections;
 public class Trap : MonoBehaviour
 {
     [SerializeField] private Transform respawnPoint;
-    [SerializeField] private int damageAmount = 50;
+    [SerializeField] private int playerDamage = 50;
     [SerializeField] private float respawnDelay = 0.5f;
     [SerializeField] private float knockbackForce = 5f;
 
@@ -17,7 +17,7 @@ public class Trap : MonoBehaviour
 
             if (damageable != null)
             {
-                damageable.Hit(damageAmount, Vector2.zero);
+                damageable.Hit(playerDamage, Vector2.zero);
             }
 
             if (rb != null)
@@ -31,6 +31,22 @@ public class Trap : MonoBehaviour
                 StartCoroutine(RespawnAfterDelay(collision.transform, rb));
 
             }
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            Damageable damageable = collision.GetComponent<Damageable>();
+            EnemyXP xpScript = collision.GetComponent<EnemyXP>();
+            LootSpawner lootSpawner = collision.GetComponent<LootSpawner>();
+
+            if (xpScript != null && lootSpawner != null)
+            {
+                lootSpawner.enabled = false;
+                xpScript.enabled = false;
+            }
+
+            damageable.Hit(damageable.Health, Vector2.zero);
+
         }
     }
 

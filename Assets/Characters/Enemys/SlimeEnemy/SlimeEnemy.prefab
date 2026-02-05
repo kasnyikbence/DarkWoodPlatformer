@@ -174,7 +174,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.0915833, y: -0.6468631}
+  m_Offset: {x: 2.4821923, y: -0.6468631}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -184,7 +184,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9829712, y: 0.92763543}
+  m_Size: {x: 1.2871298, y: 0.92763543}
   m_EdgeRadius: 0
 --- !u!114 &8751362821940494805
 MonoBehaviour:
@@ -517,7 +517,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 8256
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _baseMaxHealth: 100
+  _baseMaxHealth: 75
   _health: 75
 --- !u!114 &3451989451759594025
 MonoBehaviour:
@@ -628,4 +628,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
-  enemyID: 827d14c6-8009-4ff7-902b-e893a4acb1e3
+  enemyID: f192f917-b5d0-46b7-9860-340f181fd8e2

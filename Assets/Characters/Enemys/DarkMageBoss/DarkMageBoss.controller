@@ -289,13 +289,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: lockVelocity
-    m_Type: 1
+  - m_Name: isAttacking
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: isAttacking
+  - m_Name: lockVelocity
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -489,7 +489,7 @@ AnimatorStateMachine:
     m_Position: {x: 260, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4131087765222554490}
-    m_Position: {x: 530, y: 320, z: 0}
+    m_Position: {x: -10, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1416715190693376682}
     m_Position: {x: -20, y: 320, z: 0}

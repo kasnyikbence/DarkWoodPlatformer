@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
-  enemyID: 538c2d26-5d6d-4b7f-8334-19e67cda82ee
+  enemyID: b7f4e079-4d7b-425b-b948-b6abaa359691
 --- !u!1 &1556265077366979444
 GameObject:
   m_ObjectHideFlags: 0
