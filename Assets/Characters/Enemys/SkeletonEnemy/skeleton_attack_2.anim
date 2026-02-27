@@ -31,7 +31,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.4
+        time: 0.2
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -40,7 +40,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5
+        time: 0.3
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -49,7 +49,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.90000004
+        time: 1.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -65,27 +65,79 @@ AnimationClip:
     classID: 60
     script: {fileID: 0}
     flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.7
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.1
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: SwordAttack_2
+    classID: 60
+    script: {fileID: 0}
+    flags: 0
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1007190178, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: b754beb667fde6e40bd4dc8b5b9df6d3, type: 3}
     - time: 0.1
-      value: {fileID: -1767281232, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: 8c0b9875c25aacc4e949741f4c9b822b, type: 3}
     - time: 0.2
-      value: {fileID: 2016215956, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: f3b9c521f7773964ca9986a9aab0584b, type: 3}
     - time: 0.3
-      value: {fileID: -1167815007, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: e3fe46571df62b348a2648131cf7075b, type: 3}
     - time: 0.4
-      value: {fileID: -1595324361, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: 24ac9520d64838049a01e3e6ac212195, type: 3}
     - time: 0.5
-      value: {fileID: -645358963, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: a2308a3948bc2904386a3649686ce2e1, type: 3}
     - time: 0.6
-      value: {fileID: -1170021648, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: 400f93ec671fef1468cf97fe5c0006f8, type: 3}
     - time: 0.7
-      value: {fileID: 1108073451, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: 4c47daf6ca2ec5143a649b329e805e6b, type: 3}
     - time: 0.8
-      value: {fileID: -114760650, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+      value: {fileID: 21300000, guid: 1b73eb39c56379e4396d3ed89e1a421f, type: 3}
+    - time: 0.9
+      value: {fileID: 21300000, guid: f9640c8a5e6c5c643828fa9a955a1577, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 282806f643bbb6142afb93215c1a3670, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -108,6 +160,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+      path: 2330843619
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 60
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
       path: 0
       attribute: 0
       script: {fileID: 0}
@@ -117,21 +178,23 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1007190178, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: -1767281232, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: 2016215956, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: -1167815007, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: -1595324361, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: -645358963, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: -1170021648, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: 1108073451, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
-    - {fileID: -114760650, guid: 8b45c4b4b7adf9e4584fa5b30753e45d, type: 3}
+    - {fileID: 21300000, guid: b754beb667fde6e40bd4dc8b5b9df6d3, type: 3}
+    - {fileID: 21300000, guid: 8c0b9875c25aacc4e949741f4c9b822b, type: 3}
+    - {fileID: 21300000, guid: f3b9c521f7773964ca9986a9aab0584b, type: 3}
+    - {fileID: 21300000, guid: e3fe46571df62b348a2648131cf7075b, type: 3}
+    - {fileID: 21300000, guid: 24ac9520d64838049a01e3e6ac212195, type: 3}
+    - {fileID: 21300000, guid: a2308a3948bc2904386a3649686ce2e1, type: 3}
+    - {fileID: 21300000, guid: 400f93ec671fef1468cf97fe5c0006f8, type: 3}
+    - {fileID: 21300000, guid: 4c47daf6ca2ec5143a649b329e805e6b, type: 3}
+    - {fileID: 21300000, guid: 1b73eb39c56379e4396d3ed89e1a421f, type: 3}
+    - {fileID: 21300000, guid: f9640c8a5e6c5c643828fa9a955a1577, type: 3}
+    - {fileID: 21300000, guid: 282806f643bbb6142afb93215c1a3670, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.90000004
+    m_StopTime: 1.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -161,7 +224,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.4
+        time: 0.2
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -170,7 +233,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.5
+        time: 0.3
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -179,7 +242,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.90000004
+        time: 1.1
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -192,6 +255,54 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_Enabled
     path: SwordAttack_1
+    classID: 60
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.7
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.1
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: SwordAttack_2
     classID: 60
     script: {fileID: 0}
     flags: 0

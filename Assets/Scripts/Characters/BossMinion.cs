@@ -2,17 +2,14 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
-public class BossMinionController : MonoBehaviour
+public class BossMinion : MonoBehaviour
 {
-    [Header("Mozgás")]
     public float walkAcceleration = 30f;
     public float maxSpeed = 5f;
     public float walkStopRate = 0.05f;
 
-    [Header("Érzékelés")]
     public DetectionZone attackZone;
 
-    [Header("Knockback")]
     public float knockbackDuration = 0.2f;
     private bool isKnockedBack = false;
 
@@ -34,23 +31,20 @@ public class BossMinionController : MonoBehaviour
         get { return _walkDirections; }
         set
         {
-            if (_walkDirections != value)
-            {
-
-                Vector3 scale = gameObject.transform.localScale;
-
-                if (value == WalkableDirection.Right)
+                if (_walkDirections != value)
                 {
-                    walkDirectionVector = Vector2.right;
-                    gameObject.transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+                    gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
+
+                    if (value == WalkableDirection.Right)
+                    {
+                        walkDirectionVector = Vector2.right;
+                    }
+                    else if (value == WalkableDirection.Left)
+                    {
+                        walkDirectionVector = Vector2.left;
+                    }
                 }
-                else if (value == WalkableDirection.Left)
-                {
-                    walkDirectionVector = Vector2.left;
-                    gameObject.transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
-                }
-            }
-            _walkDirections = value;
+                _walkDirections = value;
         }
     }
 
@@ -69,7 +63,6 @@ public class BossMinionController : MonoBehaviour
             animator.SetBool(AnimationStrings.isMoving, value);
         }
     }
-    // --------------------------------------------
 
     public float AttackCooldown
     {

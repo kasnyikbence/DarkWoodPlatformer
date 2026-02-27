@@ -26,7 +26,12 @@ public class SkillTreeUI : MonoBehaviour
     }
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
+        if (!PauseMenuManager.isPaused && Keyboard.current.escapeKey.wasPressedThisFrame && isOpen)
+        {
+            ToggleSkillTree();
+        }
+
+        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame && !PauseMenuManager.isPaused)
         {
             ToggleSkillTree();
         }

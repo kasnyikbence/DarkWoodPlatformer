@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
-
 public class PlayerController : MonoBehaviour
 {
     [Header("Mozgás")]
@@ -37,6 +34,10 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
+    private Collider2D[] playerColliders;
+    private Collider2D currentOneWayCollider;
+    private bool isDropping = false;
+
     private bool canDoubleJump = false;
     private bool hasDoubleJumped = false;
 
@@ -65,7 +66,6 @@ public class PlayerController : MonoBehaviour
         {
             _isMoving = value;
             animator.SetBool(AnimationStrings.isMoving, value);
-
         }
     }
 
@@ -114,6 +114,8 @@ public class PlayerController : MonoBehaviour
         damageable = GetComponent<Damageable>();
         projectileLauncher = GetComponent<ProjectileLauncher>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        playerColliders = GetComponents<Collider2D>();
     }
 
     private void Update()
@@ -122,6 +124,11 @@ public class PlayerController : MonoBehaviour
         {
             hasDoubleJumped = false;
             canDoubleJump = true;
+        }
+
+        if (Keyboard.current != null && (Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed) && currentOneWayCollider != null && !isDropping)
+        {
+            StartCoroutine(DisableCollision());
         }
     }
 
@@ -193,13 +200,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
     public void OnJump(InputAction.CallbackContext context)
     {
         if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
             return;
         }
+
         if (context.started && CanMove)
         {
             if (touchingDirections.IsGrounded)
@@ -227,9 +234,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
     }
-
 
     public void OnRoll(InputAction.CallbackContext context)
     {
@@ -243,6 +248,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DashCoroutine());
         }
     }
+
     private IEnumerator DashCoroutine()
     {
         canDash = false;
@@ -288,7 +294,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen) 
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
         {
             return;
         }
@@ -296,7 +302,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
-
     }
 
     public void OnRangedAttack(InputAction.CallbackContext context)
@@ -316,6 +321,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(knockBack.x, rb.linearVelocity.y + knockBack.y);
     }
+
     public void LockMovement()
     {
         animator.SetBool(AnimationStrings.canMove, false);
@@ -325,4 +331,55 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool(AnimationStrings.canMove, true);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlatformEffector2D>() != null)
+        {
+            currentOneWayCollider = collision.collider;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (currentOneWayCollider == null && collision.gameObject.GetComponent<PlatformEffector2D>() != null)
+        {
+            currentOneWayCollider = collision.collider;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider == currentOneWayCollider)
+        {
+            currentOneWayCollider = null;
+        }
+    }
+
+    private IEnumerator DisableCollision()
+    {
+        if (currentOneWayCollider == null) yield break;
+
+        isDropping = true;
+
+        Collider2D platformToDropThrough = currentOneWayCollider;
+
+        foreach (Collider2D col in playerColliders)
+        {
+            Physics2D.IgnoreCollision(col, platformToDropThrough, true);
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        if (platformToDropThrough != null)
+        {
+            foreach (Collider2D col in playerColliders)
+            {
+                Physics2D.IgnoreCollision(col, platformToDropThrough, false);
+            }
+        }
+
+        isDropping = false;
+    }
+
 }

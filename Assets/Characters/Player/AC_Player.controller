@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 7e8a9afea7d8d804f888bf36f9c4ee55, type: 3}
-  volume: 1
+  volume: 0.3
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 7e8a9afea7d8d804f888bf36f9c4ee55, type: 3}
-  volume: 1
+  volume: 0.3
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 7e8a9afea7d8d804f888bf36f9c4ee55, type: 3}
-  volume: 1
+  volume: 0.3
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 6e701bacdaa50425dbb6bc6758fe9f02, type: 3}
-  volume: 1
+  volume: 0.5
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0
@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 7e8a9afea7d8d804f888bf36f9c4ee55, type: 3}
-  volume: 1
+  volume: 0.3
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0
@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: {fileID: 8300000, guid: 7e8a9afea7d8d804f888bf36f9c4ee55, type: 3}
-  volume: 1
+  volume: 0.3
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0

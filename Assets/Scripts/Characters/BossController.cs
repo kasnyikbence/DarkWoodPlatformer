@@ -369,7 +369,12 @@ public class BossController : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale = defaultGravity;
 
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+
             yield return new WaitForSeconds(4f);
+
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             if (waveCount < 1)
             {

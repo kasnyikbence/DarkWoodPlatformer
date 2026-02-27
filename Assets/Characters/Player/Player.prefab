@@ -280,8 +280,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.000000066227386, y: 0.06952524}
-  m_Size: {x: 0.6836387, y: 2.6055682}
+  m_Offset: {x: 0, y: 0.06952524}
+  m_Size: {x: 1.0498725, y: 2.6055682}
   m_Direction: 0
 --- !u!114 &8793739805844401235
 MonoBehaviour:
@@ -719,7 +719,6 @@ MonoBehaviour:
   baseMaxPotions: 2
   currentPotions: 0
   healAmount: 20
-  pickupClip: {fileID: 8300000, guid: dd035eb23b7f64d4ca6845040ca18d05, type: 3}
 --- !u!114 &5582686207166011741
 MonoBehaviour:
   m_ObjectHideFlags: 0

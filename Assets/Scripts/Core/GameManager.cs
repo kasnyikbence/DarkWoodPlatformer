@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DisablePlayerInput()
+    public void DisablePlayerInput()
     {
         if (player == null) player = GameObject.FindGameObjectWithTag("Player");
 

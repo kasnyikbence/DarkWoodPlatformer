@@ -1,27 +1,25 @@
 using System.Collections;
 using UnityEngine;
-using Unity.Cinemachine; // Unity 6 / Cinemachine 3.x
+using Unity.Cinemachine;
 
 public class BossTrigger : MonoBehaviour
 {
-    [Header("Referenciák")]
     public BossController boss;
     public BossHealthBar bossHealthBar;
     public CinemachineCamera vCam;
 
-    [Header("Kamera Beállítások")]
-    public float targetOrthoSize = 14f;
+    public EndScreenManager endScreenManager;
+
+    public float targetOrthoSize = 8f;
     public float zoomSpeed = 2f;
 
     private float originalOrthoSize;
     private bool hasTriggered = false;
+    private float delayBeforeVictory = 3f;
 
     void Start()
     {
-        if (vCam != null)
-        {
-            originalOrthoSize = vCam.Lens.OrthographicSize;
-        }
+        FindCameraReference();
 
         if (boss != null)
         {
@@ -41,6 +39,11 @@ public class BossTrigger : MonoBehaviour
     {
         if (!hasTriggered && collision.CompareTag("Player"))
         {
+            if (vCam == null)
+            {
+                FindCameraReference();
+            }
+
             hasTriggered = true;
 
             if (boss != null) boss.ActivateBoss();
@@ -51,26 +54,33 @@ public class BossTrigger : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(ChangeCameraSize(targetOrthoSize));
             }
+            else
+            {
+                Debug.LogError("[BossTrigger] MÉG MINDIG nincs kamera! Ellenõrizd, hogy van-e 'CinemachineCamera' komponens a scene-ben (vagy a DDOL-ban)!");
+            }
 
             GetComponent<Collider2D>().enabled = false;
         }
     }
 
-    private void OnBossDefeated()
+
+    private void FindCameraReference()
     {
-        Debug.Log("[BossTrigger] Boss legyõzve -> Kamera visszaállítás.");
-        if (vCam != null)
+        if (vCam == null)
         {
-            StopAllCoroutines();
-            StartCoroutine(ChangeCameraSize(originalOrthoSize));
+            vCam = FindAnyObjectByType<CinemachineCamera>(FindObjectsInactive.Include);
+        }
+
+        if (vCam != null && originalOrthoSize == 0)
+        {
+            originalOrthoSize = vCam.Lens.OrthographicSize;
         }
     }
 
     IEnumerator ChangeCameraSize(float targetSize)
     {
         var lensSettings = vCam.Lens;
-        float startSize = lensSettings.OrthographicSize;
-        float currentSize = startSize;
+        float currentSize = lensSettings.OrthographicSize;
 
         while (Mathf.Abs(currentSize - targetSize) > 0.05f)
         {
@@ -82,9 +92,33 @@ public class BossTrigger : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(3f);
-
         lensSettings.OrthographicSize = targetSize;
         vCam.Lens = lensSettings;
     }
+
+    IEnumerator ShowVictoryWithDelay()
+    {
+        yield return new WaitForSeconds(delayBeforeVictory);
+        endScreenManager.ShowVictory();
+    }
+
+    private void OnBossDefeated()
+    {
+        Debug.Log("[BossTrigger] Boss legyõzve -> Kamera visszaállítás.");
+
+        if (vCam == null) FindCameraReference();
+
+        if (vCam != null)
+        {
+            StopAllCoroutines();
+            StartCoroutine(ChangeCameraSize(originalOrthoSize));
+        }
+
+        if (endScreenManager != null)
+        {
+            StartCoroutine(ShowVictoryWithDelay());
+        }
+    }
+
+
 }

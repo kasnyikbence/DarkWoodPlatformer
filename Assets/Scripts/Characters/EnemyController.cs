@@ -147,7 +147,7 @@ public class EnemyController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             damageable.LockVelocity = true;
-            animator.SetBool("lockVelocity", false);
+            animator.SetBool(AnimationStrings.lockVelocity, false);
             return;
         }
 
@@ -219,12 +219,12 @@ public class EnemyController : MonoBehaviour
         if (currentPhase == EnemyPhase.Attack)
         {
             damageable.LockVelocity = true;
-            animator.SetBool("lockVelocity", true);
+            animator.SetBool(AnimationStrings.lockVelocity, true);
         }
         else
         {
             damageable.LockVelocity = false;
-            animator.SetBool("lockVelocity", false);
+            animator.SetBool(AnimationStrings.lockVelocity, false);
         }
     }
 

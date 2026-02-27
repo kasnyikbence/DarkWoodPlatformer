@@ -19,8 +19,6 @@ public class PauseMenuManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // Ha ez egy UI objektumon van, ami nem DDOL, akkor ez a sor nem kell.
-            // De ha DDOL-ban van, akkor maradjon.
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -90,8 +88,11 @@ public class PauseMenuManager : MonoBehaviour
 
     private void TogglePause(InputAction.CallbackContext context)
     {
-        if (isPaused) Resume();
-        else Pause();
+        if(!SkillTreeUI.isOpen)
+        {
+            if (isPaused) Resume();
+            else Pause();
+        }
     }
 
     public void Pause()
