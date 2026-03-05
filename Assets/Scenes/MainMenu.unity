@@ -6166,49 +6166,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: closeThing
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: settingsMenu
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: sfxVolumeSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: fullscreenToggle
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: musicVolumeSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: masterVolumeSlider
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: resolutionDropdown
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 499410944062112221, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: fadeImage
-      value: 
-      objectReference: {fileID: 8299782725493765841, guid: d853cfc8460227f41b68d9814621dc95, type: 3}
-    - target: {fileID: 504887744749886655, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: pauseMenuUI
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 951749190570355905, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2861645454022679088, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6767167755075802608, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
       propertyPath: m_Pivot.x
@@ -6290,11 +6250,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 486477959996178141, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-    - {fileID: 504887744749886655, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
-    m_RemovedGameObjects:
-    - {fileID: 652678986435103230, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abd7140cd9aa76844a4cfe13204b580d, type: 3}

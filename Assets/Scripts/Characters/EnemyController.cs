@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class EnemyController : MonoBehaviour
 {
-
     public float walkAcceleration = 3f;
     public float maxSpeed = 3f;
     public float chaseMaxSpeed = 5f;
@@ -57,14 +56,11 @@ public class EnemyController : MonoBehaviour
                     walkDirectionVector = Vector2.left;
                 }
             }
-
-
             _walkDirections = value;
         }
     }
 
     public bool _hasTarget = false;
-
     public bool HasTarget
     {
         get
@@ -75,6 +71,18 @@ public class EnemyController : MonoBehaviour
         {
             _hasTarget = value;
             animator.SetBool(AnimationStrings.hasTarget, value);
+        }
+    }
+
+    public bool IsMoving
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.isMoving);
+        }
+        private set
+        {
+            animator.SetBool(AnimationStrings.isMoving, value);
         }
     }
 
@@ -114,21 +122,20 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-
         if (player == null)
         {
             FindPlayer();
             if (player == null) return;
         }
+
         HasTarget = attackZone.detectedColliders.Count > 0;
 
         if (AttackCooldown > 0)
         {
             AttackCooldown -= Time.deltaTime;
         }
-        
-        UpdateEnemyPhase();
 
+        UpdateEnemyPhase();
     }
 
 
@@ -146,8 +153,7 @@ public class EnemyController : MonoBehaviour
         if (currentPhase == EnemyPhase.Attack)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            damageable.LockVelocity = true;
-            animator.SetBool(AnimationStrings.lockVelocity, false);
+            IsMoving = false;
             return;
         }
 
@@ -156,23 +162,23 @@ public class EnemyController : MonoBehaviour
             if (CanMove && currentPhase == EnemyPhase.Patrol)
             {
                 rb.linearVelocity = new Vector2(
-                    Mathf.Clamp(rb.linearVelocity.x +
-                    (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
-                    -maxSpeed, maxSpeed), rb.linearVelocity.y
+                    Mathf.Clamp(rb.linearVelocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed),
+                    rb.linearVelocity.y
                 );
+                IsMoving = true;
             }
             else if (CanMove && currentPhase == EnemyPhase.Chase)
             {
                 rb.linearVelocity = new Vector2(
-                    Mathf.Clamp(rb.linearVelocity.x +
-                    (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
-                    -chaseMaxSpeed, chaseMaxSpeed), rb.linearVelocity.y
+                    Mathf.Clamp(rb.linearVelocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -chaseMaxSpeed, chaseMaxSpeed),
+                    rb.linearVelocity.y
                 );
+                IsMoving = true;
             }
             else
             {
                 rb.linearVelocity = new Vector2(Mathf.Lerp(rb.linearVelocity.x, 0, walkStopRate), rb.linearVelocity.y);
-                return;
+                IsMoving = false;
             }
         }
     }
@@ -201,7 +207,6 @@ public class EnemyController : MonoBehaviour
         if (HasTarget)
         {
             currentPhase = EnemyPhase.Attack;
-            damageable.LockVelocity = true;
         }
         else if (distance < aggroDistance)
         {
@@ -247,7 +252,6 @@ public class EnemyController : MonoBehaviour
     public void OnHit(int damage, Vector2 knockBack)
     {
         rb.linearVelocity = new Vector2(knockBack.x, rb.linearVelocity.y + knockBack.y);
-
         StartCoroutine(KnockbackRoutine());
     }
 
@@ -282,6 +286,7 @@ public class EnemyController : MonoBehaviour
             WalkDirection = WalkableDirection.Left;
         }
     }
+
     private void FindPlayer()
     {
         if (player == null)

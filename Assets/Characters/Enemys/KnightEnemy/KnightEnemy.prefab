@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 904539577130097458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0, z: 0}
+  m_LocalPosition: {x: 1.09, y: -1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67,7 +67,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.39233017, y: -0.16786695}
+  m_Offset: {x: 0.07671738, y: 0.0052108765}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -77,7 +77,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.2270584, y: 1.8856277}
+  m_Size: {x: 2.5958328, y: 2.2317834}
   m_EdgeRadius: 0
 --- !u!114 &9092125135730152969
 MonoBehaviour:
@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 2153000130043979230}
   - component: {fileID: -9018142947896486055}
   - component: {fileID: 596199338024449073}
+  - component: {fileID: 8053628671955135979}
   m_Layer: 8
   m_Name: KnightEnemy
   m_TagString: Untagged
@@ -188,7 +189,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1314586131, guid: c4d53d49d6ffef546b4a3e6c2c57d36e, type: 3}
+  m_Sprite: {fileID: 62234271, guid: cec6d90813bdefc428181079ab6d2dd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -260,8 +261,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.116650105, y: 0.025436163}
-  m_Size: {x: 0.9759426, y: 2.3296537}
+  m_Offset: {x: -0.2964859, y: -1.455605}
+  m_Size: {x: 0.8278351, y: 2.0757608}
   m_Direction: 0
 --- !u!114 &1715859611692169603
 MonoBehaviour:
@@ -313,7 +314,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   groundDistance: 0.05
-  wallDistance: 0.5
+  wallDistance: 1
   ceilingDistance: 0.05
   _isGrounded: 1
   _isOnWall: 0
@@ -514,7 +515,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9cba15fd9b30fa45bf1cbda5240a116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStateManager
-  enemyID: 942a78f5-8361-4588-83f3-b8964b248d3f
+  enemyID: 7faa1357-30b8-449f-932e-ed0a23c2b4da
+--- !u!114 &8053628671955135979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952324301547606914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a35163cc6510a41b2e40d63fb8846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationSound
+  volume: 0.1
 --- !u!1 &2531879665172111609
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 2531879665172111609}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 2.26, y: -1.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -621,8 +635,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de29536b620c8994b900d99f206aed9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 13
-  knockBack: {x: 5, y: 2}
+  attackDamage: 8
+  knockBack: {x: 0, y: 0}
 --- !u!1 &2803659277045266930
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +664,7 @@ Transform:
   m_GameObject: {fileID: 2803659277045266930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 2.78, y: -1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -761,7 +775,7 @@ Transform:
   m_GameObject: {fileID: 7190775183387087384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.003, y: -1.588, z: 0}
+  m_LocalPosition: {x: 1.37, y: -3.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,7 +1,8 @@
-using UnityEngine;
-using TMPro;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Audio;
 
 public class DialogueController : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI NPCNameText;
     [SerializeField] private TextMeshProUGUI NPCDialogueText;
     [SerializeField] private float typeSpeed = 10f;
+
+    public AudioSource audioSource;
+    public AudioClip dialogueBlipSound;
+    public float minPitch = 0.8f;
+    public float maxPitch = 1.2f;
+    public int playAudioEveryNthChar = 2;
 
     private Queue<string> paragraphs = new Queue<string>();
     private bool conversationEnded;
@@ -49,10 +56,8 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        // Ha épp nem gépelünk, indítjuk a következõt
         if (!isTyping)
         {
-            // Ellenõrzés, hogy van-e még a sorban (biztonsági okból)
             if (paragraphs.Count > 0)
             {
                 p = paragraphs.Dequeue();
@@ -61,7 +66,6 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            // Ha gépelünk, befejezzük azonnal
             FinishParagraphEarly();
         }
 
@@ -77,7 +81,6 @@ public class DialogueController : MonoBehaviour
         {
             dialoguePanel.SetActive(true);
 
-            // Singleton hívás a UIManager felé
             if (UIManager.Instance != null)
             {
                 UIManager.Instance.HideInteractHint();
@@ -88,7 +91,6 @@ public class DialogueController : MonoBehaviour
 
         NPCNameText.text = dialogueText.speakerName;
 
-        // Queue feltöltése
         for (int i = 0; i < dialogueText.paragraphs.Length; i++)
         {
             paragraphs.Enqueue(dialogueText.paragraphs[i]);
@@ -126,6 +128,15 @@ public class DialogueController : MonoBehaviour
 
             displayedText = NPCDialogueText.text.Insert(alphaIndex, HTML_ALPHA);
             NPCDialogueText.text = displayedText;
+
+            if (c != ' ' && alphaIndex % playAudioEveryNthChar == 0)
+            {
+                if (audioSource != null && dialogueBlipSound != null)
+                {
+                    audioSource.pitch = Random.Range(minPitch, maxPitch);
+                    audioSource.PlayOneShot(dialogueBlipSound);
+                }
+            }
 
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
         }

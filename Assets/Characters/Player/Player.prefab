@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 5759880525942260180}
   - component: {fileID: 5582686207166011741}
   - component: {fileID: 5044972556797584399}
+  - component: {fileID: 2670289478117319437}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -299,6 +300,7 @@ MonoBehaviour:
   airWalkSpeed: 7
   jumpImpulse: 9
   douleJumpImpulse: 8
+  isAttacking: 0
   fallMultiplier: 2.5
   dashSpeed: 20
   dashDuration: 0.2
@@ -448,7 +450,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8793739805844401235}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnRoll
+        m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -753,6 +755,19 @@ MonoBehaviour:
   bonusMaxPotions: 0
   bonusMaxArrows: 0
   doubleJumpUnlocked: 0
+--- !u!114 &2670289478117319437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384424839921047904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a35163cc6510a41b2e40d63fb8846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationSound
+  volume: 0.2
 --- !u!1 &1779173700223183661
 GameObject:
   m_ObjectHideFlags: 0

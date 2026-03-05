@@ -6605,6 +6605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1890021554417532881}
   - component: {fileID: 1523561040342264914}
+  - component: {fileID: 5438713923378584526}
   m_Layer: 5
   m_Name: GameManager
   m_TagString: Untagged
@@ -6648,6 +6649,18 @@ MonoBehaviour:
   directoryName: Saves
   openedChests: []
   deadEnemies: []
+--- !u!114 &5438713923378584526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397055592954070752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8af107e381ed1744a94d1fac17687d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitStop
 --- !u!1 &5517148902309738965
 GameObject:
   m_ObjectHideFlags: 0

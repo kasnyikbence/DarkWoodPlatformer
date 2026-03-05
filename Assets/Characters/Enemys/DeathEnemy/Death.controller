@@ -22,6 +22,25 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 660, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 360, y: 0, z: 0}
   m_DefaultState: {fileID: 4038251001500434286}
+--- !u!114 &-7861016056357783840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166501a00abf50f44ba1881cb2bb411c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SetFloatBehavior
+  floatName: attackCooldown
+  updateOnStateEnter: 0
+  updateOnStateExit: 1
+  updateOnStateMachineEnter: 0
+  updateOnStateMachineExit: 0
+  valueOnEnter: 0
+  valueOnExit: 1
 --- !u!114 &-6980909118959235425
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,6 +58,26 @@ MonoBehaviour:
   updateOnStateMachine: 0
   valueOnEnter: 0
   valueOnExit: 1
+--- !u!114 &-6698456271630392263
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb3c4d650297d040a94fd608c59e952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShotBehavior
+  soundToPlay: {fileID: 8300000, guid: af9845f5e92bc5e4ab5abd07bd02b103, type: 3}
+  volume: 0.2
+  playOnEnter: 1
+  playOnExit: 0
+  playAfterDelay: 0
+  playDelay: 0
+  timeSinceEntered: 0
+  hasDelayedSoundPlayed: 0
 --- !u!1109 &-6238653344311096995
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -112,7 +151,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3887628866236746429}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -6698456271630392263}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -154,12 +194,12 @@ AnimatorStateMachine:
   - {fileID: -571214169503443084}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -8718728396845941225}
-    second:
-    - {fileID: -3694661040199527164}
   - first: {fileID: 962748432310165472}
     second:
     - {fileID: -6238653344311096995}
+  - first: {fileID: -8718728396845941225}
+    second:
+    - {fileID: -3694661040199527164}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 660, y: 220, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -239,6 +279,12 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: isMoving
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   - m_Name: hasTarget
     m_Type: 4
@@ -373,7 +419,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1744916962889012372}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -7861016056357783840}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -388,6 +435,26 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &4303727559021254737
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acb3c4d650297d040a94fd608c59e952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayOneShotBehavior
+  soundToPlay: {fileID: 8300000, guid: 2d6a822a21052d24eb0d481c59c51d2e, type: 3}
+  volume: 0.5
+  playOnEnter: 1
+  playOnExit: 0
+  playAfterDelay: 0
+  playDelay: 0
+  timeSinceEntered: 0
+  hasDelayedSoundPlayed: 0
 --- !u!1102 &5416469746265624038
 AnimatorState:
   serializedVersion: 6
@@ -402,6 +469,7 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 8129063776139037045}
   - {fileID: -6980909118959235425}
+  - {fileID: 4303727559021254737}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

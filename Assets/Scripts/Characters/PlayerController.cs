@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 7f;
     public float jumpImpulse = 9f;
     public float douleJumpImpulse = 8f;
+    public bool isAttacking;
+
 
     [Header("Fizika")]
     public float fallMultiplier = 2.5f;
@@ -70,8 +72,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool _isFacingRight = true;
-
-
     public bool IsFacingRight
     {
         get
@@ -236,9 +236,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnRoll(InputAction.CallbackContext context)
+    public void OnDash(InputAction.CallbackContext context)
     {
-        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen)
+        if (PauseMenuManager.isPaused || DialogueController.isPaused || SkillTreeUI.isOpen || isAttacking)
         {
             return;
         }
@@ -300,6 +300,7 @@ public class PlayerController : MonoBehaviour
         }
         if (context.started)
         {
+            isAttacking = true;
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
     }
@@ -312,6 +313,7 @@ public class PlayerController : MonoBehaviour
         }
         if (context.started)
         {
+            isAttacking = true;
             animator.SetTrigger(AnimationStrings.rangedAttackTrigger);
         }
 
