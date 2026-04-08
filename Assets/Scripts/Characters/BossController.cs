@@ -287,11 +287,7 @@ public class BossController : MonoBehaviour
           //  if (bossCollider != null) bossCollider.enabled = false;
 
             animator.SetBool("isAttacking", true);
-            animator.SetTrigger("MeleeAttack1");
-            yield return new WaitForSeconds(0.5f);
-
-            animator.SetTrigger("MeleeAttack2");
-
+            animator.SetTrigger("MeleeAttack");
             animator.SetBool("isAttacking", false);
 
             //if (bossCollider != null) bossCollider.enabled = true;

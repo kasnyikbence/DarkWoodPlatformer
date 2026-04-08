@@ -129,7 +129,7 @@ public class FlyingEye : MonoBehaviour
             }
 
 
-            rb.gravityScale = 2f;
+            rb.gravityScale = 1f;
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
 
             if (col != null && col.isTrigger)

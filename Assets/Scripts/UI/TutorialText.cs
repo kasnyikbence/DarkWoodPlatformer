@@ -1,12 +1,17 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialTrigger : MonoBehaviour
 {
     [Header("Beállítások")]
     public GameObject tutorialTextObject;
     public float fadeSpeed = 2f;
+
 
     private CanvasGroup canvasGroup;
     void Awake()
@@ -56,4 +61,6 @@ public class TutorialTrigger : MonoBehaviour
             yield return null;
         }
     }
+
+    
 }

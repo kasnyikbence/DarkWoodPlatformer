@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +12,16 @@ public abstract class NPC : MonoBehaviour, IInteractable
     private bool wasWithinInteractDistance = false;
     private Vector3 originalScale;
 
+    public CinemachineCamera vCam;
+    public const float TARGET_ORTHO_SIZE = 6f;
+    public float zoomSpeed = 2f;
+
+    private float originalOrthoSize;
+
 
     private void Start()
     {
+        FindCameraReference();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         originalScale = transform.localScale;
     }
@@ -60,12 +69,16 @@ public abstract class NPC : MonoBehaviour, IInteractable
     protected void StartDialogue()
     {
         isTalking = true;
-        UIManager.Instance.HideInteractHint(); 
+        UIManager.Instance.HideInteractHint();
+        StartCoroutine(ChangeCameraSize(TARGET_ORTHO_SIZE));
+
+
     }
 
     public void EndDialogue()
     {
         isTalking = false;
+        StartCoroutine(ChangeCameraSize(originalOrthoSize));
 
         if (IsWithinInteractDistance())
         {
@@ -93,5 +106,37 @@ public abstract class NPC : MonoBehaviour, IInteractable
     {
         if (_playerTransform.position.x < transform.position.x) transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
         else transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+    }
+
+    private void FindCameraReference()
+    {
+        if (vCam == null)
+        {
+            vCam = FindAnyObjectByType<CinemachineCamera>(FindObjectsInactive.Include);
+        }
+
+        if (vCam != null && originalOrthoSize == 0)
+        {
+            originalOrthoSize = vCam.Lens.OrthographicSize;
+        }
+    }
+
+    IEnumerator ChangeCameraSize(float targetSize)
+    {
+        var lensSettings = vCam.Lens;
+        float currentSize = lensSettings.OrthographicSize;
+
+        while (Mathf.Abs(currentSize - targetSize) > 0.05f)
+        {
+            currentSize = Mathf.Lerp(currentSize, targetSize, Time.deltaTime * zoomSpeed);
+
+            lensSettings.OrthographicSize = currentSize;
+            vCam.Lens = lensSettings;
+
+            yield return null;
+        }
+
+        lensSettings.OrthographicSize = targetSize;
+        vCam.Lens = lensSettings;
     }
 }
