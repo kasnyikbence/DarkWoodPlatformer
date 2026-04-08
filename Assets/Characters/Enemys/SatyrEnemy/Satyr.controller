@@ -32,7 +32,7 @@ MonoBehaviour:
   updateOnStateMachineEnter: 0
   updateOnStateMachineExit: 0
   valueOnEnter: 0
-  valueOnExit: 0.5
+  valueOnExit: 0.3
 --- !u!114 &-5357085748630739083
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,23 +75,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &-3368504905700275493
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433aaed1ef67d0642b1cff5239fd5d57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SetBoolBehavior
-  boolName: canMove
-  updateOnState: 1
-  updateOnStateMachine: 0
-  valueOnEnter: 0
-  valueOnExit: 1
 --- !u!1102 &-2294087328889729837
 AnimatorState:
   serializedVersion: 6
@@ -353,7 +336,6 @@ AnimatorState:
   - {fileID: -4590862379000743238}
   m_StateMachineBehaviours:
   - {fileID: -5386684056051357189}
-  - {fileID: -3368504905700275493}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
