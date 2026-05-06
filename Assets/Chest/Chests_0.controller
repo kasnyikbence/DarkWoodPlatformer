@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayOneShotBehavior
   soundToPlay: {fileID: 8300000, guid: 6a88bdaa2480f114699af51898825b57, type: 3}
-  volume: 1
+  volume: 0.5
   playOnEnter: 1
   playOnExit: 0
   playAfterDelay: 0

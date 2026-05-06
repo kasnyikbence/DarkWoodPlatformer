@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 6124548246788631353}
   - component: {fileID: 7173573165980380763}
   - component: {fileID: 1329049677232833392}
+  - component: {fileID: 7329313272151415576}
   m_Layer: 8
   m_Name: DarkMageBoss
   m_TagString: Untagged
@@ -395,8 +396,8 @@ MonoBehaviour:
   invincibilityTimer: 0.25
   _isAlive: 1
   _isInvincible: 0
-  _baseMaxHealth: 200
-  _health: 200
+  _baseMaxHealth: 500
+  _health: 500
 --- !u!114 &2762570225422554983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +563,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -646,6 +647,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7329313272151415576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189576205324019979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a35163cc6510a41b2e40d63fb8846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationSound
+  volume: 1
 --- !u!1001 &1291472917515652776
 PrefabInstance:
   m_ObjectHideFlags: 0

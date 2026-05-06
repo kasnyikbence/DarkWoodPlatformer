@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements.Experimental;
@@ -133,8 +134,7 @@ public class Damageable : MonoBehaviour
             damageableHit?.Invoke(damage, knockBack);
             CharacterEvents.characterDamaged?.Invoke(gameObject, damage);
 
-           // HitStop.Instance.StopTime(0.5f);
-            GetComponent<Unity.Cinemachine.CinemachineImpulseSource>().GenerateImpulse();
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
 
             return true;
         }

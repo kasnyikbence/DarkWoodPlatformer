@@ -1839,7 +1839,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2762570225422554983, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
   m_PrefabInstance: {fileID: 8159993532570058889}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143292250}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b1ad734e30b44046a247ad7a8177d43, type: 3}
@@ -668624,24 +668624,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0e8e2ad03ad6241956375fb1d0b537, type: 3}
---- !u!1 &2143292250 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9189576205324019979, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
-  m_PrefabInstance: {fileID: 8159993532570058889}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2143292258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143292250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a35163cc6510a41b2e40d63fb8846a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimationSound
-  volume: 1
 --- !u!1001 &6280196185710470625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -668773,8 +668755,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 1708610591}
     m_Modifications:
     - target: {fileID: 1329049677232833392, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
-      propertyPath: m_Volume
-      value: 0.005
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2762570225422554983, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
       propertyPath: player
@@ -668864,14 +668846,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8333488822604628071, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
-      propertyPath: _health
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 8333488822604628071, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
-      propertyPath: _baseMaxHealth
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 9189576205324019979, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
       propertyPath: m_Name
       value: DarkMageBoss
@@ -668879,10 +668853,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9189576205324019979, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2143292258}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d999c70d01316b24d99d381680d9cc0a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
