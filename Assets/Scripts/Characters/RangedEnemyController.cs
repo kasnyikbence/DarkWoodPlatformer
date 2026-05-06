@@ -12,7 +12,7 @@ public class RangedEnemyController : MonoBehaviour
     public float walkStopRate = 0.05f;
 
     [Header("Detection")]
-    public float aggroDistance = 8f; // Messzebbrõl lásson
+    public float aggroDistance = 8f;
     public float stopChaseDistance = 12f;
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
@@ -20,7 +20,7 @@ public class RangedEnemyController : MonoBehaviour
     [Header("Ranged Attack")]
     public GameObject projectilePrefab;
     public Transform firePoint;
-    public float rangedAttackDelay = 0.5f; // Animációhoz igazítva
+    public float rangedAttackDelay = 0.5f;
 
     [Header("Knockback")]
     public float knockbackDuration = 0.2f;
@@ -181,7 +181,7 @@ public class RangedEnemyController : MonoBehaviour
         isAttacking = true;
         FaceToPlayer();
 
-        animator.SetBool(AnimationStrings.hasTarget, true); // Vagy sima "attack" trigger
+        animator.SetBool(AnimationStrings.hasTarget, true);
 
         yield return new WaitForSeconds(rangedAttackDelay);
 
@@ -203,7 +203,6 @@ public class RangedEnemyController : MonoBehaviour
         AttackCooldown = 1f;
         isAttacking = false;
     }
-    // ------------------------------------
 
     private void UpdateLockState()
     {

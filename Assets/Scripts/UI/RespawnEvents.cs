@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class RespawnEvents : MonoBehaviour
 {
-    // Ezt a függvényt kösd be a "Respawn" gombra
     public void OnRespawnClicked()
     {
         if (GameManager.Instance != null)

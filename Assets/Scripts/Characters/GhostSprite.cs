@@ -6,7 +6,7 @@ public class GhostSprite : MonoBehaviour
     public float fadeSpeed = 2f;
 
     private SpriteRenderer mySprite;
-    private SpriteRenderer playerSprite;
+    //private SpriteRenderer playerSprite;
     private float timeActive;
     private Color color;
 

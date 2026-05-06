@@ -114,7 +114,6 @@ public class Chest : MonoBehaviour
                     if (UIManager.Instance) UIManager.Instance.ShowPickupMessage("Arrows full!");
                 }
             }
-            // ----------------------------------
 
             isOpen = true;
             if (animator != null) animator.SetBool("isOpen", true);
@@ -125,7 +124,6 @@ public class Chest : MonoBehaviour
             {
                 GameManager.Instance.RegisterOpenedChest(chestID);
             }
-            // -----------------------------------------
 
             if (playerInput != null)
             {

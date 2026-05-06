@@ -78,7 +78,8 @@ public class Door : MonoBehaviour
         }
         else
         {
-           // UIManager.Instance.ShowTemporaryMessage("Need a key to open."); // opcionális helper
+           // TODO: Nincs kulcs kell valami üzenet
+             Debug.Log("Nincs kulcsod a door kinyitásához!");
         }
     }
 

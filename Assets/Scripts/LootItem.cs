@@ -11,8 +11,8 @@ public class LootItem : MonoBehaviour
     public int amount = 1;
 
     [Header("Beállítások")]
-    public LayerMask groundLayer;   // Mi számít talajnak? (Ground)
-    public float groundCheckDist = 0.5f; // Milyen közel legyen a földhöz, hogy megálljon?
+    public LayerMask groundLayer;
+    public float groundCheckDist = 0.5f;
 
     [Header("Animáció")]
     public float hoverSpeed = 3f;
@@ -29,7 +29,6 @@ public class LootItem : MonoBehaviour
 
     void Start()
     {
-        // 1. Induláskor kilõjük valamerre
         if (rb != null)
         {
             float randomX = Random.Range(-0.5f, 0.5f);

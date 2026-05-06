@@ -15,7 +15,6 @@ public class PlayOneShotBehavior : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Lekéri az AudioSource komponenst, vagy hozzáadja, ha még nincs
         audioSource = animator.gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = animator.gameObject.AddComponent<AudioSource>();

@@ -22,7 +22,6 @@ public class HealthBar : MonoBehaviour
         playerDamageable = player.GetComponent<Damageable>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         healthSlider.value = CalculateSliderPrecentage(playerDamageable.Health, playerDamageable.MaxHealth);
@@ -48,11 +47,5 @@ public class HealthBar : MonoBehaviour
     {
         healthSlider.value = CalculateSliderPrecentage(newHealth, maxHealth);
         healthBarText.text = "Health " + newHealth + " / " + maxHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

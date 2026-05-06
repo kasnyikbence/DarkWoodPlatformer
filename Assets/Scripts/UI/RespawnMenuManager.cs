@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class RespawnMenuManager : MonoBehaviour
 {
-    // Privátra állítjuk, mert a kód keresi meg, nem te húzod be
     private GameObject respawnMenu;
 
     public static RespawnMenuManager Instance;

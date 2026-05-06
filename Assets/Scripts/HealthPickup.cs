@@ -10,9 +10,6 @@ public class HealthPickup : MonoBehaviour
     public Vector3 startPos;
     public int amount = 1;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     void Start()
     {
         startPos = transform.position;

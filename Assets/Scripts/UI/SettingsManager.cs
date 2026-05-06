@@ -18,32 +18,28 @@ public class SettingsManager : MonoBehaviour
 
     [Header("Menu Elements")]
     public GameObject settingsMenu;
-    public GameObject closeThing; // A gomb vagy panel, ami látszik, ha a settings zárva van
+    public GameObject closeThing;
 
     private Resolution[] resolutions;
 
     void Start()
     {
-        // 1. FELBONTÁSOK BEOLVASÁSA ÉS DROPDOWN FELTÖLTÉSE
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
 
-        // Ellenőrizzük, van-e már mentett beállításunk
         bool hasSavedResolution = PlayerPrefs.HasKey("resolutionIndex");
         int savedIndex = PlayerPrefs.GetInt("resolutionIndex");
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            // Formátum: "1920 x 1080"
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
             if (hasSavedResolution)
             {
-                // Ha van mentés, azt keressük meg a listában
                 if (i == savedIndex)
                 {
                     currentResolutionIndex = i;
@@ -51,9 +47,6 @@ public class SettingsManager : MonoBehaviour
             }
             else
             {
-                // HA NINCS MENTÉS (Első indítás):
-                // Azt keressük, ami megegyezik a monitor jelenlegi felbontásával (Screen.currentResolution)
-                // Ez általában a natív (legmagasabb) felbontás.
                 if (resolutions[i].width == Screen.currentResolution.width &&
                     resolutions[i].height == Screen.currentResolution.height)
                 {
@@ -66,14 +59,11 @@ public class SettingsManager : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
-        // 2. EGYÉB BEÁLLÍTÁSOK BETÖLTÉSE (Hangerő, Fullscreen)
         LoadSettings(currentResolutionIndex);
     }
 
     public void LoadSettings(int currentResIndex)
     {
-        // --- Hangerő betöltése ---
-        // Ha nincs mentés, alapértelmezett (1f)
         float masterVol = PlayerPrefs.GetFloat("masterVolume", 1f);
         float musicVol = PlayerPrefs.GetFloat("musicVolume", 1f);
         float sfxVol = PlayerPrefs.GetFloat("sfxVolume", 1f);
@@ -82,29 +72,20 @@ public class SettingsManager : MonoBehaviour
         musicVolumeSlider.value = musicVol;
         sfxVolumeSlider.value = sfxVol;
 
-        // Fontos: A csúszkák beállítása nem hívja meg automatikusan a SetMasterVolume-ot induláskor,
-        // ezért kézzel is be kell állítani a Mixert.
         SetMasterVolume(masterVol);
         SetMusicVolume(musicVol);
         SetSfxVolume(sfxVol);
 
-        // --- Fullscreen betöltése ---
-        // Alapértelmezett: 1 (True)
         bool isFullscreen = PlayerPrefs.GetInt("fullscreen", 1) == 1;
         fullscreenToggle.isOn = isFullscreen;
         Screen.fullScreen = isFullscreen;
 
-        // --- Felbontás érvényesítése ---
-        // Ez biztosítja, hogy induláskor a játék tényleg átváltson a helyes felbontásra
         Resolution res = resolutions[currentResIndex];
         Screen.SetResolution(res.width, res.height, isFullscreen);
     }
 
-    // --- AUDIO BEÁLLÍTÁSOK ---
-
     public void SetMasterVolume(float volume)
     {
-        // Logaritmikus skála a decibelhez
         float db = (volume <= 0.0001f) ? -80f : Mathf.Log10(volume) * 12;
         mainMixer.SetFloat("MasterVolume", db);
         PlayerPrefs.SetFloat("masterVolume", volume);
@@ -127,19 +108,14 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // --- GRAFIKAI BEÁLLÍTÁSOK ---
-
     public void SetResolution(int resolutionIndex)
     {
-        // Biztonsági ellenőrzés
         if (resolutions == null || resolutionIndex < 0 || resolutionIndex >= resolutions.Length) return;
 
         Resolution resolution = resolutions[resolutionIndex];
 
-        // Beállítjuk a felbontást
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
 
-        // ELMENTJÜK a kiválasztott indexet
         PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
         PlayerPrefs.Save();
     }
@@ -148,12 +124,9 @@ public class SettingsManager : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
 
-        // ELMENTJÜK az állapotot (1 = true, 0 = false)
         PlayerPrefs.SetInt("fullscreen", isFullscreen ? 1 : 0);
         PlayerPrefs.Save();
     }
-
-    // --- MENÜ NYITÁS/ZÁRÁS ---
 
     public void OpenSettingsMenu()
     {

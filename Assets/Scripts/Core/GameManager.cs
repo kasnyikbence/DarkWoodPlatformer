@@ -146,7 +146,6 @@ public class GameManager : MonoBehaviour
         string savePath = Application.persistentDataPath + "/" + directoryName;
         string filePath = savePath + "/" + saveName + ".bin";
 
-        // 1. Töröljük a fájlt
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -312,9 +311,6 @@ public class GameManager : MonoBehaviour
             openedChests = new List<string>();
         }
 
-
-
-        // --- STATISZTIKÁK VISSZAÁLLÍTÁSA ---
         var dmg = player.GetComponent<Damageable>();
         if (dmg != null)
         {

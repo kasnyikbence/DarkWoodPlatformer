@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems; // Kell a Tooltiphez
+using UnityEngine.EventSystems;
 
 public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -18,15 +18,14 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private Image frameImage;
 
     [Header("Színek")]
-    public Color lockedColor = new Color(0.3f, 0.3f, 0.3f, 1f); // Sötétszürke (Zárva)
-    public Color notOwnedColor = Color.gray;                    // Világosszürke (Megvehetõ)
-    public Color ownedColor = Color.white;                      // Fehér (Megvan)
+    public Color lockedColor = new Color(0.3f, 0.3f, 0.3f, 1f); // Zárva
+    public Color notOwnedColor = Color.gray;                    // Megvehetõ
+    public Color ownedColor = Color.white;                      // Megvan
 
     public SkillSlot[] parentSkills;
 
-    // --- ÁLLAPOTOK ---
     private SkillState currentState;
-    private bool isHovered = false; // ÚJ: Tudjuk, hogy rajta van-e az egér
+    private bool isHovered = false;
 
     void Awake()
     {
@@ -92,7 +91,6 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if (SkillManager.Instance == null) return;
 
-        // 1. Állapot frissítése
         if (SkillManager.Instance.IsSkillUnlocked(skillID))
         {
             UpdateUIState(SkillState.Unlocked);
@@ -106,8 +104,6 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             UpdateUIState(SkillState.Locked);
         }
 
-        // 2. ÚJ: Ha épp rajta van az egér, frissítjük a Tooltipet is azonnal!
-        // Így kattintás után rögtön átvált a szöveg [Owned]-re.
         if (isHovered)
         {
             ShowTooltipContent();
@@ -141,10 +137,6 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             SkillManager.Instance.TryUnlockSkill(this);
         }
     }
-
-    // --- TOOLTIP LOGIKA ---
-
-    // Kiemeltem egy külön függvénybe, hogy többször is meg lehessen hívni
     private void ShowTooltipContent()
     {
         if (SkillTooltip.Instance != null)
