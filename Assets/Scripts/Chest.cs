@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, IInteractable
 {
     [Header("ID")]
     public string chestID;
 
     private GameObject player;
-    private PlayerInput playerInput;
     private bool isOpen = false;
     Animator animator;
 
@@ -51,13 +50,6 @@ public class Chest : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             player = col.gameObject;
-            playerInput = player.GetComponent<PlayerInput>();
-
-            if (playerInput != null)
-            {
-                playerInput.actions["ChestOpen"].performed -= OnInteract;
-                playerInput.actions["ChestOpen"].performed += OnInteract;
-            }
 
             if (UIManager.Instance != null) UIManager.Instance.ShowInteractHint();
         }
@@ -67,17 +59,11 @@ public class Chest : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            if (playerInput != null)
-            {
-                playerInput.actions["ChestOpen"].performed -= OnInteract;
-                playerInput = null;
-                player = null;
-            }
             if (UIManager.Instance != null) UIManager.Instance.HideInteractHint();
         }
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    public void Interact()
     {
         if (!isOpen)
         {
@@ -123,11 +109,6 @@ public class Chest : MonoBehaviour
             if (GameManager.Instance != null && !string.IsNullOrEmpty(chestID))
             {
                 GameManager.Instance.RegisterOpenedChest(chestID);
-            }
-
-            if (playerInput != null)
-            {
-                playerInput.actions["ChestOpen"].performed -= OnInteract;
             }
 
             GetComponent<Collider2D>().enabled = false;

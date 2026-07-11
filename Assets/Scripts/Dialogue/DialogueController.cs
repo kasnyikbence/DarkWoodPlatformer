@@ -101,7 +101,7 @@ public class DialogueController : MonoBehaviour
     {
         conversationEnded = false;
 
-        var npc = FindFirstObjectByType<NPC>();
+        var npc = FindAnyObjectByType<NPC>();
         if (npc != null)
             npc.EndDialogue();
 

@@ -44,7 +44,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
 
         bool currentlyWithinDistance = IsWithinInteractDistance();
 
-        if (Keyboard.current.eKey.wasPressedThisFrame && currentlyWithinDistance)
+        if (Keyboard.current.eKey.wasPressedThisFrame || Gamepad.current.buttonWest.wasPressedThisFrame && currentlyWithinDistance)
         {
             Interact();
         }

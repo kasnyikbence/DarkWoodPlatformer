@@ -2,10 +2,9 @@ using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     private GameObject player;
-    private PlayerInput playerInput;
     private bool isOpen = false;
     Animator animator;
     BoxCollider2D doorCollider;
@@ -26,13 +25,6 @@ public class Door : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             player = col.gameObject;
-            playerInput = player.GetComponent<PlayerInput>();
-
-            if (playerInput != null)
-            {
-                playerInput.actions["DoorOpen"].performed -= OnInteract;
-                playerInput.actions["DoorOpen"].performed += OnInteract;
-            }
 
             if (!isOpen)
             {
@@ -49,15 +41,11 @@ public class Door : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            if (playerInput != null)
-            {
-                playerInput.actions["DoorOpen"].performed -= OnInteract;
-            }
             UIManager.Instance.HideInteractHint();
         }
     }
 
-    private void OnInteract(InputAction.CallbackContext context)
+    public void Interact()
     {
         if (isOpen) return;
 

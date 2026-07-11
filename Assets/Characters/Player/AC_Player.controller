@@ -47,7 +47,7 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1107 &-8061291787126642700
 AnimatorStateMachine:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -81,22 +81,22 @@ AnimatorStateMachine:
   - {fileID: -2689143245382644264}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1829933561665267422}
-    second:
-    - {fileID: 567904946750357388}
-    - {fileID: 1761367082423811174}
-    - {fileID: 8059713704330086399}
-    - {fileID: 1029202674397740680}
-  - first: {fileID: -3759530384430732521}
-    second:
-    - {fileID: -7866902636985026878}
-    - {fileID: -4665858640898674154}
   - first: {fileID: -5207092441303630448}
     second:
     - {fileID: 5961151897960215719}
   - first: {fileID: -4099701496136078762}
     second:
     - {fileID: 6549943489118178425}
+  - first: {fileID: -3759530384430732521}
+    second:
+    - {fileID: -7866902636985026878}
+    - {fileID: -4665858640898674154}
+  - first: {fileID: 1829933561665267422}
+    second:
+    - {fileID: 567904946750357388}
+    - {fileID: 1761367082423811174}
+    - {fileID: 8059713704330086399}
+    - {fileID: 1029202674397740680}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 630, y: 120, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -409,7 +409,7 @@ AnimatorState:
   m_TimeParameter: 
 --- !u!1107 &-5207092441303630448
 AnimatorStateMachine:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -537,7 +537,7 @@ AnimatorStateTransition:
   m_CanTransitionToSelf: 1
 --- !u!1107 &-4099701496136078762
 AnimatorStateMachine:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -562,7 +562,7 @@ AnimatorStateMachine:
   m_DefaultState: {fileID: 6748236024518143199}
 --- !u!1107 &-3759530384430732521
 AnimatorStateMachine:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -987,7 +987,7 @@ AnimatorController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AC_Player
-  serializedVersion: 5
+  serializedVersion: 6
   m_AnimatorParameters:
   - m_Name: isMoving
     m_Type: 4
@@ -1092,6 +1092,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+  m_EvaluateTransitionsOnStart: 0
 --- !u!114 &416369346221295991
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1304,7 +1305,7 @@ AnimatorTransition:
   serializedVersion: 1
 --- !u!1107 &1829933561665267422
 AnimatorStateMachine:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2088,7 +2089,7 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 1
-  m_HasFixedDuration: 0
+  m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1

@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class Checkpoint : MonoBehaviour
+public class Checkpoint : MonoBehaviour, IInteractable
 {
     private bool playerInRange = false;
     private GameObject player;
     public string saveName = "savedGame";
     public string directoryName = "Saves";
     public SaveGameData saveGameData;
-    private PlayerInput playerInput;
+   // private PlayerInput playerInput;
 
 
     void OnTriggerEnter2D(Collider2D col)
@@ -20,14 +20,14 @@ public class Checkpoint : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             player = col.gameObject;
-            playerInput = player.GetComponent<PlayerInput>();
+          //  playerInput = player.GetComponent<PlayerInput>();
 
             playerInRange = true;
-            if (playerInput != null)
-            {
-                playerInput.actions["CheckpointSave"].performed -= OnInteract;
-                playerInput.actions["CheckpointSave"].performed += OnInteract;
-            }
+            //if (playerInput != null)
+            //{
+            //    playerInput.actions["CheckpointSave"].performed -= Interact;
+            //    playerInput.actions["CheckpointSave"].performed += Interact;
+            //}
             UIManager.Instance.ShowInteractHint();
         }
     }
@@ -36,14 +36,14 @@ public class Checkpoint : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             playerInRange = false;
-            if (playerInput != null)
-            {
-                playerInput.actions["CheckpointSave"].performed -= OnInteract;
-            }
+            //if (playerInput != null)
+            //{
+            //    playerInput.actions["CheckpointSave"].performed -= Interact;
+            //}
             UIManager.Instance.HideInteractHint();
         }
     }
-    public void OnInteract(InputAction.CallbackContext context)
+    public void Interact()
     {
         if (playerInRange)
         {
@@ -128,4 +128,5 @@ public class Checkpoint : MonoBehaviour
 
         print("Játék mentve: " + savePath + "/" + saveName + ".bin");
     }
+
 }

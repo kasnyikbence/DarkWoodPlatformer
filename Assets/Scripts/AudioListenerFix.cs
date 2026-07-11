@@ -5,7 +5,7 @@ public class AudioListenerFix : MonoBehaviour
     void Awake()
     {
 
-        AudioListener[] listeners = FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
+        AudioListener[] listeners = FindObjectsByType<AudioListener>();
 
         if (listeners.Length > 1)
         {

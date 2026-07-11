@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     ProjectileLauncher projectileLauncher;
     SpriteRenderer spriteRenderer;
 
+    private IInteractable currentInteractable;
+
     Rigidbody2D rb;
     Animator animator;
 
@@ -300,8 +302,16 @@ public class PlayerController : MonoBehaviour
         }
         if (context.started)
         {
-            isAttacking = true;
-            animator.SetTrigger(AnimationStrings.attackTrigger);
+            if (currentInteractable != null)
+            {
+                print("Interacting with: " + currentInteractable);
+                currentInteractable.Interact();
+            }
+            else
+            {
+                isAttacking = true;
+                animator.SetTrigger(AnimationStrings.attackTrigger);
+            }
         }
     }
 
@@ -332,6 +342,24 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement()
     {
         animator.SetBool(AnimationStrings.canMove, true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IInteractable interactable = collision.GetComponent<IInteractable>();
+        if (interactable != null)
+        {
+            currentInteractable = interactable;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IInteractable interactable = collision.GetComponent<IInteractable>();
+        if (interactable != null && currentInteractable == interactable)
+        {
+            currentInteractable = null;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
